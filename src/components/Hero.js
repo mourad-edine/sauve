@@ -1,68 +1,86 @@
-// components/Hero.js
+// components/Hero.js - Version avec logo en premier sur mobile
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white pt-20 pb-40 md:pb-56">
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 py-16 md:py-24 flex flex-col md:flex-row items-center">
-        <div className="md:w-1/2 mb-12 md:mb-0 md:pr-8 lg:pr-12">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8 leading-tight">
-            Confection de vêtements sur mesure pour{" "}
-            <span className="text-yellow-300 block md:inline">
-              entreprises & particuliers
-            </span>
-          </h1>
-          <p className="text-lg md:text-xl lg:text-2xl mb-8 md:mb-10 opacity-90 leading-relaxed">
-            Création de vêtements professionnels et personnalisés qui renforcent
-            l'image de votre entreprise et répondent à vos besoins
-            vestimentaires.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 md:gap-6">
-            <Link
-              href="/contact"
-              className="bg-yellow-500 hover:bg-yellow-600 text-blue-900 font-bold py-3 px-6 md:py-4 md:px-8 rounded-lg text-base md:text-lg transition duration-300 text-center transform hover:scale-105"
-            >
-              Demander un devis
-            </Link>
-            <Link
-              href="/service"
-              className="bg-transparent border-2 border-white hover:bg-white/10 text-white font-bold py-3 px-6 md:py-4 md:px-8 rounded-lg text-base md:text-lg transition duration-300 text-center transform hover:scale-105"
-            >
-              Découvrir nos services
-            </Link>
+    <section className="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white pt-12 md:pt-20 pb-32 md:pb-56">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
+        {/* Logo en premier sur mobile */}
+        <div className="flex justify-center mb-6 md:hidden">
+          <div className="relative w-48 h-48">
+            <Image
+              src="/images/logo.png"
+              alt="Logo 
+Confection Vonjy"
+              fill
+              className="object-contain drop-shadow-2xl"
+              priority
+            />
           </div>
         </div>
-        <div className="md:w-1/2 flex justify-center mt-8 md:mt-0">
-          <div className="relative w-full max-w-lg h-80 md:h-96 lg:h-[28rem] rounded-xl overflow-hidden shadow-2xl">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-800 to-blue-600 flex items-center justify-center">
-              <div className="text-center p-6 md:p-8 lg:p-10">
-                {/* Logo agrandi */}
-                <div className="mb-6 md:mb-8 flex justify-center">
-                  <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80">
-                    <Image
-                      src="/images/logo.png"
-                      alt="Logo ConfectionPro"
-                      fill
-                      className="object-contain drop-shadow-2xl"
-                      priority
-                    />
+        
+        <div className="flex flex-col md:flex-row items-center">
+          <div className="md:w-1/2 mb-8 md:mb-0 md:pr-8 lg:pr-12 text-center md:text-left">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 leading-tight uppercase">
+              Confection de vêtements sur mesure pour{" "}
+              <span className="text-yellow-300 block md:inline">
+                entreprises & particuliers
+              </span>
+            </h1>
+            <p className="text-base md:text-lg lg:text-xl mb-6 md:mb-8 opacity-90 leading-relaxed">
+              Création de vêtements professionnels et personnalisés qui renforcent
+              l'image de votre entreprise et répondent à vos besoins
+              vestimentaires.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center md:justify-start">
+              <Link
+                href="/contact"
+                className="bg-yellow-500 hover:bg-yellow-600 text-blue-900 font-bold py-3 px-5 md:py-3 md:px-6 rounded-lg text-base md:text-lg transition duration-300 text-center transform hover:scale-105"
+              >
+                Demander un devis
+              </Link>
+              <Link
+                href="/service"
+                className="bg-transparent border-2 border-white hover:bg-white/10 text-white font-bold py-3 px-5 md:py-3 md:px-6 rounded-lg text-base md:text-lg transition duration-300 text-center transform hover:scale-105"
+              >
+                Découvrir nos services
+              </Link>
+            </div>
+          </div>
+          
+          {/* Logo/image - caché sur mobile, visible sur desktop */}
+          <div className="hidden md:flex md:w-1/2 justify-center">
+            <div className="relative w-full max-w-lg h-80 lg:h-96 xl:h-[28rem] rounded-xl overflow-hidden shadow-2xl">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-800 to-blue-600 flex items-center justify-center">
+                <div className="text-center p-6 lg:p-8">
+                  <div className="mb-6 lg:mb-8 flex justify-center">
+                    <div className="relative w-56 h-56 lg:w-64 lg:h-64 xl:w-72 xl:h-72">
+                      <Image
+                        src="/images/logo.png"
+                        alt="Logo 
+Confection Vonjy"
+                        fill
+                        className="object-contain drop-shadow-2xl"
+                        priority
+                      />
+                    </div>
                   </div>
+                  <h3 className="text-2xl lg:text-3xl xl:text-4xl font-bold mb-3 text-white">
+                    Vêtements sur mesure
+                  </h3>
+                  <p className="text-lg lg:text-xl text-white/90">
+                    Qualité exceptionnelle, prix compétitifs
+                  </p>
                 </div>
-                <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 text-white">
-                  Vêtements sur mesure
-                </h3>
-                <p className="mt-2 text-lg md:text-xl text-white/90">
-                  Qualité exceptionnelle, prix compétitifs
-                </p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Forme décorative avec hauteur réduite */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 md:h-56">
+      {/* Forme décorative */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 md:h-40 lg:h-56">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1440 320"

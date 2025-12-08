@@ -46,7 +46,7 @@ export default function ServicesForIndividuals() {
     <section className="py-16 bg-gradient-to-b from-white to-blue-50">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4 uppercase">
             Services pour les Particuliers
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -75,7 +75,6 @@ export default function ServicesForIndividuals() {
         </div>
 
         <div className="mb-12">
-          <h3 className="text-2xl font-bold text-blue-900 mb-8 text-center">Notre approche sur mesure</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {benefits.map((benefit, index) => (
               <div key={index} className="bg-gradient-to-r from-blue-900 to-blue-700 text-white p-8 rounded-xl">
@@ -99,7 +98,7 @@ export default function ServicesForIndividuals() {
         </div>
 
         <div className="bg-white p-8 rounded-2xl shadow-lg border border-blue-200">
-          <h3 className="text-2xl font-bold text-blue-900 mb-6 text-center">
+          <h3 className="text-2xl font-bold text-blue-900 mb-6 text-center uppercase">
             Le processus pour particuliers
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">

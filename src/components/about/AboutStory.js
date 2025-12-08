@@ -44,7 +44,7 @@ export default function AboutStory() {
     <section id="story" className="py-16 bg-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4 uppercase">
             Notre Parcours
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -80,7 +80,7 @@ export default function AboutStory() {
                       <div className="bg-blue-700 text-white px-4 py-1 rounded-lg font-bold mr-4">
                         {item.year}
                       </div>
-                      <h3 className="text-xl font-bold text-blue-900">{item.title}</h3>
+                      <h3 className="text-xl font-bold text-blue-900 uppercase">{item.title}</h3>
                     </div>
                     <p className="text-gray-700">{item.description}</p>
                   </div>
@@ -90,46 +90,63 @@ export default function AboutStory() {
           </div>
         </div>
         
-        {/* Notre mission aujourd'hui */}
-        <div className="mt-20 bg-gradient-to-r from-blue-900 to-blue-700 text-white rounded-2xl p-8 md:p-12 shadow-2xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <h3 className="text-3xl font-bold mb-6">
-                Notre Mission<br />
-                <span className="text-yellow-300">Aujourd'hui</span>
-              </h3>
-              <p className="text-lg opacity-90 mb-6">
-                Continuer à innover tout en préservant les techniques artisanales qui font notre réputation. 
-                Créer des vêtements qui allient esthétique, confort et durabilité, 
-                en étant à l'écoute de chaque client, qu'il soit particulier ou professionnel.
-              </p>
-              <div className="flex items-center">
-                <div className="bg-yellow-500 text-blue-900 font-bold px-4 py-2 rounded-lg mr-4">
-                  Vision 2025
-                </div>
-                <span>Devenir la référence européenne de la confection sur mesure éco-responsable</span>
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-6">
-              <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm text-center">
-                <div className="text-4xl font-bold mb-2">500+</div>
-                <div className="text-lg">Tissus référencés</div>
-              </div>
-              <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm text-center">
-                <div className="text-4xl font-bold mb-2">12</div>
-                <div className="text-lg">Artisans experts</div>
-              </div>
-              <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm text-center">
-                <div className="text-4xl font-bold mb-2">40+</div>
-                <div className="text-lg">Secteurs d'activité</div>
-              </div>
-              <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm text-center">
-                <div className="text-4xl font-bold mb-2">100%</div>
-                <div className="text-lg">Fabriqué en Madagascar</div>
-              </div>
-            </div>
+       {/* Notre mission aujourd'hui */}
+<div className="mt-16 md:mt-20 bg-gradient-to-r from-blue-900 to-blue-700 text-white rounded-2xl p-6 md:p-10 shadow-2xl">
+  <div className="flex flex-col xl:flex-row gap-8 xl:gap-12">
+    {/* Partie gauche - Mission */}
+    <div className="w-full xl:w-1/2">
+      <div className="mb-6 md:mb-8">
+        <h3 className="text-2xl md:text-3xl xl:text-4xl font-bold mb-3">
+          Notre Mission
+        </h3>
+        <h4 className="text-xl md:text-2xl xl:text-3xl text-yellow-300 font-bold mb-4">
+          Aujourd'hui
+        </h4>
+        <p className="text-base md:text-lg opacity-90 mb-6 leading-relaxed">
+          Continuer à innover tout en préservant les techniques artisanales qui font notre réputation. 
+          Créer des vêtements qui allient esthétique, confort et durabilité, 
+          en étant à l'écoute de chaque client, qu'il soit particulier ou professionnel.
+        </p>
+      </div>
+      
+      {/* Badge Vision */}
+      <div className="bg-white/10 p-4 md:p-5 rounded-xl backdrop-blur-sm">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+          <div className="bg-yellow-500 text-blue-900 font-bold px-4 py-2 rounded-lg text-center w-full sm:w-auto">
+            Vision 2025
+          </div>
+          <div className="text-sm md:text-base">
+            Devenir la référence européenne de la confection sur mesure éco-responsable
           </div>
         </div>
+      </div>
+    </div>
+    
+    {/* Partie droite - Statistiques */}
+    <div className="w-full xl:w-1/2">
+      <div className="grid grid-cols-2 gap-3 md:gap-4">
+        {[
+          { value: "500+", label: "Tissus référencés" },
+          { value: "12", label: "Artisans experts" },
+          { value: "40+", label: "Secteurs d'activité" },
+          { value: "100%", label: "Fabriqué à Madagascar" }
+        ].map((stat, index) => (
+          <div 
+            key={index}
+            className="bg-white/10 p-4 md:p-5 rounded-xl backdrop-blur-sm text-center hover:bg-white/15 transition-colors duration-300"
+          >
+            <div className="text-2xl md:text-3xl lg:text-4xl font-bold mb-1 md:mb-2">
+              {stat.value}
+            </div>
+            <div className="text-sm md:text-base lg:text-lg">
+              {stat.label}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
       </div>
     </section>
   );

@@ -5,7 +5,7 @@ export default function ContactMap() {
     <section className="py-12 bg-gray-50">
       <div className="container mx-auto px-6">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-blue-900 mb-4">Notre Atelier</h2>
+          <h2 className="text-3xl font-bold text-blue-900 mb-4 uppercase">Notre Atelier</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Situé au cœur de Toamasina, notre atelier vous accueille pour discuter de vos projets 
             et découvrir nos créations.
@@ -51,7 +51,7 @@ export default function ContactMap() {
               <div className="space-y-6">
                 <div>
                   <h4 className="font-bold text-lg mb-3 flex items-center">
-                    <span className="mr-2">🚇</span> Métro
+                    <span className="mr-2"></span> Métro
                   </h4>
                   <ul className="space-y-2">
                     <li className="flex items-center">
@@ -67,7 +67,7 @@ export default function ContactMap() {
                 
                 <div>
                   <h4 className="font-bold text-lg mb-3 flex items-center">
-                    <span className="mr-2">🚌</span> Bus
+                    <span className="mr-2"></span> Bus
                   </h4>
                   <ul className="space-y-2">
                     <li className="flex items-center">
@@ -79,7 +79,7 @@ export default function ContactMap() {
                 
                 <div>
                   <h4 className="font-bold text-lg mb-3 flex items-center">
-                    <span className="mr-2">🅿️</span> Stationnement
+                    <span className="mr-2"></span> Stationnement
                   </h4>
                   <ul className="space-y-2">
                     <li className="flex items-center">

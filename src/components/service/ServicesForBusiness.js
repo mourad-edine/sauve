@@ -68,7 +68,7 @@ export default function ServicesForBusiness() {
     <section className="py-16 bg-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4 uppercase">
             Services pour les Entreprises
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -82,7 +82,7 @@ export default function ServicesForBusiness() {
               <div className="text-blue-700 mb-4">
                 {service.icon}
               </div>
-              <h3 className="text-xl font-bold text-blue-900 mb-4">{service.title}</h3>
+              <h3 className="text-xl font-bold text-blue-900 mb-4 uppercase">{service.title}</h3>
               <ul className="space-y-2">
                 {service.items.map((item, idx) => (
                   <li key={idx} className="flex items-center text-gray-700">
@@ -107,7 +107,7 @@ export default function ServicesForBusiness() {
                     {advantage.icon}
                   </div>
                 </div>
-                <h4 className="font-bold text-blue-900 mb-2">{advantage.title}</h4>
+                <h4 className="font-bold text-blue-900 mb-2 uppercase">{advantage.title}</h4>
                 <p className="text-gray-600 text-sm">
                   {advantage.description}
                 </p>

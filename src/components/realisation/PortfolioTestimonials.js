@@ -7,7 +7,7 @@ export default function PortfolioTestimonials() {
       name: "Sophie Martin",
       role: "Directrice d'Hôtel",
       company: "Hôtel Le Majestique",
-      content: "Les uniformes créés par ConfectionPro ont complètement transformé l'image de notre établissement. La qualité des tissus et la précision des finitions sont exceptionnelles.",
+      content: "Les uniformes créés par Confection Vonjy ont complètement transformé l'image de notre établissement. La qualité des tissus et la précision des finitions sont exceptionnelles.",
       rating: 5,
       project: "Uniformes Hôtel de Luxe"
     },
@@ -56,7 +56,7 @@ export default function PortfolioTestimonials() {
     <section className="py-16 bg-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4 uppercase">
             Ce Que Disent Nos Clients
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -67,7 +67,7 @@ export default function PortfolioTestimonials() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           {/* Témoignages */}
           <div>
-            <h3 className="text-2xl font-bold text-blue-800 mb-8">Témoignages clients</h3>
+            <h3 className="text-2xl font-bold text-blue-800 mb-8 uppercase">Témoignages clients</h3>
             <div className="space-y-8">
               {testimonials.map((testimonial, index) => (
                 <div key={index} className="bg-gradient-to-r from-blue-50 to-white p-6 rounded-xl shadow-lg border-l-4 border-blue-500">
@@ -102,7 +102,7 @@ export default function PortfolioTestimonials() {
           
           {/* Études de cas */}
           <div>
-            <h3 className="text-2xl font-bold text-blue-800 mb-8">Études de cas</h3>
+            <h3 className="text-2xl font-bold text-blue-800 mb-8 uppercase">Études de cas</h3>
             <div className="space-y-8">
               {caseStudies.map((study, index) => (
                 <div key={index} className="bg-gradient-to-br from-blue-900 to-blue-700 text-white p-8 rounded-xl shadow-lg">
@@ -135,23 +135,37 @@ export default function PortfolioTestimonials() {
               ))}
             </div>
             
-            <div className="mt-8 bg-gradient-to-r from-yellow-50 to-white p-6 rounded-xl border border-yellow-200">
-              <h4 className="text-xl font-bold text-blue-900 mb-4">Processus de collaboration</h4>
-              <div className="grid grid-cols-3 gap-4 text-center">
-                <div className="bg-white p-4 rounded-lg shadow">
-                  <div className="text-2xl font-bold text-blue-700 mb-1">1</div>
-                  <div className="text-sm text-gray-700">Briefing initial</div>
-                </div>
-                <div className="bg-white p-4 rounded-lg shadow">
-                  <div className="text-2xl font-bold text-blue-700 mb-1">2</div>
-                  <div className="text-sm text-gray-700">Prototypes & ajustements</div>
-                </div>
-                <div className="bg-white p-4 rounded-lg shadow">
-                  <div className="text-2xl font-bold text-blue-700 mb-1">3</div>
-                  <div className="text-sm text-gray-700">Production & livraison</div>
-                </div>
-              </div>
-            </div>
+            <div className="mt-6 md:mt-8 bg-gradient-to-r from-yellow-50 to-white p-5 md:p-6 rounded-xl border border-yellow-200">
+  <h4 className="text-lg md:text-xl font-bold text-blue-900 mb-4 md:mb-6">
+    Processus de collaboration
+  </h4>
+  <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
+    <div className="bg-white p-4 rounded-lg shadow flex-1">
+      <div className="text-xl md:text-2xl font-bold text-blue-700 mb-1 md:mb-2 text-center">
+        1
+      </div>
+      <div className="text-xs md:text-sm text-gray-700 text-center">
+        Briefing initial
+      </div>
+    </div>
+    <div className="bg-white p-4 rounded-lg shadow flex-1">
+      <div className="text-xl md:text-2xl font-bold text-blue-700 mb-1 md:mb-2 text-center">
+        2
+      </div>
+      <div className="text-xs md:text-sm text-gray-700 text-center">
+        Prototypes & ajustements
+      </div>
+    </div>
+    <div className="bg-white p-4 rounded-lg shadow flex-1">
+      <div className="text-xl md:text-2xl font-bold text-blue-700 mb-1 md:mb-2 text-center">
+        3
+      </div>
+      <div className="text-xs md:text-sm text-gray-700 text-center">
+        Production & livraison
+      </div>
+    </div>
+  </div>
+</div>
           </div>
         </div>
       </div>

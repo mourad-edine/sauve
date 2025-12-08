@@ -13,7 +13,7 @@ export default function PortfolioPage() {
       <PortfolioFilter />
       <PortfolioGallery />
       <PortfolioStats />
-      <PortfolioTestimonials />
+      {/* <PortfolioTestimonials /> */}
       <PortfolioCTA />
     </div>
   );

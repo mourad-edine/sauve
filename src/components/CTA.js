@@ -7,10 +7,8 @@ export default function CTA() {
     <section className="py-20 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Prêt à habiller votre équipe ou vous-même ?</h2>
-          <p className="text-xl max-w-3xl mx-auto opacity-90">
-            Contactez-nous dès aujourd'hui pour discuter de votre projet et obtenir un devis personnalisé gratuit.
-          </p>
+          <h3 className="text-2xl md:text-3xl font-bold mb-6 uppercase">Prêt à habiller votre équipe ?</h3>
+          
         </div>
         
         <div className="flex flex-col lg:flex-row items-center justify-between">
@@ -32,9 +30,7 @@ export default function CTA() {
                 </div>
                 <div>
                   <h4 className="font-bold text-lg">Email</h4>
-                  <p className="text-blue-200">
-reflet-HQD@confection-vonjy.fr
-</p>
+                  <p className="text-blue-200">contact@confection-pro.fr</p>
                 </div>
               </div>
               

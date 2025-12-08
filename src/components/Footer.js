@@ -87,16 +87,15 @@ export default function Footer() {
               <li>123 Rue de la Couture</li>
               <li>75000 Toamasina</li>
               <li>034 92 192 23</li>
-              <li>
-reflet-HQD@confection-vonjy.fr
-</li>
+              <li>contact@confection-pro.fr</li>
               <li>Lun-Ven: 9h-18h</li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-blue-800 mt-12 pt-8 text-center text-blue-300">
-          <p>&copy; {currentYear} ConfectionPro. Tous droits réservés.</p>
+          <p>&copy; {currentYear} 
+Confection Vonjy. Tous droits réservés.</p>
           <p className="mt-2 text-sm">Site vitrine créé avec Next.js et Tailwind CSS</p>
         </div>
       </div>

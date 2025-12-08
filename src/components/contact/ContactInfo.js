@@ -60,7 +60,7 @@ export default function ContactInfo() {
   return (
     <div className="space-y-8">
       <div className="bg-gradient-to-br from-blue-900 to-blue-700 text-white p-8 rounded-2xl shadow-lg">
-        <h3 className="text-2xl font-bold mb-6">Informations de contact</h3>
+        <h3 className="text-xl font-bold mb-6 uppercase">Informations de contact</h3>
         
         <div className="space-y-6">
           {contactDetails.map((detail, index) => (
@@ -87,45 +87,9 @@ export default function ContactInfo() {
         </div>
       </div>
 
-      <div className="bg-white p-8 rounded-2xl shadow-lg border border-blue-100">
-        <h3 className="text-2xl font-bold text-blue-900 mb-6">Services & Départements</h3>
-        
-        <div className="space-y-6">
-          {departments.map((dept, index) => (
-            <div key={index} className="border-b border-gray-200 pb-6 last:border-0 last:pb-0">
-              <div className="flex items-center mb-3">
-                <div className="text-blue-700 mr-3">
-                  {dept.icon}
-                </div>
-                <h4 className="text-lg font-bold text-blue-900">{dept.name}</h4>
-              </div>
-              <div className="ml-9 space-y-2">
-                <div className="flex items-center">
-                  <span className="text-gray-500 w-24">Email :</span>
-                  <a 
-                    href={`mailto:${dept.email}`}
-                    className="text-blue-700 hover:text-blue-900 transition duration-300"
-                  >
-                    {dept.email}
-                  </a>
-                </div>
-                <div className="flex items-center">
-                  <span className="text-gray-500 w-24">Téléphone :</span>
-                  <a 
-                    href={`tel:${dept.phone.replace(/\s/g, '')}`}
-                    className="text-blue-700 hover:text-blue-900 transition duration-300"
-                  >
-                    {dept.phone}
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
 
       <div className="bg-gradient-to-br from-yellow-50 to-white p-8 rounded-2xl shadow-lg border border-yellow-100">
-        <h3 className="text-2xl font-bold text-blue-900 mb-4">Visite sur rendez-vous</h3>
+        <h3 className="text-xl font-bold text-blue-900 mb-4 uppercase">Visite sur rendez-vous</h3>
         <p className="text-gray-600 mb-6">
           Notre atelier est ouvert sur rendez-vous. Venez découvrir nos réalisations, 
           choisir vos tissus et discuter de votre vonjyjet en personne.

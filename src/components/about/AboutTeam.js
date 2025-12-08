@@ -54,7 +54,7 @@ export default function AboutTeam() {
     <section className="py-16 bg-gradient-to-b from-white to-blue-50">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4 uppercase">
             Notre Équipe d'Experts
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -65,7 +65,7 @@ export default function AboutTeam() {
         
         {/* Équipe dirigeante */}
         <div className="mb-16">
-          <h3 className="text-2xl font-bold text-blue-800 mb-8 text-center">Direction & Expertise</h3>
+          <h3 className="text-2xl font-bold text-blue-800 mb-8 text-center uppercase">Direction & Expertise</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {teamMembers.map((member, index) => (
               <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition duration-300">
@@ -111,41 +111,53 @@ export default function AboutTeam() {
         </div>
         
         {/* Équipe artisanale */}
-        <div>
-          <h3 className="text-2xl font-bold text-blue-800 mb-8 text-center">Notre Atelier Artisanal</h3>
-          <div className="bg-gradient-to-r from-blue-900 to-blue-700 text-white rounded-2xl p-8 shadow-lg">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div>
-                <h4 className="text-2xl font-bold mb-6">Le Savoir-Faire Collectif</h4>
-                <p className="text-lg opacity-90 mb-6">
-                  Nos artisans partagent une même exigence pour la qualité et le détail. 
-                  Chacun est spécialisé dans une étape précise de la confection, 
-                  garantissant un résultat parfait à chaque projet.
-                </p>
-                <div className="bg-white/10 p-4 rounded-xl">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold mb-2">65 ans</div>
-                    <div className="text-lg">Cumul d'expérience artisanale</div>
-                  </div>
-                </div>
-              </div>
-              
-              <div>
-                <div className="grid grid-cols-2 gap-4">
-                  {artisans.map((artisan, index) => (
-                    <div key={index} className="bg-white/10 p-4 rounded-xl backdrop-blur-sm">
-                      <div className="font-bold text-lg mb-1">{artisan.name}</div>
-                      <div className="text-sm opacity-90 mb-2">{artisan.role}</div>
-                      <div className="text-xs bg-white/20 px-2 py-1 rounded-full inline-block">
-                        {artisan.experience} d'expérience
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+      <div>
+  <div className="bg-gradient-to-r from-blue-900 to-blue-700 text-white rounded-2xl p-6 md:p-8 shadow-lg">
+    <div className="flex flex-col lg:flex-row gap-8 lg:gap-10">
+      {/* Section gauche - Texte */}
+      <div className="w-full lg:w-1/2">
+        <h4 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 md:mb-6">
+          Le Savoir-Faire Collectif
+        </h4>
+        <p className="text-base md:text-lg opacity-90 mb-6 leading-relaxed">
+          Nos artisans partagent une même exigence pour la qualité et le détail. 
+          Chacun est spécialisé dans une étape précise de la confection, 
+          garantissant un résultat parfait à chaque projet.
+        </p>
+        
+        {/* Statistique */}
+        <div className="bg-white/10 p-4 md:p-5 rounded-xl backdrop-blur-sm">
+          <div className="text-center">
+            <div className="text-2xl md:text-3xl font-bold mb-1 md:mb-2">65 ans</div>
+            <div className="text-base md:text-lg">Cumul d'expérience artisanale</div>
           </div>
         </div>
+      </div>
+      
+      {/* Section droite - Artisans */}
+      <div className="w-full lg:w-1/2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {artisans.map((artisan, index) => (
+            <div 
+              key={index} 
+              className="bg-white/10 p-4 md:p-5 rounded-xl backdrop-blur-sm hover:bg-white/15 transition-colors duration-300"
+            >
+              <div className="font-bold text-base md:text-lg mb-1">
+                {artisan.name}
+              </div>
+              <div className="text-sm opacity-90 mb-2 md:mb-3">
+                {artisan.role}
+              </div>
+              <div className="text-xs bg-white/20 px-2 py-1 rounded-full inline-block">
+                {artisan.experience} d'expérience
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
         
         {/* Citation */}
         <div className="mt-12 text-center">

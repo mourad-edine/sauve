@@ -33,7 +33,7 @@ export default function CustomizationOptions() {
     <section className="py-16 bg-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4 uppercase">
             Options de Personnalisation
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -61,38 +61,46 @@ export default function CustomizationOptions() {
           ))}
         </div>
 
-        <div className="bg-gradient-to-r from-blue-50 to-white p-8 rounded-2xl border border-blue-200">
-          <div className="flex flex-col md:flex-row items-center">
-            <div className="md:w-2/3 mb-8 md:mb-0 md:pr-8">
-              <h3 className="text-2xl font-bold text-blue-900 mb-4">
-                Conseil en personnalisation
-              </h3>
-              <p className="text-gray-600 mb-6">
-                Notre équipe vous guide dans le choix des meilleures options de personnalisation selon vos besoins, 
-                votre budget et les contraintes techniques de vos vêtements.
-              </p>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white p-4 rounded-lg shadow">
-                  <div className="text-blue-700 font-bold text-lg mb-1">Échantillons gratuits</div>
-                  <div className="text-gray-600 text-sm">Sur demande pour vos tests</div>
-                </div>
-                <div className="bg-white p-4 rounded-lg shadow">
-                  <div className="text-blue-700 font-bold text-lg mb-1">Guide des finitions</div>
-                  <div className="text-gray-600 text-sm">Documentation complète fournie</div>
-                </div>
-              </div>
-            </div>
-            <div className="md:w-1/3">
-              <div className="bg-blue-900 text-white p-6 rounded-xl text-center">
-                <div className="text-3xl font-bold mb-2">100+</div>
-                <div className="text-lg">Options disponibles</div>
-                <div className="text-blue-200 text-sm mt-2">
-                  Pour une personnalisation unique
-                </div>
-              </div>
-            </div>
+        <div className="bg-gradient-to-r from-blue-50 to-white p-6 md:p-8 rounded-2xl border border-blue-200">
+  <div className="flex flex-col md:flex-row items-center">
+    <div className="w-full md:w-2/3 mb-6 md:mb-0 md:pr-8">
+      <h3 className="text-xl md:text-2xl font-bold text-blue-900 mb-4">
+        Conseil en personnalisation
+      </h3>
+      <p className="text-gray-600 mb-6 text-base md:text-lg">
+        Notre équipe vous guide dans le choix des meilleures options de personnalisation selon vos besoins, 
+        votre budget et les contraintes techniques de vos vêtements.
+      </p>
+      <div className="flex flex-col md:grid md:grid-cols-2 gap-4">
+        <div className="bg-white p-4 rounded-lg shadow w-full">
+          <div className="text-blue-700 font-bold text-base md:text-lg mb-1">
+            Échantillons gratuits
+          </div>
+          <div className="text-gray-600 text-sm">
+            Sur demande pour vos tests
           </div>
         </div>
+        <div className="bg-white p-4 rounded-lg shadow w-full">
+          <div className="text-blue-700 font-bold text-base md:text-lg mb-1">
+            Guide des finitions
+          </div>
+          <div className="text-gray-600 text-sm">
+            Documentation complète fournie
+          </div>
+        </div>
+      </div>
+    </div>
+    <div className="w-full md:w-1/3 mt-6 md:mt-0">
+      <div className="bg-blue-900 text-white p-5 md:p-6 rounded-xl text-center">
+        <div className="text-2xl md:text-3xl font-bold mb-2">100+</div>
+        <div className="text-base md:text-lg">Options disponibles</div>
+        <div className="text-blue-200 text-sm mt-2">
+          Pour une personnalisation unique
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
       </div>
     </section>
   );

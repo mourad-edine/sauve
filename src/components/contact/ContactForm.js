@@ -53,7 +53,7 @@ export default function ContactForm() {
 
   return (
     <div id="form" className="bg-white p-8 rounded-2xl shadow-xl border border-blue-100">
-      <h2 className="text-3xl font-bold text-blue-900 mb-2">Envoyez-nous votre demande</h2>
+      <h2 className="text-xl font-bold text-blue-900 mb-2 uppercase">Envoyez-nous votre demande</h2>
       <p className="text-gray-600 mb-8">
         Remplissez le formulaire ci-dessous et nous vous répondrons sous 24h ouvrées.
       </p>

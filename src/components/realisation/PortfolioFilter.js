@@ -22,7 +22,7 @@ export default function PortfolioFilter() {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
           <div className="mb-6 md:mb-0">
-            <h2 className="text-3xl font-bold text-blue-900 mb-2">Notre Portfolio</h2>
+            <h2 className="text-3xl font-bold text-blue-900 mb-2 uppercase">Notre Portfolio</h2>
             <p className="text-gray-600">Explorez nos réalisations par catégorie</p>
           </div>
           

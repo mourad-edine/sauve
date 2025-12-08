@@ -324,17 +324,19 @@ export default function PortfolioGallery() {
                 </div>
               </div>
               
-              <div className="mt-8 pt-8 border-t border-gray-200 flex justify-between">
-                <button
-                  onClick={closeModal}
-                  className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition duration-300"
-                >
-                  Fermer
-                </button>
-                <button className="bg-blue-700 hover:bg-blue-800 text-white font-bold px-6 py-3 rounded-lg transition duration-300">
-                  Demander un projet similaire
-                </button>
-              </div>
+             <div className="mt-8 pt-8 border-t border-gray-200">
+  <div className="flex flex-col sm:flex-row justify-between gap-3">
+    <button
+      onClick={closeModal}
+      className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition duration-300 order-2 sm:order-1"
+    >
+      Fermer
+    </button>
+    <button className="bg-blue-700 hover:bg-blue-800 text-white font-bold px-6 py-3 rounded-lg transition duration-300 order-1 sm:order-2">
+      Demander un projet similaire
+    </button>
+  </div>
+</div>
             </div>
           </div>
         </div>

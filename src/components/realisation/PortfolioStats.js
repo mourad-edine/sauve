@@ -40,7 +40,7 @@ export default function PortfolioStats() {
     <section className="py-16 bg-gradient-to-br from-blue-900 to-blue-700 text-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Notre Impact en Chiffres</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 uppercase">Notre Impact en Chiffres</h2>
           <p className="text-xl opacity-90 max-w-3xl mx-auto">
             Des années d'expertise et des centaines de projets réussis témoignent de notre engagement envers l'excellence.
           </p>

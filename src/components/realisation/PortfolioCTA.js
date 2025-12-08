@@ -7,7 +7,7 @@ export default function PortfolioCTA() {
     <section className="py-20 bg-gradient-to-r from-blue-50 to-gray-100">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-6 uppercase">
             Prêt à concrétiser votre projet ?
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -34,7 +34,7 @@ export default function PortfolioCTA() {
           </div>
           
           <div className="bg-white p-8 rounded-xl shadow-lg text-center">
-            <div className="text-yellow-500 mb-6">
+            <div className="text-blue-500 mb-6">
               <FaLightbulb className="text-4xl mx-auto" />
             </div>
             <h3 className="text-xl font-bold text-blue-900 mb-4">Devis personnalisé</h3>
@@ -50,7 +50,7 @@ export default function PortfolioCTA() {
           </div>
           
           <div className="bg-white p-8 rounded-xl shadow-lg text-center">
-            <div className="text-green-600 mb-6">
+            <div className="text-blue-600 mb-6">
               <FaCalendarAlt className="text-4xl mx-auto" />
             </div>
             <h3 className="text-xl font-bold text-blue-900 mb-4">Visite d'atelier</h3>

@@ -7,37 +7,37 @@ export default function AboutValues() {
       icon: <FaRulerCombined className="text-3xl" />,
       title: "Exigence du détail",
       description: "Chaque point, chaque couture, chaque finition est réalisée avec une précision extrême.",
-      color: "bg-blue-100 text-blue-700"
+      color: "bg-gray-200  text-blue-700"
     },
     {
       icon: <FaHandsHelping className="text-3xl" />,
       title: "Écoute & Conseil",
       description: "Nous prenons le temps de comprendre vos besoins pour vous proposer la meilleure solution.",
-      color: "bg-green-100 text-green-700"
+      color: "bg-gray-200  text-blue-700"
     },
     {
       icon: <FaLeaf className="text-3xl" />,
       title: "Responsabilité",
       description: "Choix de tissus durables et pratiques respectueuses de l'environnement.",
-      color: "bg-emerald-100 text-emerald-700"
+      color: "bg-gray-200  text-blue-700"
     },
     {
       icon: <FaMedal className="text-3xl" />,
       title: "Excellence",
       description: "Nous ne livrons que des créations dont nous sommes parfaitement fiers.",
-      color: "bg-yellow-100 text-yellow-700"
+      color: "bg-gray-200  text-blue-700"
     },
     {
       icon: <FaUsers className="text-3xl" />,
       title: "Collaboration",
       description: "Votre projet devient notre projet. Nous travaillons ensemble à sa réussite.",
-      color: "bg-purple-100 text-purple-700"
+      color: "bg-gray-200 text-blue-700"
     },
     {
       icon: <FaHeart className="text-3xl" />,
       title: "Passion",
       description: "L'amour du beau tissu et du travail bien fait guide chacune de nos actions.",
-      color: "bg-red-100 text-red-700"
+      color: "bg-gray-200 text-blue-700"
     }
   ];
 
@@ -68,7 +68,7 @@ export default function AboutValues() {
     <section className="py-16 bg-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4 uppercase">
             Nos Valeurs & Engagements
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -91,7 +91,7 @@ export default function AboutValues() {
         
         {/* Engagements */}
         <div className="mb-16">
-          <h3 className="text-2xl font-bold text-blue-800 mb-8 text-center">Nos Engagements Concrets</h3>
+          <h3 className="text-2xl font-bold text-blue-800 mb-8 text-center uppercase" >Nos Engagements Concrets</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {commitments.map((commitment, index) => (
               <div key={index} className="bg-gradient-to-br from-blue-900 to-blue-700 text-white p-6 rounded-xl text-center">

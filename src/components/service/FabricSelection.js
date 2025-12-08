@@ -15,13 +15,13 @@ export default function FabricSelection() {
       name: "Coton",
       description: "Confortable, respirant et facile d'entretien",
       uses: ["Chemises", "Polos", "Blouses", "Robes"],
-      icon: <FaLeaf className="text-green-600" />
+      icon: <FaLeaf className="text-blue-500" />
     },
     {
       name: "Laine",
       description: "Chaude, élégante et naturelle",
       uses: ["Costumes", "Manteaux", "Pulls", "Jupes"],
-      icon: <FaThermometerHalf className="text-orange-600" />
+      icon: <FaThermometerHalf className="text-blue-500" />
     },
     {
       name: "Lin",
@@ -33,19 +33,19 @@ export default function FabricSelection() {
       name: "Polyester technique",
       description: "Résistant, infroissable et performant",
       uses: ["Vêtements de travail", "Tenues sport", "Uniforme", "Vêtements techniques"],
-      icon: <FaFire className="text-red-600" />
+      icon: <FaFire className="text-blue-500" />
     },
     {
       name: "Soie",
       description: "Luxueux, léger et brillant",
       uses: ["Chemisiers", "Cravates", "Accessoires", "Tenues de soirée"],
-      icon: <FaStar className="text-yellow-500" />
+      icon: <FaStar className="text-blue-500" />
     },
     {
       name: "Mélanges",
       description: "Alliage des meilleures propriétés",
       uses: ["Costumes", "Pantalons", "Vestes", "Tenues professionnelles"],
-      icon: <FaExchangeAlt className="text-purple-600" />
+      icon: <FaExchangeAlt className="text-blue-500" />
     }
   ];
   const fabricProperties = [
@@ -75,7 +75,7 @@ export default function FabricSelection() {
     <section className="py-16 bg-gradient-to-b from-white to-blue-50">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4 uppercase">
             Sélection de Tissus
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
