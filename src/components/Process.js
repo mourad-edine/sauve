@@ -1,4 +1,4 @@
-// components/Process.js - Version timeline verticale
+// components/Process.js - Version identique, mais responsive à 1024px (lg)
 import { FaSearch, FaRuler, FaCut, FaCheckCircle } from "react-icons/fa";
 
 export default function Process() {
@@ -30,63 +30,61 @@ export default function Process() {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-white">
-      <div className="container mx-auto px-4 md:px-6 lg:px-8">
+    <section className="py-16 lg:py-24 bg-white">
+      <div className="container mx-auto px-4 lg:px-8">
         {/* En-tête */}
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-blue-900 mb-4 uppercase">
+        <div className="text-center mb-12 lg:mb-16">
+          <h2 className="text-3xl lg:text-5xl font-bold text-blue-900 mb-4 uppercase">
             Notre Processus
-            <span className="block text-lg md:text-xl text-yellow-600 font-normal mt-2">
+            <span className="block text-lg lg:text-xl text-yellow-600 font-normal mt-2">
               4 étapes pour l'excellence
             </span>
           </h2>
           <div className="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
+          <p className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-4">
             Un parcours structuré pour garantir qualité, précision et satisfaction à chaque étape.
           </p>
         </div>
         
-        {/* Timeline - Version verticale sur mobile, horizontale sur desktop */}
+        {/* Timeline - Version verticale sur mobile/tablette, horizontale sur desktop */}
         <div className="relative">
-          {/* Ligne verticale pour mobile, horizontale pour desktop */}
-          <div className="hidden md:block absolute top-1/2 left-8 right-8 h-1 bg-blue-200 transform -translate-y-1/2 z-0"></div>
-          <div className="md:hidden absolute top-0 bottom-0 left-1/2 w-1 bg-blue-200 transform -translate-x-1/2 z-0"></div>
+          {/* Ligne horizontale sur ≥1024px */}
+          <div className="hidden lg:block absolute top-1/2 left-8 right-8 h-1 bg-blue-200 transform -translate-y-1/2 z-0"></div>
+          {/* Ligne verticale sur <1024px */}
+          <div className="lg:hidden absolute top-0 bottom-0 left-1/2 w-1 bg-blue-200 transform -translate-x-1/2 z-0"></div>
           
           <div className="relative z-10">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-6">
               {steps.map((step, index) => (
                 <div key={index} className="relative">
                   {/* Connecteur mobile */}
                   {index < steps.length - 1 && (
-                    <div className="md:hidden absolute top-full left-1/2 h-8 w-1 bg-blue-200 transform -translate-x-1/2 z-0"></div>
+                    <div className="lg:hidden absolute top-full left-1/2 h-8 w-1 bg-blue-200 transform -translate-x-1/2 z-0"></div>
                   )}
                   
-                  <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                    {/* Numéro et icône */}
-                   
-                    
+                  <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
                     {/* Contenu */}
-                    <div className="bg-white p-5 md:p-6 rounded-xl shadow-lg border border-blue-100 w-full">
+                    <div className="bg-white p-5 lg:p-6 rounded-xl shadow-lg border border-blue-100 w-full">
                       <div className="mb-2">
                         <span className="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full">
                           Étape {index + 1}
                         </span>
                       </div>
                       
-                      <h3 className="text-xl md:text-xl font-bold text-blue-900 mb-3 uppercase">
+                      <h3 className="text-xl lg:text-xl font-bold text-blue-900 mb-3 uppercase">
                         {step.title}
                       </h3>
                       
-                      <p className="text-gray-600 text-sm md:text-base mb-4 leading-relaxed">
+                      <p className="text-gray-600 text-sm lg:text-base mb-4 leading-relaxed">
                         {step.description}
                       </p>
                       
                       <div className="flex items-center justify-between pt-3 border-t border-gray-100">
                         <div className="text-xs text-gray-500 font-medium">
-                          ⏱️ {step.duration}
+                          {step.duration}
                         </div>
                         <div className="text-xs text-blue-600 font-medium">
-                          {index === steps.length - 1 ? '✅ Final' : '▶️ Suivant'}
+                          {index === steps.length - 1 ? 'Final' : 'Suivant'}
                         </div>
                       </div>
                     </div>
@@ -98,8 +96,8 @@ export default function Process() {
         </div>
         
         {/* Appel à l'action */}
-        <div className="mt-12 md:mt-16 text-center">
-          <p className="text-lg md:text-xl text-gray-600 mb-6">
+        <div className="mt-12 lg:mt-16 text-center">
+          <p className="text-lg lg:text-xl text-gray-600 mb-6">
             Chaque projet commence par une consultation gratuite
           </p>
           <a 

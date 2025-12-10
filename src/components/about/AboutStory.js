@@ -55,40 +55,40 @@ export default function AboutStory() {
         
         {/* Timeline */}
         <div className="relative">
-          {/* Ligne centrale */}
-          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-blue-500 to-blue-700"></div>
-          
-          <div className="space-y-12">
-            {timeline.map((item, index) => (
-              <div 
-                key={index} 
-                className={`flex flex-col md:flex-row items-center ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                }`}
-              >
-                {/* Point sur la timeline */}
-                <div className="relative z-10 flex items-center justify-center w-16 h-16 bg-white rounded-full shadow-lg border-4 border-blue-600 mb-4 md:mb-0">
-                  <div className={`${item.color} p-3 rounded-full`}>
-                    {item.icon}
-                  </div>
-                </div>
-                
-                {/* Contenu */}
-                <div className={`md:w-5/12 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'} px-4 md:px-0`}>
-                  <div className="bg-gradient-to-r from-blue-50 to-white p-6 rounded-2xl shadow-lg border border-blue-100">
-                    <div className="flex items-center mb-4">
-                      <div className="bg-blue-700 text-white px-4 py-1 rounded-lg font-bold mr-4">
-                        {item.year}
-                      </div>
-                      <h3 className="text-xl font-bold text-blue-900 uppercase">{item.title}</h3>
-                    </div>
-                    <p className="text-gray-700">{item.description}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
+  {/* Ligne centrale */}
+  <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-blue-500 to-blue-700"></div>
+  
+  <div className="space-y-12">
+    {timeline.map((item, index) => (
+      <div 
+        key={index} 
+        className={`flex flex-col lg:flex-row items-center ${
+          index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
+        }`}
+      >
+        {/* Point sur la timeline */}
+        <div className="relative z-10 flex items-center justify-center w-16 h-16 bg-white rounded-full shadow-lg border-4 border-blue-600 mb-4 lg:mb-0">
+          <div className={`${item.color} p-3 rounded-full`}>
+            {item.icon}
           </div>
         </div>
+        
+        {/* Contenu */}
+        <div className={`lg:w-5/12 ${index % 2 === 0 ? 'lg:pr-12' : 'lg:pl-12'} px-4 lg:px-0`}>
+          <div className="bg-gradient-to-r from-blue-50 to-white p-6 rounded-2xl shadow-lg border border-blue-100">
+            <div className="flex items-center mb-4">
+              <div className="bg-blue-700 text-white px-4 py-1 rounded-lg font-bold mr-4">
+                {item.year}
+              </div>
+              <h3 className="text-xl font-bold text-blue-900 uppercase">{item.title}</h3>
+            </div>
+            <p className="text-gray-700">{item.description}</p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
         
        {/* Notre mission aujourd'hui */}
 <div className="mt-16 md:mt-20 bg-gradient-to-r from-blue-900 to-blue-700 text-white rounded-2xl p-6 md:p-10 shadow-2xl">

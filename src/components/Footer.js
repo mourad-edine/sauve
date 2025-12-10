@@ -1,4 +1,4 @@
-// components/Footer.js
+// components/Footer.js - Responsive à 1024px (lg) au lieu de 768px
 import Link from 'next/link';
 import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
@@ -8,9 +8,9 @@ export default function Footer() {
   return (
     <footer className="bg-blue-900 text-white">
       <div className="container mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Logo et description */}
-          <div className="md:col-span-1">
+          <div className="lg:col-span-1">
             <Link href="/" className="flex items-center space-x-2 mb-6">
               <div className="bg-white p-2 rounded-lg">
                 <FaLinkedin className="text-2xl text-blue-900" />
@@ -94,8 +94,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-blue-800 mt-12 pt-8 text-center text-blue-300">
-          <p>&copy; {currentYear} 
-Confection Vonjy. Tous droits réservés.</p>
+          <p>&copy; {currentYear} Confection Vonjy. Tous droits réservés.</p>
           <p className="mt-2 text-sm">Site vitrine créé avec Next.js et Tailwind CSS</p>
         </div>
       </div>

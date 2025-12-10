@@ -1,4 +1,4 @@
-// components/Header.js - Version simplifiée
+// components/Header.js
 'use client';
 
 import Link from 'next/link';
@@ -33,20 +33,20 @@ export default function Header() {
                 alt="Logo Confection Vonjy"
                 width={60}
                 height={60}
-                className="h-12 w-12 md:h-14 md:w-14 object-contain"
+                className="h-12 w-12 lg:h-14 lg:w-14 object-contain"
                 priority
               />
             </div>
             <div>
-              <h1 className="text-xl md:text-2xl font-bold text-blue-900">
+              <h1 className="text-xl lg:text-2xl font-bold text-blue-900">
                 Confection<span className="text-yellow-500"> Vonjy</span>
               </h1>
               <p className="text-xs text-gray-500">Vêtements sur mesure</p>
             </div>
           </Link>
 
-          {/* Navigation Desktop */}
-          <nav className="hidden md:flex items-center space-x-6">
+          {/* Navigation Desktop - visible uniquement à partir de 1024px */}
+          <nav className="hidden lg:flex items-center space-x-6">
             {navLinks.map((link) => (
               <div key={link.name} className="relative">
                 <Link
@@ -62,7 +62,6 @@ export default function Header() {
                   {link.name}
                 </Link>
                 
-                {/* Indicateur sous le texte pour la page active */}
                 {isActive(link.path) && (
                   <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-600 rounded-full"></div>
                 )}
@@ -77,18 +76,18 @@ export default function Header() {
             </Link>
           </nav>
 
-          {/* Menu mobile button */}
+          {/* Bouton hamburger - visible en dessous de 1024px */}
           <button
-            className="md:hidden text-blue-900 text-2xl"
+            className="lg:hidden text-blue-900 text-2xl"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <FaTimes /> : <FaBars />}
           </button>
         </div>
 
-        {/* Menu Mobile */}
+        {/* Menu Mobile - affiché quand le hamburger est ouvert */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4">
+          <div className="lg:hidden mt-4 pb-4">
             <nav className="flex flex-col space-y-2">
               {navLinks.map((link) => (
                 <Link
