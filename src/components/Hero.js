@@ -50,32 +50,32 @@ Confection Vonjy"
           </div>
           
           {/* Logo/image - caché sur mobile, visible sur desktop */}
-          <div className="hidden md:flex md:w-1/2 justify-center">
-            <div className="relative w-full max-w-lg h-80 lg:h-96 xl:h-[28rem] rounded-xl overflow-hidden shadow-2xl">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-800 to-blue-600 flex items-center justify-center">
-                <div className="text-center p-6 lg:p-8">
-                  <div className="mb-6 lg:mb-8 flex justify-center">
-                    <div className="relative w-56 h-56 lg:w-64 lg:h-64 xl:w-72 xl:h-72">
-                      <Image
-                        src="/images/logo.png"
-                        alt="Logo 
-Confection Vonjy"
-                        fill
-                        className="object-contain drop-shadow-2xl"
-                        priority
-                      />
-                    </div>
-                  </div>
-                  <h3 className="text-2xl lg:text-3xl xl:text-4xl font-bold mb-3 text-white">
-                    Vêtements sur mesure
-                  </h3>
-                  <p className="text-lg lg:text-xl text-white/90">
-                    Qualité exceptionnelle, prix compétitifs
-                  </p>
-                </div>
-              </div>
-            </div>
+          <div className="hidden md:flex md:w-1/2 justify-center items-center">
+  <div className="relative w-full max-w-md lg:max-w-lg h-auto min-h-[400px] lg:h-96 xl:h-[28rem] rounded-xl overflow-hidden shadow-2xl">
+    <div className="absolute inset-0 bg-gradient-to-br from-blue-800 to-blue-600 flex items-center justify-center p-4 sm:p-6">
+      <div className="text-center w-full p-4 sm:p-6 lg:p-8">
+        <div className="mb-4 sm:mb-6 lg:mb-8 flex justify-center">
+          <div className="relative w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 xl:w-72 xl:h-72">
+            <Image
+              src="/images/logo.png"
+              alt="Logo Confection Vonjy"
+              fill
+              className="object-contain drop-shadow-2xl"
+              priority
+              sizes="(max-width: 768px) 192px, (max-width: 1024px) 224px, 256px"
+            />
           </div>
+        </div>
+        <h3 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold mb-2 sm:mb-3 text-white px-2">
+          Vêtements sur mesure
+        </h3>
+        <p className="text-base sm:text-lg lg:text-xl text-white/90 px-2 pb-5">
+          Qualité exceptionnelle, prix compétitifs
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
         </div>
       </div>
 
