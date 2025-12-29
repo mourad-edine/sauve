@@ -86,9 +86,7 @@ export default function ContactFAQ() {
                 <span className="mr-2">📞</span> Appeler maintenant
               </a>
               <a 
-                href="mailto:
-reflet-HQD@confection-vonjy.fr
-"
+                href="mailto:contact@confection-pro.fr"
                 className="bg-white border-2 border-blue-700 text-blue-700 hover:bg-blue-50 font-bold py-3 px-8 rounded-lg transition duration-300 inline-flex items-center justify-center"
               >
                 <span className="mr-2">✉️</span> Envoyer un email

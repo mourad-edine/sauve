@@ -6,17 +6,21 @@ export default function PortfolioCTA() {
   return (
     <section className="py-20 bg-gradient-to-r from-blue-50 to-gray-100">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-6 uppercase">
-            Prêt à concrétiser votre projet ?
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Chaque projet commence par une conversation. Partagez vos idées avec nous et 
-            découvrez comment nous pouvons les transformer en réalité.
-          </p>
-        </div>
+        <div className="text-center mb-12 md:mb-16">
+  <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-blue-900 mb-4 uppercase">
+    Prêt à concrétiser votre projet ?
+    <span className="block text-lg md:text-xl text-yellow-600 font-normal mt-2">
+      Contactez-nous dès aujourd'hui
+    </span>
+  </h2>
+  <div className="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
+  <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
+    Chaque projet commence par une conversation. Partagez vos idées avec nous et 
+    découvrez comment nous pouvons les transformer en réalité.
+  </p>
+</div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <div className="bg-white p-8 rounded-xl shadow-lg text-center">
             <div className="text-blue-700 mb-6">
               <FaRulerCombined className="text-4xl mx-auto" />
@@ -64,7 +68,7 @@ export default function PortfolioCTA() {
               Visiter l'atelier
             </Link>
           </div>
-        </div>
+        </div> */}
         
         <div className="bg-gradient-to-r from-blue-900 to-blue-700 text-white p-8 md:p-12 rounded-2xl text-center">
           <h3 className="text-2xl md:text-3xl font-bold mb-6">

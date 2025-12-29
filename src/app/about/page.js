@@ -14,8 +14,7 @@ export default function AboutPage() {
       <AboutStory />
       <AboutTeam />
       <AboutValues />
-      <AboutWorkshop />
-      <AboutQuality />
+
       <AboutCTA />
     </div>
   );

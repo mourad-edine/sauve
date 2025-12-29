@@ -12,11 +12,11 @@ export default function ServicesPage() {
     <div className="pt-4">
       <ServicesOverview />
       <ServicesForBusiness />
-      <ServicesForIndividuals />
-      <CustomizationOptions />
-      <FabricSelection />
+      {/* <ServicesForIndividuals /> */}
+      {/* <CustomizationOptions /> */}
+      {/* <FabricSelection /> */}
       
-      <CTA />
+    
     </div>
   );
 }

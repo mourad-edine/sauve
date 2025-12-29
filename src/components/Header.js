@@ -1,25 +1,42 @@
-// components/Header.js - Version simplifiée
+// components/Header.js - Version corrigée
 'use client';
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import Image from 'next/image';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentPath, setCurrentPath] = useState('');
   const pathname = usePathname();
+
+  // Mettre à jour le pathname quand il change
+  useEffect(() => {
+    if (pathname) {
+      setCurrentPath(pathname);
+    }
+  }, [pathname]);
 
   const navLinks = [
     { name: 'Accueil', path: '/' },
+    { name: 'Galerie', path: '/galerie' },
     { name: 'Services', path: '/service' },
     { name: 'Réalisations', path: '/process' },
     { name: 'À propos', path: '/about' },
     { name: 'Contact', path: '/contact' },
   ];
 
-  const isActive = (path) => pathname === path;
+  // Fonction pour vérifier si le lien est actif
+  const isActive = (path) => {
+    // Gestion spéciale pour la page d'accueil
+    if (path === '/' && currentPath === '/') return true;
+    if (path === '/' && currentPath !== '/') return false;
+    
+    // Pour les autres pages, vérifier si le pathname commence par le chemin
+    return currentPath?.startsWith(path);
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-md">
@@ -48,7 +65,7 @@ export default function Header() {
           {/* Navigation Desktop */}
           <nav className="hidden md:flex items-center space-x-6">
             {navLinks.map((link) => (
-              <div key={link.name} className="relative">
+              <div key={link.name} className="relative group">
                 <Link
                   href={link.path}
                   className={`
@@ -64,8 +81,11 @@ export default function Header() {
                 
                 {/* Indicateur sous le texte pour la page active */}
                 {isActive(link.path) && (
-                  <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-600 rounded-full"></div>
+                  <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-600 rounded-full transition-all duration-300"></div>
                 )}
+                
+                {/* Ligne de survol pour tous les liens */}
+                <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-200 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
             ))}
             
@@ -81,6 +101,7 @@ export default function Header() {
           <button
             className="md:hidden text-blue-900 text-2xl"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
           >
             {isMenuOpen ? <FaTimes /> : <FaBars />}
           </button>
@@ -97,7 +118,7 @@ export default function Header() {
                   className={`
                     px-4 py-3 rounded-lg transition duration-300 font-medium
                     ${isActive(link.path) 
-                      ? 'bg-blue-100 text-blue-700 font-semibold' 
+                      ? 'bg-blue-100 text-blue-700 font-semibold border-l-4 border-blue-600' 
                       : 'text-blue-900 hover:bg-blue-50 hover:text-blue-700'
                     }
                   `}
@@ -106,7 +127,10 @@ export default function Header() {
                   <div className="flex items-center justify-between">
                     <span>{link.name}</span>
                     {isActive(link.path) && (
-                      <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                      <div className="flex items-center">
+                        <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
+                        <span className="text-xs text-blue-600">Actif</span>
+                      </div>
                     )}
                   </div>
                 </Link>

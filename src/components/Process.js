@@ -1,4 +1,4 @@
-// components/Process.js - Version timeline verticale
+// components/Process.js - Version timeline avec cartes de même hauteur
 import { FaSearch, FaRuler, FaCut, FaCheckCircle } from "react-icons/fa";
 
 export default function Process() {
@@ -32,9 +32,9 @@ export default function Process() {
   return (
     <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        {/* En-tête */}
+        {/* En-tête - Style original */}
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-blue-900 mb-4 uppercase">
+          <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-blue-900 mb-4 uppercase">
             Notre Processus
             <span className="block text-lg md:text-xl text-yellow-600 font-normal mt-2">
               4 étapes pour l'excellence
@@ -61,34 +61,84 @@ export default function Process() {
                     <div className="md:hidden absolute top-full left-1/2 h-8 w-1 bg-blue-200 transform -translate-x-1/2 z-0"></div>
                   )}
                   
-                  <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                    {/* Numéro et icône */}
-                   
+                  {/* Conteneur avec hauteur égale */}
+                  <div className="flex flex-col items-center md:items-start text-center md:text-left h-full">
                     
-                    {/* Contenu */}
-                    <div className="bg-white p-5 md:p-6 rounded-xl shadow-lg border border-blue-100 w-full">
+                    {/* Carte avec hauteur égale */}
+                    <div className="bg-white p-5 md:p-6 rounded-xl shadow-lg border border-blue-100 w-full h-full flex flex-col">
+                      {/* En-tête avec badge */}
                       <div className="mb-2">
                         <span className="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full">
                           Étape {index + 1}
                         </span>
                       </div>
                       
-                      <h3 className="text-xl md:text-xl font-bold text-blue-900 mb-3 uppercase">
+                      {/* Titre - Hauteur fixe */}
+                      <h3 className="text-xl md:text-xl font-bold text-blue-900 mb-3 uppercase min-h-[3rem]">
                         {step.title}
                       </h3>
                       
-                      <p className="text-gray-600 text-sm md:text-base mb-4 leading-relaxed">
-                        {step.description}
-                      </p>
-                      
-                      <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-                        <div className="text-xs text-gray-500 font-medium">
-                          ⏱️ {step.duration}
-                        </div>
-                        <div className="text-xs text-blue-600 font-medium">
-                          {index === steps.length - 1 ? '✅ Final' : '▶️ Suivant'}
-                        </div>
+                      {/* Icône au-dessus de la description */}
+                      <div className="mb-3 text-blue-600 text-2xl">
+                        {step.icon}
                       </div>
+                      
+                      {/* Description - Remplit l'espace disponible */}
+                      <div className="flex-1 mb-4">
+                        <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+                          {step.description}
+                        </p>
+                      </div>
+                      
+                      {/* Footer - Toujours en bas */}
+                      <div className="flex items-center justify-between pt-3 border-t border-gray-100 mt-auto">
+  <div className="text-xs text-gray-500 font-medium flex items-center gap-1">
+    {/* Horloge */}
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-4 h-4"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <circle cx="12" cy="12" r="9" strokeWidth="2" />
+      <path d="M12 7v5l3 2" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+
+    {step.duration}
+  </div>
+
+  <div className="text-xs text-blue-600 font-medium flex items-center gap-1">
+    {index === steps.length - 1 ? (
+      <>
+        {/* Check */}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-4 h-4"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <path d="M9 16.17l-3.88-3.88-1.41 1.41L9 19 20.29 7.71l-1.41-1.41z" />
+        </svg>
+        Final
+      </>
+    ) : (
+      <>
+        {/* Play */}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-4 h-4"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <path d="M8 5v14l11-7z" />
+        </svg>
+        Suivant
+      </>
+    )}
+  </div>
+</div>
+
                     </div>
                   </div>
                 </div>

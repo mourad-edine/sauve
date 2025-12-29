@@ -52,7 +52,7 @@ export default function Clients() {
           <div className="inline-flex items-center justify-center px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-4 md:mb-6">
             NOTRE RÉFÉRENCE
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-blue-900 mb-4 md:mb-6 leading-tight uppercase">
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-blue-900 mb-4 md:mb-6 leading-tight uppercase">
             Ils nous font <span className="text-yellow-600">confiance</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
@@ -68,7 +68,7 @@ export default function Clients() {
           {/* Colonne gauche - Témoignages */}
           <div className="lg:w-1/2">
             <div className="mb-8">
-              <h3 className="text-2xl md:text-3xl font-bold text-blue-900 mb-6 flex items-center">
+              <h3 className="text-xl uppercase md:text-xl font-bold text-blue-900 mb-6 flex items-center">
                 <FaQuoteLeft className="text-blue-500 mr-3" />
                 Témoignages clients
               </h3>
@@ -117,7 +117,7 @@ export default function Clients() {
           {/* Colonne droite - Secteurs d'activité */}
           <div className="lg:w-1/2">
             <div className="mb-8">
-              <h3 className="text-2xl md:text-3xl font-bold text-blue-900 mb-6 flex items-center">
+              <h3 className="text-xl uppercase md:text-xl font-bold text-blue-900 mb-6 flex items-center">
                 <FaIndustry className="text-blue-500 mr-3" />
                 Secteurs d'activité
               </h3>
@@ -169,7 +169,7 @@ export default function Clients() {
             </div>
             
             {/* Logos de clients (optionnel) */}
-            <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
+            {/* <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
               <h4 className="text-lg md:text-xl font-bold text-blue-900 mb-6 text-center uppercase">
                 Parmi nos clients
               </h4>
@@ -188,7 +188,7 @@ export default function Clients() {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         

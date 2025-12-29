@@ -40,7 +40,7 @@ export default function Services() {
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         {/* En-tête */}
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-blue-900 mb-4 uppercase">
+          <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-blue-900 mb-4 uppercase">
             Nos Services
             <span className="block text-lg md:text-xl text-yellow-600 font-normal mt-2">
               Excellence en confection sur mesure

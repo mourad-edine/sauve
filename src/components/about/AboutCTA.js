@@ -7,7 +7,7 @@ export default function AboutCTA() {
     <section className="py-20 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <h2 className="text-2xl md:text-2xl font-bold mb-6 uppercase">
             Prêt à Écrire la Suite avec Nous ?
           </h2>
           <p className="text-xl opacity-90 max-w-3xl mx-auto">
@@ -62,63 +62,7 @@ export default function AboutCTA() {
             </Link>
           </div>
         </div>
-        
-        <div className="bg-white/10 rounded-2xl p-8 md:p-12 backdrop-blur-sm">
-          <div className="flex flex-col lg:flex-row items-center">
-            <div className="lg:w-2/3 mb-8 lg:mb-0 lg:pr-8">
-              <h3 className="text-2xl font-bold mb-6">Pourquoi Nous Choisir ?</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="flex items-start">
-                  <div className="bg-yellow-500 text-blue-900 p-2 rounded-lg mr-4">
-                    <span className="font-bold">✓</span>
-                  </div>
-                  <div>
-                    <h4 className="font-bold mb-1">15 ans d'expertise</h4>
-                    <p className="text-sm opacity-90">Un savoir-faire éprouvé</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="bg-yellow-500 text-blue-900 p-2 rounded-lg mr-4">
-                    <span className="font-bold">✓</span>
-                  </div>
-                  <div>
-                    <h4 className="font-bold mb-1">Sur mesure 100%</h4>
-                    <p className="text-sm opacity-90">Adapté à vos besoins exacts</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="bg-yellow-500 text-blue-900 p-2 rounded-lg mr-4">
-                    <span className="font-bold">✓</span>
-                  </div>
-                  <div>
-                    <h4 className="font-bold mb-1">Qualité garantie</h4>
-                    <p className="text-sm opacity-90">2 ans de garantie produit</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="bg-yellow-500 text-blue-900 p-2 rounded-lg mr-4">
-                    <span className="font-bold">✓</span>
-                  </div>
-                  <div>
-                    <h4 className="font-bold mb-1">Accompagnement</h4>
-                    <p className="text-sm opacity-90">De l'idée à la livraison</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="lg:w-1/3">
-              <div className="bg-yellow-500 text-blue-900 p-8 rounded-xl text-center">
-                <div className="text-2xl font-bold mb-4">L'Excellence à Votre Service</div>
-                <Link 
-                  href="/contact"
-                  className="inline-block bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 px-8 rounded-lg transition duration-300"
-                >
-                  Commencer mon projet
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
+
         
         <div className="text-center mt-12 pt-8 border-t border-white/20">
           <p className="opacity-90">
