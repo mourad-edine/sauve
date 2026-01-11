@@ -1,145 +1,195 @@
 // components/gallery/GalleryLightbox.js
 'use client';
 
-import { useEffect } from 'react';
-import { FaTimes, FaChevronLeft, FaChevronRight, FaDownload, FaShare } from 'react-icons/fa';
+import { useState, useEffect, useCallback } from 'react';
+import { 
+  FaTimes, 
+  FaChevronLeft, 
+  FaChevronRight, 
+  FaDownload, 
+  FaExternalLinkAlt,
+  FaTag
+} from 'react-icons/fa';
 
-export default function GalleryLightbox({ images, currentIndex, onClose, onPrevious, onNext }) {
-  const currentImage = images[currentIndex];
+export default function GalleryLightbox({ 
+  images = [], 
+  currentIndex = 0, 
+  onClose, 
+  onPrevious, 
+  onNext 
+}) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(currentIndex);
+  const [isZoomed, setIsZoomed] = useState(false);
+
+  // Mettre à jour l'index quand il change depuis l'extérieur
+  useEffect(() => {
+    setCurrentImageIndex(currentIndex);
+  }, [currentIndex]);
+
+  // Navigation au clavier
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowLeft') onPrevious();
+      if (e.key === 'ArrowRight') onNext();
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose, onPrevious, onNext]);
 
   // Empêcher le scroll du body quand le lightbox est ouvert
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = 'auto';
     };
   }, []);
 
+  const currentImage = images[currentImageIndex];
+
+  if (!currentImage) {
+    return null;
+  }
+
+  const handleDownload = async () => {
+    try {
+      const response = await fetch(currentImage.imageUrl);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `photo-${currentImage.id}.jpg`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error('Download failed:', error);
+    }
+  };
+
   return (
-    <div className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm">
       {/* Bouton fermer */}
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 md:top-6 md:right-6 text-white text-2xl md:text-3xl z-50 p-3 hover:bg-white/10 rounded-full transition"
-        aria-label="Fermer"
+        className="absolute top-4 right-4 z-10 text-white hover:text-yellow-400 transition-colors"
       >
-        <FaTimes />
+        <FaTimes className="text-3xl" />
       </button>
 
       {/* Navigation */}
-      <button
-        onClick={onPrevious}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-2xl md:text-3xl z-50 p-3 hover:bg-white/10 rounded-full transition"
-        aria-label="Image précédente"
-      >
-        <FaChevronLeft />
-      </button>
-      
-      <button
-        onClick={onNext}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-2xl md:text-3xl z-50 p-3 hover:bg-white/10 rounded-full transition"
-        aria-label="Image suivante"
-      >
-        <FaChevronRight />
-      </button>
+      {images.length > 1 && (
+        <>
+          <button
+            onClick={onPrevious}
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 text-white hover:text-yellow-400 transition-colors"
+          >
+            <FaChevronLeft className="text-4xl" />
+          </button>
+          <button
+            onClick={onNext}
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 text-white hover:text-yellow-400 transition-colors"
+          >
+            <FaChevronRight className="text-4xl" />
+          </button>
+        </>
+      )}
 
-      {/* Contenu du lightbox */}
-      <div className="flex flex-col h-full">
+      {/* Contenu principal */}
+      <div className="relative w-full h-full max-w-7xl mx-auto px-4 py-16 flex flex-col md:flex-row items-center justify-center gap-8">
         {/* Image principale */}
-        <div className="flex-1 flex items-center justify-center p-4">
-          <div className="relative max-w-4xl w-full max-h-[70vh]">
-            {/* Placeholder d'image */}
-            <div className="bg-gradient-to-br from-blue-900/30 to-blue-700/30 border-2 border-white/20 rounded-xl overflow-hidden">
-              <div className="aspect-video flex items-center justify-center p-8">
-                <div className="text-center">
-                  <div className="text-white text-8xl mb-6">👔</div>
-                  <h2 className="text-3xl font-bold text-white mb-2">
-                    {currentImage.title}
-                  </h2>
-                  <p className="text-blue-200 text-lg">
-                    Image {currentImage.id} • Catégorie : {currentImage.category}
-                  </p>
-                </div>
-              </div>
-            </div>
+        <div className="flex-1 flex items-center justify-center h-full max-h-[70vh]">
+          <div className="relative w-full h-full">
+            <img
+              src={currentImage.imageUrl}
+              alt={currentImage.title}
+              className={`w-full h-full object-contain transition-transform duration-300 ${
+                isZoomed ? 'scale-150 cursor-zoom-out' : 'cursor-zoom-in'
+              }`}
+              onClick={() => setIsZoomed(!isZoomed)}
+            />
           </div>
         </div>
 
-        {/* Informations et miniatures */}
-        <div className="bg-gray-900/80 border-t border-white/10 p-4 md:p-6">
-          <div className="container mx-auto">
-            {/* Description */}
-            <div className="mb-6 text-center">
-              <h3 className="text-2xl font-bold text-white mb-2">
-                {currentImage.title}
-              </h3>
-              <p className="text-blue-200 max-w-2xl mx-auto">
-                {currentImage.description}
-              </p>
+        {/* Informations */}
+        <div className="w-full md:w-80 bg-white/10 backdrop-blur-sm rounded-xl p-6 text-white">
+          <div className="mb-6">
+            <h2 className="text-2xl font-bold mb-2">{currentImage.title}</h2>
+            <div className="flex items-center gap-2 mb-4">
+              <FaTag className="text-yellow-400" />
+              <span className="bg-yellow-400/20 text-yellow-300 px-3 py-1 rounded-full text-sm">
+                Camp {currentImage.categoryId}
+              </span>
             </div>
+            <p className="text-gray-300">
+              Photo #{currentImage.description}
+            </p>
+          </div>
 
-            {/* Miniatures */}
-            <div className="flex overflow-x-auto gap-2 pb-2 hide-scrollbar">
-              {images.map((image, index) => (
-                <button
-                  key={image.id}
-                  onClick={() => {
-                    const newIndex = images.findIndex(img => img.id === image.id);
-                    if (newIndex !== -1) {
-                      // La navigation se fera via le parent
-                      // On va simplement mettre à jour l'index
-                    }
-                  }}
-                  className={`flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden border-2 transition ${
-                    index === currentIndex
-                      ? 'border-yellow-500 ring-2 ring-yellow-500/30'
-                      : 'border-transparent hover:border-white/50'
-                  }`}
-                >
-                  <div className={`w-full h-full flex items-center justify-center ${
-                    index === currentIndex ? 'bg-blue-800' : 'bg-blue-900/50'
-                  }`}>
-                    <div className="text-white text-lg">
-                      {image.id}
-                    </div>
-                  </div>
-                </button>
-              ))}
+          {/* Métadonnées */}
+          <div className="space-y-3 mb-8">
+            <div className="flex justify-between">
+              <span className="text-gray-400">Référence:</span>
+              <span className="font-mono">#{currentImage.id.toString().padStart(3, '0')}</span>
             </div>
-
-            {/* Contrôles */}
-            <div className="flex justify-between items-center mt-4 pt-4 border-t border-white/10">
-              <div className="text-white/70 text-sm">
-                Image {currentIndex + 1} sur {images.length}
-              </div>
-              <div className="flex gap-3">
-                <button className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition">
-                  <FaDownload /> Télécharger
-                </button>
-                <button className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition">
-                  <FaShare /> Partager
-                </button>
-              </div>
+            <div className="flex justify-between">
+              <span className="text-gray-400">Position:</span>
+              <span>{currentImageIndex + 1} / {images.length}</span>
             </div>
           </div>
+
+          {/* Actions */}
+          <div className="space-y-3">
+            <button
+              onClick={handleDownload}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg flex items-center justify-center gap-2 transition-colors"
+            >
+              <FaDownload />
+              Télécharger
+            </button>
+            <button
+              onClick={() => window.open(currentImage.imageUrl, '_blank')}
+              className="w-full bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg flex items-center justify-center gap-2 transition-colors"
+            >
+              <FaExternalLinkAlt />
+              Ouvrir dans un nouvel onglet
+            </button>
+          </div>
+
+          {/* Miniatures */}
+          {images.length > 1 && (
+            <div className="mt-8">
+              <h3 className="text-sm text-gray-400 mb-3">Galerie</h3>
+              <div className="flex gap-2 overflow-x-auto pb-2">
+                {images.map((image, index) => (
+                  <button
+                    key={image.id}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
+                      currentImageIndex === index
+                        ? 'border-yellow-400 scale-105'
+                        : 'border-transparent hover:border-white/50'
+                    }`}
+                  >
+                    <img
+                      src={image.imageUrl}
+                      alt={`Miniature ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Indicateurs clavier */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white/50 text-sm hidden md:block">
-        Utilisez les flèches ← → pour naviguer • Échap pour fermer
+      {/* Indicateur de position */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white/80 text-sm">
+        {currentImageIndex + 1} / {images.length}
       </div>
-
-      {/* Styles pour cacher la scrollbar */}
-      <style jsx>{`
-        .hide-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-        .hide-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
     </div>
   );
 }

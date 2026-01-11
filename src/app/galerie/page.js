@@ -1,4 +1,3 @@
-// app/galerie/page.js
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -6,29 +5,70 @@ import GalleryGrid from '@/components/gallery/GalleryGrid';
 import GalleryLightbox from '@/components/gallery/GalleryLightbox';
 import GalleryHero from '@/components/gallery/GalleryHero';
 import GalleryFilters from '@/components/gallery/GalleryFilters';
-import { galleryImages } from '@/data/galleryData';
+
+const API_URL = "http://localhost/confectionvonjy/public/api/photos_camps";
+const STORAGE_URL = "http://localhost/confectionvonjy/public/photo_camps/";
 
 export default function GaleriePage() {
   const [selectedCategory, setSelectedCategory] = useState('tous');
-  const [filteredImages, setFilteredImages] = useState(galleryImages);
+  const [images, setImages] = useState([]);
+  const [filteredImages, setFilteredImages] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedImage, setSelectedImage] = useState(null);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   
   const imagesPerPage = 12;
+
+  // Récupérer les images depuis l'API
+  useEffect(() => {
+    fetchImages();
+  }, []);
+
+  const fetchImages = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(API_URL);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      
+      // Transformer les données de l'API
+      const formattedImages = data.map((item, index) => ({
+        id: item.id,
+        imageUrl: `${STORAGE_URL}${item.photos}`,
+        category: item.gallerie_id.toString(),
+        categoryId: item.gallerie_id,
+        title: `Photo #${item.id}`,
+        description: (index + 1).toString()
+      }));
+      
+      setImages(formattedImages);
+      setFilteredImages(formattedImages);
+    } catch (err) {
+      setError(err.message);
+      console.error('Error fetching images:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // Filtrer les images par catégorie
   useEffect(() => {
     if (selectedCategory === 'tous') {
-      setFilteredImages(galleryImages);
+      setFilteredImages(images);
     } else {
-      const filtered = galleryImages.filter(
+      const filtered = images.filter(
         img => img.category === selectedCategory
       );
       setFilteredImages(filtered);
     }
     setCurrentPage(1); // Réinitialiser à la première page quand on change de filtre
-  }, [selectedCategory]);
+  }, [selectedCategory, images]);
 
   // Calculer les images à afficher pour la page actuelle
   const indexOfLastImage = currentPage * imagesPerPage;
@@ -36,11 +76,28 @@ export default function GaleriePage() {
   const currentImages = filteredImages.slice(indexOfFirstImage, indexOfLastImage);
   const totalPages = Math.ceil(filteredImages.length / imagesPerPage);
 
+  // Créer les catégories dynamiquement
+  const categories = [
+    { id: 'tous', name: 'Toutes les photos', count: images.length }
+  ];
+
+  // Ajouter les autres catégories basées sur les gallerie_id uniques
+  const uniqueCategories = [...new Set(images.map(img => img.category))];
+  uniqueCategories.forEach(catId => {
+    const count = images.filter(img => img.category === catId).length;
+    if (count > 0 && catId !== 'tous') {
+      categories.push({
+        id: catId,
+        name: `Camp ${catId}`,
+        count: count
+      });
+    }
+  });
+
   // Ouvrir le lightbox
   const openLightbox = (imageIndex) => {
-    const globalIndex = galleryImages.findIndex(
-      img => img.id === filteredImages[imageIndex]?.id
-    );
+    const clickedImage = filteredImages[imageIndex];
+    const globalIndex = images.findIndex(img => img.id === clickedImage?.id);
     setSelectedImage(globalIndex);
     setIsLightboxOpen(true);
   };
@@ -49,14 +106,14 @@ export default function GaleriePage() {
   const goToPrevious = () => {
     setSelectedImage(prev => {
       if (prev === null) return null;
-      return prev > 0 ? prev - 1 : galleryImages.length - 1;
+      return prev > 0 ? prev - 1 : images.length - 1;
     });
   };
 
   const goToNext = () => {
     setSelectedImage(prev => {
       if (prev === null) return null;
-      return prev < galleryImages.length - 1 ? prev + 1 : 0;
+      return prev < images.length - 1 ? prev + 1 : 0;
     });
   };
 
@@ -78,17 +135,45 @@ export default function GaleriePage() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isLightboxOpen]);
 
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Chargement des photos...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white flex items-center justify-center">
+        <div className="text-center text-red-600">
+          <p>Erreur: {error}</p>
+          <button 
+            onClick={fetchImages}
+            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            Réessayer
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* En-tête de la page */}
+      <GalleryHero />
       
-        <GalleryHero />
       {/* Contenu principal */}
       <div className="container mx-auto px-4 md:px-6 py-12 md:py-16">
         {/* Filtres */}
         <GalleryFilters 
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
+          categories={categories}
         />
 
         {/* Statistiques */}
@@ -98,7 +183,7 @@ export default function GaleriePage() {
             <span className="font-bold text-blue-700">{filteredImages.length}</span> images
             {selectedCategory !== 'tous' && (
               <span className="ml-2 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
-                Catégorie : {selectedCategory}
+                Camp : {selectedCategory}
               </span>
             )}
           </p>
@@ -184,7 +269,7 @@ export default function GaleriePage() {
       {/* Lightbox */}
       {isLightboxOpen && selectedImage !== null && (
         <GalleryLightbox
-          images={galleryImages}
+          images={images}
           currentIndex={selectedImage}
           onClose={() => setIsLightboxOpen(false)}
           onPrevious={goToPrevious}

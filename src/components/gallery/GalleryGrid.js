@@ -1,10 +1,17 @@
 // components/gallery/GalleryGrid.js
 'use client';
 
-import Image from 'next/image';
 import { FaSearchPlus, FaTag } from 'react-icons/fa';
 
 export default function GalleryGrid({ images, onImageClick }) {
+  if (images.length === 0) {
+    return (
+      <div className="text-center py-12">
+        <p className="text-gray-500 text-lg">Aucune photo disponible pour cette catégorie</p>
+      </div>
+    );
+  }
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
       {images.map((image, index) => (
@@ -17,18 +24,13 @@ export default function GalleryGrid({ images, onImageClick }) {
             className="relative h-64 md:h-72 cursor-pointer"
             onClick={() => onImageClick(index)}
           >
-            {/* Image placeholder - remplacez par vos vraies images */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
-              <div className="text-center p-4">
-                <div className="text-blue-700 text-5xl mb-3 opacity-30">👔</div>
-                <p className="text-blue-900 font-semibold text-sm">
-                  {image.title}
-                </p>
-                <p className="text-blue-700 text-xs mt-1">
-                  (Image {image.id})
-                </p>
-              </div>
-            </div>
+            {/* Image réelle */}
+            <img
+              src={image.imageUrl}
+              alt={image.title}
+              className="absolute inset-0 w-full h-full object-cover"
+              loading="lazy"
+            />
             
             {/* Overlay au survol */}
             <div className="absolute inset-0 bg-blue-900/0 group-hover:bg-blue-900/70 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
@@ -43,7 +45,7 @@ export default function GalleryGrid({ images, onImageClick }) {
               <div className="flex items-center gap-1">
                 <FaTag className="text-blue-600 text-xs" />
                 <span className="text-blue-700 font-medium text-xs uppercase">
-                  {image.category}
+                  Camp {image.categoryId}
                 </span>
               </div>
             </div>
@@ -55,7 +57,7 @@ export default function GalleryGrid({ images, onImageClick }) {
               {image.title}
             </h3>
             <p className="text-gray-600 text-sm mb-3 line-clamp-2">
-              {image.description}
+              Photo #{image.description}
             </p>
             <div className="flex justify-between items-center pt-3 border-t border-gray-100">
               <span className="text-xs text-gray-500">

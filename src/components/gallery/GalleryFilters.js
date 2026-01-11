@@ -2,19 +2,18 @@
 'use client';
 
 import { FaFilter, FaTags } from 'react-icons/fa';
-import { categories } from '@/data/galleryData';
 
-export default function GalleryFilters({ selectedCategory, setSelectedCategory }) {
+export default function GalleryFilters({ selectedCategory, setSelectedCategory, categories = [] }) {
   return (
     <div className="mb-8">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
         <div>
-          <h4 className="uppercase   font-bold text-blue-900 flex items-center gap-2">
+          <h4 className="uppercase font-bold text-blue-900 flex items-center gap-2">
             <FaFilter className="text-blue-600" />
-            Filtrez par catégorie
+            Filtrez par camp
           </h4>
           <p className="text-gray-600 mt-1">
-            Sélectionnez une catégorie pour affiner votre recherche
+            Sélectionnez un camp pour afficher ses photos
           </p>
         </div>
         
