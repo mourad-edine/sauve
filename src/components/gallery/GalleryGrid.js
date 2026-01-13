@@ -1,78 +1,89 @@
-// components/gallery/GalleryGrid.js
+// components/gallery/GalleryGridClean.js
 'use client';
 
-import { FaSearchPlus, FaTag } from 'react-icons/fa';
+import { useState } from 'react';
+import { FiZoomIn } from 'react-icons/fi';   // ← plus léger que FaSearchPlus
 
 export default function GalleryGrid({ images, onImageClick }) {
-  if (images.length === 0) {
+  const [hoveredId, setHoveredId] = useState(null);
+
+  if (!images?.length) {
     return (
-      <div className="text-center py-12">
-        <p className="text-gray-500 text-lg">Aucune photo disponible pour cette catégorie</p>
+      <div className="text-center py-16 text-gray-500">
+        <p className="text-lg font-medium">Aucune image disponible</p>
       </div>
     );
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
-      {images.map((image, index) => (
-        <div 
-          key={image.id} 
-          className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 bg-white"
-        >
-          {/* Conteneur image */}
-          <div 
-            className="relative h-64 md:h-72 cursor-pointer"
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 md:gap-6 lg:gap-8">
+      {images.map((image, index) => {
+        const isHovered = hoveredId === image.id;
+
+        return (
+          <div
+            key={image.id}
+            className="group relative bg-white rounded-xl overflow-hidden transition-all duration-300"
+            onMouseEnter={() => setHoveredId(image.id)}
+            onMouseLeave={() => setHoveredId(null)}
             onClick={() => onImageClick(index)}
           >
-            {/* Image réelle */}
-            <img
-              src={image.imageUrl}
-              alt={image.title}
-              className="absolute inset-0 w-full h-full object-cover"
-              loading="lazy"
-            />
-            
-            {/* Overlay au survol */}
-            <div className="absolute inset-0 bg-blue-900/0 group-hover:bg-blue-900/70 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-              <div className="text-white text-center p-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                <FaSearchPlus className="text-3xl mx-auto mb-3" />
-                <span className="font-medium">Voir en grand</span>
-              </div>
-            </div>
-            
-            {/* Badge catégorie */}
-            <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full shadow-sm">
-              <div className="flex items-center gap-1">
-                <FaTag className="text-blue-600 text-xs" />
-                <span className="text-blue-700 font-medium text-xs uppercase">
-                  Camp {image.categoryId}
-                </span>
-              </div>
-            </div>
-          </div>
-          
-          {/* Description sous l'image */}
-          <div className="p-4">
-            <h3 className="font-bold text-blue-900 mb-1 text-lg">
-              {image.title}
-            </h3>
-            <p className="text-gray-600 text-sm mb-3 line-clamp-2">
-              Photo #{image.description}
-            </p>
-            <div className="flex justify-between items-center pt-3 border-t border-gray-100">
-              <span className="text-xs text-gray-500">
-                Réf. #{image.id.toString().padStart(3, '0')}
-              </span>
-              <button 
-                onClick={() => onImageClick(index)}
-                className="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center gap-1"
+            {/* Image wrapper avec ratio fixe */}
+            <div className="relative aspect-[4/3] overflow-hidden bg-gray-50">
+              <img
+                src={image.imageUrl}
+                alt={image.title || 'Photo'}
+                className={`
+                  w-full h-full object-cover transition-transform duration-700 ease-out
+                  ${isHovered ? 'scale-108' : 'scale-100'}
+                `}
+                loading="lazy"
+              />
+
+              {/* Overlay subtil + zoom icon */}
+              <div
+                className={`
+                  absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-400
+                  flex items-center justify-center
+                `}
               >
-                <FaSearchPlus /> Agrandir
-              </button>
+                <div
+                  className={`
+                    p-4 rounded-full bg-white/90 backdrop-blur-sm text-gray-800
+                    transition-all duration-300
+                    ${isHovered ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}
+                  `}
+                >
+                  <FiZoomIn className="w-6 h-6" />
+                </div>
+              </div>
+            </div>
+
+            {/* Légende minimaliste */}
+            <div className="p-4 pt-5 space-y-1.5">
+              <h3 className="font-medium text-gray-900 text-base leading-tight line-clamp-2">
+                {image.title || 'Sans titre'}
+              </h3>
+
+              {image.description && (
+                <p className="text-sm text-gray-600 line-clamp-2 min-h-[3rem]">
+                  {image.description}
+                </p>
+              )}
+
+              {/* Ligne très discrète d’infos complémentaires */}
+              <div className="pt-3 text-xs text-gray-500 flex items-center justify-between">
+                <span>Réf. {image.id.toString().padStart(3, '0')}</span>
+                {image.category && (
+                  <span className="text-gray-600 font-light">
+                    {image.category}
+                  </span>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }

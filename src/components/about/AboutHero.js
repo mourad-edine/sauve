@@ -7,7 +7,7 @@ import { HiOutlineSparkles } from 'react-icons/hi';
 
 export default function AboutHero() {
   return (
-    <section className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800">
+    <section className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-violet-950 via-violet-900 to-violet-800">
       
       {/* Pattern de fond élégant */}
       <div className="absolute inset-0 opacity-10">

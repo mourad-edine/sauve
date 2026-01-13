@@ -1,6 +1,12 @@
-'use client';
+"use client";
 
-import { FaCalendar, FaUsers, FaBuilding, FaAward, FaLeaf } from "react-icons/fa";
+import {
+  FaCalendar,
+  FaUsers,
+  FaBuilding,
+  FaAward,
+  FaLeaf,
+} from "react-icons/fa";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 
@@ -9,45 +15,46 @@ export default function AboutStory() {
   const containerRef = useRef(null);
 
   const milestones = [
-    { 
-      year: "2009", 
-      title: "Fondation", 
-      description: "Lancement de notre aventure entrepreneuriale avec une vision claire",
-      icon: FaCalendar, 
+    {
+      year: "2009",
+      title: "Fondation",
+      description:
+        "Lancement de notre aventure entrepreneuriale avec une vision claire",
+      icon: FaCalendar,
       color: "#3B82F6",
-      accent: "#93C5FD"
+      accent: "#93C5FD",
     },
-    { 
-      year: "2012", 
-      title: "Premiers succès", 
+    {
+      year: "2012",
+      title: "Premiers succès",
       description: "Validation de notre modèle et croissance rapide",
-      icon: FaUsers, 
+      icon: FaUsers,
       color: "#10B981",
-      accent: "#6EE7B7"
+      accent: "#6EE7B7",
     },
-    { 
-      year: "2015", 
-      title: "Expansion", 
+    {
+      year: "2015",
+      title: "Expansion",
       description: "Développement international et nouvelles équipes",
-      icon: FaBuilding, 
+      icon: FaBuilding,
       color: "#8B5CF6",
-      accent: "#C4B5FD"
+      accent: "#C4B5FD",
     },
-    { 
-      year: "2019", 
-      title: "Reconnaissance", 
+    {
+      year: "2019",
+      title: "Reconnaissance",
       description: "Prix d'excellence et certifications internationales",
-      icon: FaAward, 
+      icon: FaAward,
       color: "#F59E0B",
-      accent: "#FCD34D"
+      accent: "#FCD34D",
     },
-    { 
-      year: "2023", 
-      title: "Innovation", 
+    {
+      year: "2023",
+      title: "Innovation",
       description: "Lancement de solutions durables et technologiques",
-      icon: FaLeaf, 
+      icon: FaLeaf,
       color: "#14B8A6",
-      accent: "#5EEAD4"
+      accent: "#5EEAD4",
     },
   ];
 
@@ -63,35 +70,33 @@ export default function AboutStory() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* En-tête minimaliste */}
         <div className="text-center mb-20">
-          
-
-
           <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-blue-900 mb-4 uppercase">
-            Notre histoire
-            <span className="block text-lg md:text-xl text-yellow-600 font-normal mt-2">
-              {/* 4 étapes pour l'excellence */}
-            </span>
-          </h2>
-          <div className="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
-            Un parcours marqué par des moments décisifs et des réalisations significatives
-          </p>
-        </div>
+            <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-blue-900 mb-4 uppercase">
+              Notre histoire
+              <span className="block text-lg md:text-xl text-yellow-600 font-normal mt-2">
+                {/* 4 étapes pour l'excellence */}
+              </span>
+            </h2>
+            <div className="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
+              Un parcours marqué par des moments décisifs et des réalisations
+              significatives
+            </p>
+          </div>
         </div>
 
         {/* Timeline Desktop - Style minimaliste */}
         <div className="hidden lg:block relative">
           {/* Ligne de temps verticale */}
           <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent transform -translate-x-1/2"></div>
-          
+
           {/* Conteneur pour les éléments */}
           <div className="relative">
             {milestones.map((milestone, index) => {
               const Icon = milestone.icon;
               const isEven = index % 2 === 0;
               const isActive = activeIndex === index;
-              
+
               return (
                 <motion.div
                   key={index}
@@ -100,18 +105,26 @@ export default function AboutStory() {
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ delay: index * 0.15 }}
                   className={`relative flex items-center justify-between mb-32 last:mb-0 ${
-                    isEven ? 'flex-row' : 'flex-row-reverse'
+                    isEven ? "flex-row" : "flex-row-reverse"
                   }`}
                   onMouseEnter={() => setActiveIndex(index)}
                   onMouseLeave={() => setActiveIndex(null)}
                 >
                   {/* Côté gauche */}
-                  <div className={`w-5/12 ${isEven ? 'text-right pr-12' : 'text-left pl-12'}`}>
+                  <div
+                    className={`w-5/12 ${
+                      isEven ? "text-right pr-12" : "text-left pl-12"
+                    }`}
+                  >
                     <motion.div
                       animate={isActive ? { x: isEven ? -10 : 10 } : { x: 0 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     >
-                      <div className={`inline-block ${isEven ? 'mr-auto' : 'ml-auto'}`}>
+                      <div
+                        className={`inline-block ${
+                          isEven ? "mr-auto" : "ml-auto"
+                        }`}
+                      >
                         <span className="text-6xl font-light text-gray-900 mb-2 block leading-none">
                           {milestone.year}
                         </span>
@@ -132,25 +145,31 @@ export default function AboutStory() {
                       animate={isActive ? { scale: 1.2 } : { scale: 1 }}
                       transition={{ type: "spring" }}
                       className="absolute inset-0 rounded-full border-2 border-gray-300"
-                      style={{ borderColor: isActive ? milestone.color : '#D1D5DB' }}
+                      style={{
+                        borderColor: isActive ? milestone.color : "#D1D5DB",
+                      }}
                     />
-                    
+
                     {/* Cercle intérieur */}
                     <div className="absolute inset-0 m-3 rounded-full bg-white flex items-center justify-center shadow-sm">
-                      <Icon 
-                        className="w-6 h-6 transition-colors duration-300" 
-                        style={{ color: isActive ? milestone.color : '#6B7280' }}
+                      <Icon
+                        className="w-6 h-6 transition-colors duration-300"
+                        style={{
+                          color: isActive ? milestone.color : "#6B7280",
+                        }}
                       />
                     </div>
-                    
+
                     {/* Connecteur vers la ligne */}
-                    <div className={`absolute top-1/2 w-8 h-px ${
-                      isEven ? 'right-full' : 'left-full'
-                    } bg-gradient-to-r ${
-                      isEven 
-                        ? 'from-gray-300 to-transparent' 
-                        : 'from-transparent to-gray-300'
-                    }`}></div>
+                    <div
+                      className={`absolute top-1/2 w-8 h-px ${
+                        isEven ? "right-full" : "left-full"
+                      } bg-gradient-to-r ${
+                        isEven
+                          ? "from-gray-300 to-transparent"
+                          : "from-transparent to-gray-300"
+                      }`}
+                    ></div>
                   </div>
 
                   {/* Côté droit */}
@@ -165,11 +184,11 @@ export default function AboutStory() {
         <div className="lg:hidden">
           <div className="relative pl-12">
             <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-gray-300 via-gray-300 to-transparent"></div>
-            
+
             {milestones.map((milestone, index) => {
               const Icon = milestone.icon;
               const isActive = activeIndex === index;
-              
+
               return (
                 <motion.div
                   key={index}
@@ -189,8 +208,8 @@ export default function AboutStory() {
                       style={{ borderColor: milestone.color }}
                     >
                       <div className="absolute inset-0 m-1 rounded-full bg-white flex items-center justify-center">
-                        <Icon 
-                          className="w-3 h-3" 
+                        <Icon
+                          className="w-3 h-3"
                           style={{ color: milestone.color }}
                         />
                       </div>
@@ -211,21 +230,21 @@ export default function AboutStory() {
                           {milestone.title}
                         </h3>
                       </div>
-                      <div 
+                      <div
                         className="w-12 h-12 rounded-lg flex items-center justify-center"
                         style={{ backgroundColor: `${milestone.accent}20` }}
                       >
-                        <Icon 
+                        <Icon
                           className="w-6 h-6"
                           style={{ color: milestone.color }}
                         />
                       </div>
                     </div>
-                    
+
                     <p className="text-gray-600 leading-relaxed">
                       {milestone.description}
                     </p>
-                    
+
                     {/* Indicateur de progression */}
                     <div className="mt-6 pt-6 border-t border-gray-100">
                       <div className="flex items-center justify-between text-sm">
@@ -237,9 +256,7 @@ export default function AboutStory() {
                             <div
                               key={i}
                               className={`w-2 h-2 rounded-full transition-colors ${
-                                i <= index 
-                                  ? 'bg-gray-900' 
-                                  : 'bg-gray-300'
+                                i <= index ? "bg-gray-900" : "bg-gray-300"
                               }`}
                             />
                           ))}
@@ -276,17 +293,23 @@ export default function AboutStory() {
                 whileTap={{ scale: 0.95 }}
                 onClick={() => {
                   const element = document.getElementById(`milestone-${index}`);
-                  element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  element?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                  });
                   setActiveIndex(index);
                 }}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                   activeIndex === index
-                    ? 'text-white'
-                    : 'text-gray-700 hover:text-gray-900'
+                    ? "text-white"
+                    : "text-gray-700 hover:text-gray-900"
                 }`}
                 style={{
-                  backgroundColor: activeIndex === index ? milestone.color : 'transparent',
-                  border: `1px solid ${activeIndex === index ? milestone.color : '#E5E7EB'}`
+                  backgroundColor:
+                    activeIndex === index ? milestone.color : "transparent",
+                  border: `1px solid ${
+                    activeIndex === index ? milestone.color : "#E5E7EB"
+                  }`,
                 }}
               >
                 {milestone.year}

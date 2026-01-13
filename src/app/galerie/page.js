@@ -6,8 +6,8 @@ import GalleryLightbox from '@/components/gallery/GalleryLightbox';
 import GalleryHero from '@/components/gallery/GalleryHero';
 import GalleryFilters from '@/components/gallery/GalleryFilters';
 
-const API_URL = "http://localhost/confectionvonjy/public/api/photos_camps";
-const STORAGE_URL = "http://localhost/confectionvonjy/public/photo_camps/";
+const API_URL = "https://admin.camp-toamasina.mg/api/photos_camps";
+const STORAGE_URL = "https://admin.camp-toamasina.mg/photo_camps/";
 
 export default function GaleriePage() {
   const [selectedCategory, setSelectedCategory] = useState('tous');

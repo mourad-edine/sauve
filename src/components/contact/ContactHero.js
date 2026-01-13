@@ -6,7 +6,7 @@ import { FaEnvelope, FaAward } from 'react-icons/fa6';
 
 export default function ContactHero() {
   return (
-    <section className="relative min-h-[80vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800">
+    <section className="relative min-h-[80vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-cyan-950 via-cyan-900 to-cyan-800">
       
       {/* Pattern de fond élégant */}
       <div className="absolute inset-0 opacity-10">
