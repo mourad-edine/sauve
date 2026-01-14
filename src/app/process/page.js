@@ -10,10 +10,6 @@ export default function PortfolioPage() {
   return (
     <div className="pt-4">
       <PortfolioHero />
-<<<<<<< HEAD
-=======
-      <PortfolioFilter />
->>>>>>> b91ef1bbefe7d3bdb7d2573e43ee100252e51299
       <PortfolioGallery />
       <PortfolioStats />
       {/* <PortfolioTestimonials /> */}

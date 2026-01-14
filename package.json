@@ -5,18 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-<<<<<<< HEAD
     "export": "next export",
     "start-static": "serve out"
   },
   "dependencies": {
     "framer-motion": "^12.23.26",
-=======
-    "start": "next start",
-    "lint": "eslint"
-  },
-  "dependencies": {
->>>>>>> b91ef1bbefe7d3bdb7d2573e43ee100252e51299
     "next": "16.0.7",
     "react": "19.2.0",
     "react-dom": "19.2.0",
