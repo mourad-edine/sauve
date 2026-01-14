@@ -45,7 +45,43 @@ export default function AboutQuality() {
 
   return (
     <section className="py-16 bg-white">
+<<<<<<< HEAD
       
+=======
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4 uppercase">
+            Notre Engagement Qualité
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            La qualité n'est pas un objectif, c'est notre standard quotidien. 
+            Découvrez comment nous garantissons l'excellence de chaque création.
+          </p>
+        </div>
+
+        
+        {/* Engagement final */}
+        <div className="text-center">
+          <div className="inline-block max-w-2xl">
+            <div className="text-blue-700 mb-6">
+              <FaStar className="text-5xl mx-auto" />
+            </div>
+            <h3 className="text-2xl font-bold text-blue-900 mb-6">
+              Notre Promesse
+            </h3>
+            <p className="text-xl text-gray-700 mb-8">
+              Chaque vêtement que nous créons porte notre signature d'excellence. 
+              Nous nous engageons à vous offrir non seulement un produit, 
+              mais une expérience et une qualité qui durent dans le temps.
+            </p>
+            <div className="bg-blue-100 text-blue-800 px-6 py-4 rounded-xl inline-block">
+              <span className="font-bold">
+Confection Vonjy</span> - où l'excellence devient une habitude
+            </div>
+          </div>
+        </div>
+      </div>
+>>>>>>> b91ef1bbefe7d3bdb7d2573e43ee100252e51299
     </section>
   );
 }

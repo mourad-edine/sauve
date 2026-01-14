@@ -1,7 +1,12 @@
+<<<<<<< HEAD
+=======
+// components/Header.js
+>>>>>>> b91ef1bbefe7d3bdb7d2573e43ee100252e51299
 'use client';
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+<<<<<<< HEAD
 import { useState, useEffect } from 'react';
 import { FaBars, FaTimes, FaPhone, FaArrowRight } from 'react-icons/fa';
 import Image from 'next/image';
@@ -25,12 +30,25 @@ export default function Header() {
   const navLinks = [
     { name: 'Accueil', path: '/' },
     { name: 'Galerie', path: '/galerie' },
+=======
+import { useState } from 'react';
+import { FaBars, FaTimes } from 'react-icons/fa';
+import Image from 'next/image';
+
+export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const navLinks = [
+    { name: 'Accueil', path: '/' },
+>>>>>>> b91ef1bbefe7d3bdb7d2573e43ee100252e51299
     { name: 'Services', path: '/service' },
     { name: 'Réalisations', path: '/process' },
     { name: 'À propos', path: '/about' },
     { name: 'Contact', path: '/contact' },
   ];
 
+<<<<<<< HEAD
   const isActive = (path) => {
     if (path === '/') return pathname === '/';
     return pathname?.startsWith(path);
@@ -118,10 +136,58 @@ export default function Header() {
                     layoutId="hoverIndicator"
                     className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1/3 h-0.5 bg-gray-300 rounded-full"
                   />
+=======
+  const isActive = (path) => pathname === path;
+
+  return (
+    <header className="sticky top-0 z-50 bg-white shadow-md">
+      <div className="container mx-auto px-6 py-4">
+        <div className="flex justify-between items-center">
+          {/* Logo */}
+          <Link href="/" className="flex items-center space-x-3">
+            <div className="flex items-center justify-center">
+              <Image 
+                src="/images/logo.png" 
+                alt="Logo Confection Vonjy"
+                width={60}
+                height={60}
+                className="h-12 w-12 lg:h-14 lg:w-14 object-contain"
+                priority
+              />
+            </div>
+            <div>
+              <h1 className="text-xl lg:text-2xl font-bold text-blue-900">
+                Confection<span className="text-yellow-500"> Vonjy</span>
+              </h1>
+              <p className="text-xs text-gray-500">Vêtements sur mesure</p>
+            </div>
+          </Link>
+
+          {/* Navigation Desktop - visible uniquement à partir de 1024px */}
+          <nav className="hidden lg:flex items-center space-x-6">
+            {navLinks.map((link) => (
+              <div key={link.name} className="relative">
+                <Link
+                  href={link.path}
+                  className={`
+                    text-blue-900 font-medium transition duration-300
+                    ${isActive(link.path) 
+                      ? 'text-blue-700 font-semibold' 
+                      : 'hover:text-blue-700'
+                    }
+                  `}
+                >
+                  {link.name}
+                </Link>
+                
+                {isActive(link.path) && (
+                  <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-600 rounded-full"></div>
+>>>>>>> b91ef1bbefe7d3bdb7d2573e43ee100252e51299
                 )}
               </div>
             ))}
             
+<<<<<<< HEAD
             {/* Bouton CTA avec effet */}
             <div className="relative ml-4">
               <Link
@@ -257,6 +323,63 @@ export default function Header() {
             </motion.div>
           )}
         </AnimatePresence>
+=======
+            <Link
+              href="/contact"
+              className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-5 rounded-lg transition duration-300 ml-4"
+            >
+              Devis gratuit
+            </Link>
+          </nav>
+
+          {/* Bouton hamburger - visible en dessous de 1024px */}
+          <button
+            className="lg:hidden text-blue-900 text-2xl"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
+
+        {/* Menu Mobile - affiché quand le hamburger est ouvert */}
+        {isMenuOpen && (
+          <div className="lg:hidden mt-4 pb-4">
+            <nav className="flex flex-col space-y-2">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.path}
+                  className={`
+                    px-4 py-3 rounded-lg transition duration-300 font-medium
+                    ${isActive(link.path) 
+                      ? 'bg-blue-100 text-blue-700 font-semibold' 
+                      : 'text-blue-900 hover:bg-blue-50 hover:text-blue-700'
+                    }
+                  `}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <div className="flex items-center justify-between">
+                    <span>{link.name}</span>
+                    {isActive(link.path) && (
+                      <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                    )}
+                  </div>
+                </Link>
+              ))}
+              
+              <div className="pt-2 mt-2">
+                <Link
+                  href="/contact"
+                  className="block bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg text-center transition duration-300"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Devis gratuit
+                </Link>
+              </div>
+            </nav>
+          </div>
+        )}
+>>>>>>> b91ef1bbefe7d3bdb7d2573e43ee100252e51299
       </div>
     </header>
   );
