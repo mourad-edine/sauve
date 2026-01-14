@@ -157,7 +157,6 @@ export default function Header() {
                 </div>
                 <div className="hidden xl:block">
                   <div className="font-medium">034 92 192 23</div>
-                  <div className="text-xs text-gray-500">Contact rapide</div>
                 </div>
               </a>
             </div>
@@ -247,7 +246,6 @@ export default function Header() {
                         </div>
                         <div>
                           <div className="font-medium">034 92 192 23</div>
-                          <div className="text-xs text-gray-500">Appel direct</div>
                         </div>
                       </a>
                     </div>
