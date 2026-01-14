@@ -6,8 +6,8 @@ import { FaExpand, FaTimes, FaChevronLeft, FaChevronRight, FaArrowRight, FaTag, 
 import { motion, AnimatePresence } from "framer-motion";
 import Link from 'next/link';
 
-const API_URL = "http://localhost/confectionvonjy/public/api/photos_camps";
-const STORAGE_URL = "http://localhost/confectionvonjy/public/photo_camps/";
+const API_URL = "https://admin.camp-toamasina.mg/api/photos_camps";
+const STORAGE_URL = "https://admin.camp-toamasina.mg/photo_camps/";
 
 export default function PortfolioGallery() {
   const [selectedIndex, setSelectedIndex] = useState(null);
