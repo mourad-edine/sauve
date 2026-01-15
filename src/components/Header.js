@@ -24,9 +24,9 @@ export default function Header() {
 
   const navLinks = [
     { name: 'Accueil', path: '/' },
-    { name: 'Galerie', path: '/galerie' },
     { name: 'Services', path: '/service' },
     { name: 'Réalisations', path: '/process' },
+    { name: 'Galerie', path: '/galerie' },
     { name: 'À propos', path: '/about' },
     { name: 'Contact', path: '/contact' },
   ];
@@ -61,17 +61,15 @@ export default function Header() {
                   <Image 
                     src="/images/logo.png" 
                     alt="Logo Confection Vonjy"
-                    width={48}
-                    height={48}
+                    width={60}
+                    height={60}
                     className="object-contain"
                     priority
                   />
                 </div>
                 
                 {/* Badge d'icône */}
-                <div className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-white border border-gray-200 flex items-center justify-center shadow-sm">
-                  <div className="text-gray-600 text-xs font-medium">CV</div>
-                </div>
+                
               </div>
             </motion.div>
             

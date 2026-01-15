@@ -53,47 +53,79 @@ export default function PortfolioTestimonials() {
   ];
 
   return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4 uppercase">
-            Ce Que Disent Nos Clients
+    <section className="py-12 sm:py-16 md:py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-10 sm:mb-12 md:mb-16">
+          <div className="inline-block mb-4 sm:mb-6">
+            <div className="flex items-center justify-center gap-3">
+              <div className="w-8 sm:w-12 h-px bg-blue-300"></div>
+              <span className="text-xs sm:text-sm font-medium text-blue-600 uppercase tracking-wider">Témoignages</span>
+              <div className="w-8 sm:w-12 h-px bg-blue-300"></div>
+            </div>
+          </div>
+          
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-900 mb-4">
+            Ce que disent <span className="font-semibold">nos clients</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          
+          <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base md:text-lg px-4">
             La satisfaction de nos clients est notre meilleure récompense. Découvrez leurs retours d'expérience.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 mb-12 sm:mb-16">
           {/* Témoignages */}
           <div>
-            <h3 className="text-2xl font-bold text-blue-800 mb-8 uppercase">Témoignages clients</h3>
-            <div className="space-y-8">
+            <div className="mb-6 sm:mb-8">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-medium text-gray-900 mb-2">
+                Témoignages clients
+              </h3>
+              <p className="text-sm sm:text-base text-gray-500">
+                Retours authentiques de nos partenaires et clients
+              </p>
+            </div>
+            
+            <div className="space-y-6 sm:space-y-8">
               {testimonials.map((testimonial, index) => (
-                <div key={index} className="bg-gradient-to-r from-blue-50 to-white p-6 rounded-xl shadow-lg border-l-4 border-blue-500">
-                  <FaQuoteLeft className="text-blue-300 text-2xl mb-4" />
-                  <p className="text-gray-700 italic mb-6">"{testimonial.content}"</p>
+                <div 
+                  key={index} 
+                  className="bg-white p-5 sm:p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300"
+                >
+                  <div className="flex items-start mb-4 sm:mb-5">
+                    <FaQuoteLeft className="text-blue-400 text-lg sm:text-xl flex-shrink-0 mr-3 mt-1" />
+                    <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+                      "{testimonial.content}"
+                    </p>
+                  </div>
                   
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3 sm:mb-4">
                     <div className="flex items-center">
-                      <div className="w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base mr-3 sm:mr-4 flex-shrink-0">
                         {testimonial.name.split(' ').map(n => n[0]).join('')}
                       </div>
                       <div>
-                        <h4 className="font-bold text-blue-900">{testimonial.name}</h4>
-                        <p className="text-gray-600">
+                        <h4 className="font-medium text-gray-900 text-sm sm:text-base">
+                          {testimonial.name}
+                        </h4>
+                        <p className="text-gray-600 text-xs sm:text-sm">
                           {testimonial.role}
                           {testimonial.company && ` • ${testimonial.company}`}
                         </p>
                       </div>
                     </div>
+                    
                     <div className="flex text-yellow-500">
-                      {"★".repeat(testimonial.rating)}
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <FaStar key={i} className="w-3 h-3 sm:w-4 sm:h-4" />
+                      ))}
                     </div>
                   </div>
                   
-                  <div className="text-sm text-gray-500">
-                    Projet : <span className="font-medium text-blue-700">{testimonial.project}</span>
+                  <div className="pt-3 border-t border-gray-100">
+                    <div className="text-xs sm:text-sm text-gray-500">
+                      <span className="font-medium text-gray-700">Projet :</span>{' '}
+                      <span className="text-blue-600 font-medium">{testimonial.project}</span>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -102,71 +134,124 @@ export default function PortfolioTestimonials() {
           
           {/* Études de cas */}
           <div>
-            <h3 className="text-2xl font-bold text-blue-800 mb-8 uppercase">Études de cas</h3>
-            <div className="space-y-8">
+            <div className="mb-6 sm:mb-8">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-medium text-gray-900 mb-2">
+                Études de cas
+              </h3>
+              <p className="text-sm sm:text-base text-gray-500">
+                Solutions concrètes pour des défis spécifiques
+              </p>
+            </div>
+            
+            <div className="space-y-6 sm:space-y-8 mb-8 sm:mb-10">
               {caseStudies.map((study, index) => (
-                <div key={index} className="bg-gradient-to-br from-blue-900 to-blue-700 text-white p-8 rounded-xl shadow-lg">
-                  <h4 className="text-xl font-bold mb-6">{study.title}</h4>
+                <div 
+                  key={index} 
+                  className="bg-gradient-to-br from-blue-800 to-blue-700 text-white p-6 sm:p-8 rounded-xl shadow-lg"
+                >
+                  <h4 className="text-lg sm:text-xl font-medium mb-5 sm:mb-6">
+                    {study.title}
+                  </h4>
                   
-                  <div className="mb-6">
-                    <div className="flex items-center mb-3">
-                      <div className="w-3 h-3 bg-red-400 rounded-full mr-3"></div>
-                      <h5 className="font-bold">Défi</h5>
+                  <div className="space-y-5 sm:space-y-6">
+                    <div>
+                      <div className="flex items-center mb-2 sm:mb-3">
+                        <div className="w-2 h-2 sm:w-3 sm:h-3 bg-red-400 rounded-full mr-3"></div>
+                        <h5 className="font-medium text-sm sm:text-base">Défi</h5>
+                      </div>
+                      <p className="text-blue-100 text-sm sm:text-base pl-5 sm:pl-6">
+                        {study.challenge}
+                      </p>
                     </div>
-                    <p className="text-blue-200 pl-6">{study.challenge}</p>
-                  </div>
-                  
-                  <div className="mb-6">
-                    <div className="flex items-center mb-3">
-                      <div className="w-3 h-3 bg-yellow-400 rounded-full mr-3"></div>
-                      <h5 className="font-bold">Solution</h5>
+                    
+                    <div>
+                      <div className="flex items-center mb-2 sm:mb-3">
+                        <div className="w-2 h-2 sm:w-3 sm:h-3 bg-yellow-400 rounded-full mr-3"></div>
+                        <h5 className="font-medium text-sm sm:text-base">Solution</h5>
+                      </div>
+                      <p className="text-blue-100 text-sm sm:text-base pl-5 sm:pl-6">
+                        {study.solution}
+                      </p>
                     </div>
-                    <p className="text-blue-200 pl-6">{study.solution}</p>
-                  </div>
-                  
-                  <div>
-                    <div className="flex items-center mb-3">
-                      <div className="w-3 h-3 bg-green-400 rounded-full mr-3"></div>
-                      <h5 className="font-bold">Résultat</h5>
+                    
+                    <div>
+                      <div className="flex items-center mb-2 sm:mb-3">
+                        <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-400 rounded-full mr-3"></div>
+                        <h5 className="font-medium text-sm sm:text-base">Résultat</h5>
+                      </div>
+                      <p className="text-blue-100 text-sm sm:text-base pl-5 sm:pl-6">
+                        {study.result}
+                      </p>
                     </div>
-                    <p className="text-blue-200 pl-6">{study.result}</p>
                   </div>
                 </div>
               ))}
             </div>
             
-            <div className="mt-6 md:mt-8 bg-gradient-to-r from-yellow-50 to-white p-5 md:p-6 rounded-xl border border-yellow-200">
-  <h4 className="text-lg md:text-xl font-bold text-blue-900 mb-4 md:mb-6">
-    Processus de collaboration
-  </h4>
-  <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
-    <div className="bg-white p-4 rounded-lg shadow flex-1">
-      <div className="text-xl md:text-2xl font-bold text-blue-700 mb-1 md:mb-2 text-center">
-        1
-      </div>
-      <div className="text-xs md:text-sm text-gray-700 text-center">
-        Briefing initial
-      </div>
-    </div>
-    <div className="bg-white p-4 rounded-lg shadow flex-1">
-      <div className="text-xl md:text-2xl font-bold text-blue-700 mb-1 md:mb-2 text-center">
-        2
-      </div>
-      <div className="text-xs md:text-sm text-gray-700 text-center">
-        Prototypes & ajustements
-      </div>
-    </div>
-    <div className="bg-white p-4 rounded-lg shadow flex-1">
-      <div className="text-xl md:text-2xl font-bold text-blue-700 mb-1 md:mb-2 text-center">
-        3
-      </div>
-      <div className="text-xs md:text-sm text-gray-700 text-center">
-        Production & livraison
-      </div>
-    </div>
-  </div>
-</div>
+            {/* Processus de collaboration */}
+            <div className="bg-gradient-to-r from-blue-50 to-white p-5 sm:p-6 rounded-xl border border-blue-100">
+              <h4 className="text-lg sm:text-xl font-medium text-gray-900 mb-4 sm:mb-5">
+                Notre processus de collaboration
+              </h4>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+                <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm text-center">
+                  <div className="text-xl sm:text-2xl font-bold text-blue-600 mb-2">
+                    01
+                  </div>
+                  <div className="text-sm font-medium text-gray-900 mb-2">
+                    Briefing initial
+                  </div>
+                  <div className="text-xs text-gray-600">
+                    Compréhension des besoins
+                  </div>
+                </div>
+                
+                <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm text-center">
+                  <div className="text-xl sm:text-2xl font-bold text-blue-600 mb-2">
+                    02
+                  </div>
+                  <div className="text-sm font-medium text-gray-900 mb-2">
+                    Prototypes & ajustements
+                  </div>
+                  <div className="text-xs text-gray-600">
+                    Validation et perfectionnement
+                  </div>
+                </div>
+                
+                <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm text-center">
+                  <div className="text-xl sm:text-2xl font-bold text-blue-600 mb-2">
+                    03
+                  </div>
+                  <div className="text-sm font-medium text-gray-900 mb-2">
+                    Production & livraison
+                  </div>
+                  <div className="text-xs text-gray-600">
+                    Réalisation et suivi
+                  </div>
+                </div>
+              </div>
+              
+              <div className="mt-4 sm:mt-5 text-center">
+                <p className="text-xs sm:text-sm text-gray-500">
+                  Un accompagnement sur mesure à chaque étape de votre projet
+                </p>
+              </div>
+            </div>
           </div>
+        </div>
+        
+        {/* CTA */}
+        <div className="text-center pt-6 sm:pt-8 border-t border-gray-200">
+          <p className="text-gray-600 mb-4 text-sm sm:text-base">
+            Vous souhaitez devenir notre prochain témoignage ?
+          </p>
+          <button className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 sm:px-8 rounded-lg transition-colors duration-300 text-sm sm:text-base">
+            Commencer votre projet
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </button>
         </div>
       </div>
     </section>
