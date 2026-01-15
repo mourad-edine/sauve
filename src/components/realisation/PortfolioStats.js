@@ -78,11 +78,11 @@ export default function PortfolioStats() {
             </div>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-6">
+          <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-6">
             Des chiffres qui <span className="font-semibold">parlent d'eux-mêmes</span>
           </h2>
           
-          <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
+          <p className="text-gray-600 max-w-3xl mx-auto text-md leading-relaxed">
             Des années d'expertise et des centaines de projets réussis témoignent de notre engagement envers l'excellence.
           </p>
         </motion.div>

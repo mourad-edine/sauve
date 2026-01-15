@@ -153,16 +153,14 @@ export default function PortfolioGallery() {
             <div className="inline-block mb-6">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-px bg-gray-300"></div>
-                <span className="text-sm font-medium text-gray-500 uppercase tracking-widest">Nos Photos</span>
+                <span className="text-sm font-medium text-blue-600 uppercase tracking-widest">Nos réalisations</span>
                 <div className="w-8 h-px bg-gray-300"></div>
               </div>
             </div>
-            
-            <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-6">
-              Galerie des <span className="font-semibold">Camps</span>
-            </h2>
-            
-            <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
+
+
+
+            <p className="text-gray-600 max-w-3xl md:text-lg mx-auto text-md leading-relaxed">
               Découvrez les moments forts de nos camps de formation professionnelle à Toamasina.
             </p>
           </motion.div>
@@ -247,43 +245,9 @@ export default function PortfolioGallery() {
                     </div>
 
                     <div className="p-5">
-                      <div className="mb-3">
-                        <span 
-                          className="text-xs font-medium px-3 py-1 rounded-full inline-block"
-                          style={{ 
-                            backgroundColor: `${project.color}10`,
-                            color: project.color
-                          }}
-                        >
-                          {project.category}
-                        </span>
-                      </div>
+                      
 
-                      <div className="mb-4">
-                        <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                          {project.title}
-                        </h3>
-                      </div>
-
-                      <p className="text-sm text-gray-600 mb-4 line-clamp-2">
-                        {project.description}
-                      </p>
-
-                      <div className="flex flex-wrap gap-2 mb-5">
-                        {project.features.map((feature, idx) => (
-                          <span 
-                            key={idx}
-                            className="text-xs px-2 py-1 rounded border"
-                            style={{ 
-                              borderColor: `${project.color}30`,
-                              color: project.color
-                            }}
-                          >
-                            {feature}
-                          </span>
-                        ))}
-                      </div>
-
+                      
                       <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                         <div>
                           <div className="text-xs text-gray-500">
