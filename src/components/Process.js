@@ -67,13 +67,11 @@ export default function Process() {
             </div>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-6">
+          <h2 className="text-xl md:text-4xl font-light text-gray-900 mb-6">
             4 étapes pour <span className="font-semibold">l'excellence</span>
           </h2>
           
-          <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
-            Un parcours structuré pour garantir qualité, précision et satisfaction à chaque étape.
-          </p>
+        
         </motion.div>
 
         {/* Timeline */}

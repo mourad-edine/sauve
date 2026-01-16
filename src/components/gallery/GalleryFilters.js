@@ -6,9 +6,9 @@ export default function GalleryFilters({ selectedCategory, setSelectedCategory, 
   return (
     <div className="mb-8 md:mb-10">
       <div className="flex items-center justify-between mb-5">
-        <h4 className="text-lg md:text-xl font-semibold text-gray-900 flex items-center gap-2.5">
+        <h4 className="text-md md:text-md uppercase font-semibold text-gray-900 flex items-center gap-2.5">
           <FaFilter className="text-blue-600" />
-          Camps disponibles
+          Galleries disponibles
         </h4>
         <span className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
           {categories.find(c => c.id === selectedCategory)?.count || 'Toutes'} photos
