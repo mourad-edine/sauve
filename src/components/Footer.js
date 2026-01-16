@@ -33,9 +33,9 @@ export default function Footer() {
           {/* Colonne 1 – Marque */}
           <div className="space-y-5">
             <Link href="/" className="group inline-block">
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+              <h3 className="text-md uppercase  font-extrabold text-slate-900 tracking-tight">
                 Confection<span className="text-blue-600 group-hover:text-blue-700 transition-colors">Vonjy</span>
-              </h2>
+              </h3>
               <div className="h-1 w-16 bg-blue-500 rounded-full mt-2 group-hover:w-24 transition-all duration-400" />
             </Link>
             
