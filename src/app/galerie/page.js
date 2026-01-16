@@ -327,17 +327,7 @@ export default function GaleriePage() {
               </svg>
             </a>
 
-            <div className="flex items-center justify-center gap-3 text-sm text-gray-500">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                <span>Expertise garantie</span>
-              </div>
-              <div className="text-gray-300">•</div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                <span>Accompagnement complet</span>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>
