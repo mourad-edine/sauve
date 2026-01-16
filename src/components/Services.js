@@ -95,7 +95,7 @@ export default function Services() {
   }, [autoPlay, nextService]);
 
   return (
-    <section className="relative py-12 sm:py-16 md:py-20 lg:py-32 bg-white overflow-hidden">
+    <section className="relative sm:py-16 md:py-20 lg:py-32 bg-white overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
 
@@ -118,7 +118,7 @@ export default function Services() {
         </div>
 
         {/* Carrousel principal */}
-        <div className="mb-16 sm:mb-20 lg:mb-24">
+        <div className="">
           {/* Contrôles supérieurs */}
           <div className="flex justify-between items-center mb-6 sm:mb-8 px-2">
             <button

@@ -1,8 +1,18 @@
-'use client';
-import { 
-  FaQuoteLeft, FaStar, FaCheckCircle, FaIndustry, FaHotel, 
-  FaUserMd, FaShieldAlt, FaUtensils, FaPlane, FaShoppingBag, 
-  FaArrowRight, FaChevronLeft, FaChevronRight 
+"use client";
+import {
+  FaQuoteLeft,
+  FaStar,
+  FaCheckCircle,
+  FaIndustry,
+  FaHotel,
+  FaUserMd,
+  FaShieldAlt,
+  FaUtensils,
+  FaPlane,
+  FaShoppingBag,
+  FaArrowRight,
+  FaChevronLeft,
+  FaChevronRight,
 } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useCallback } from "react";
@@ -19,8 +29,8 @@ export default function Clients() {
       setIsMobile(window.innerWidth < 768);
     };
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   const testimonials = [
@@ -31,7 +41,7 @@ export default function Clients() {
       initials: "MD",
       rating: 5,
       color: "#3B82F6",
-      accent: "#93C5FD"
+      accent: "#93C5FD",
     },
     {
       name: "Thomas Leroy",
@@ -40,7 +50,7 @@ export default function Clients() {
       initials: "TL",
       rating: 5,
       color: "#10B981",
-      accent: "#6EE7B7"
+      accent: "#6EE7B7",
     },
     {
       name: "Sophie Martin",
@@ -49,7 +59,7 @@ export default function Clients() {
       initials: "SM",
       rating: 5,
       color: "#8B5CF6",
-      accent: "#C4B5FD"
+      accent: "#C4B5FD",
     },
     {
       name: "Pierre Bernard",
@@ -58,34 +68,86 @@ export default function Clients() {
       initials: "PB",
       rating: 5,
       color: "#F59E0B",
-      accent: "#FCD34D"
-    }
+      accent: "#FCD34D",
+    },
   ];
 
   const sectors = [
-    { name: "Hôtellerie & Restauration", icon: <FaHotel className="w-4 h-4 sm:w-5 sm:h-5" />, color: "#3B82F6", accent: "#93C5FD", initials: "HR" },
-    { name: "Médical & Paramédical", icon: <FaUserMd className="w-4 h-4 sm:w-5 sm:h-5" />, color: "#10B981", accent: "#6EE7B7", initials: "MP" },
-    { name: "Sécurité & Services", icon: <FaShieldAlt className="w-4 h-4 sm:w-5 sm:h-5" />, color: "#F59E0B", accent: "#FCD34D", initials: "SS" },
-    { name: "Commerce & Retail", icon: <FaShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" />, color: "#8B5CF6", accent: "#C4B5FD", initials: "CR" },
-    { name: "Transport & Logistique", icon: <FaPlane className="w-4 h-4 sm:w-5 sm:h-5" />, color: "#14B8A6", accent: "#5EEAD4", initials: "TL" },
-    { name: "Industrie & Production", icon: <FaIndustry className="w-4 h-4 sm:w-5 sm:h-5" />, color: "#EC4899", accent: "#F9A8D4", initials: "IP" },
-    { name: "Éducation & Formation", icon: <FaUtensils className="w-4 h-4 sm:w-5 sm:h-5" />, color: "#A855F7", accent: "#C084FC", initials: "EF" },
-    { name: "Services Publics", icon: <FaCheckCircle className="w-4 h-4 sm:w-5 sm:h-5" />, color: "#6366F1", accent: "#818CF8", initials: "SP" }
+    {
+      name: "Hôtellerie & Restauration",
+      icon: <FaHotel className="w-4 h-4 sm:w-5 sm:h-5" />,
+      color: "#3B82F6",
+      accent: "#93C5FD",
+      initials: "HR",
+    },
+    {
+      name: "Médical & Paramédical",
+      icon: <FaUserMd className="w-4 h-4 sm:w-5 sm:h-5" />,
+      color: "#10B981",
+      accent: "#6EE7B7",
+      initials: "MP",
+    },
+    {
+      name: "Sécurité & Services",
+      icon: <FaShieldAlt className="w-4 h-4 sm:w-5 sm:h-5" />,
+      color: "#F59E0B",
+      accent: "#FCD34D",
+      initials: "SS",
+    },
+    {
+      name: "Commerce & Retail",
+      icon: <FaShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" />,
+      color: "#8B5CF6",
+      accent: "#C4B5FD",
+      initials: "CR",
+    },
+    {
+      name: "Transport & Logistique",
+      icon: <FaPlane className="w-4 h-4 sm:w-5 sm:h-5" />,
+      color: "#14B8A6",
+      accent: "#5EEAD4",
+      initials: "TL",
+    },
+    {
+      name: "Industrie & Production",
+      icon: <FaIndustry className="w-4 h-4 sm:w-5 sm:h-5" />,
+      color: "#EC4899",
+      accent: "#F9A8D4",
+      initials: "IP",
+    },
+    {
+      name: "Éducation & Formation",
+      icon: <FaUtensils className="w-4 h-4 sm:w-5 sm:h-5" />,
+      color: "#A855F7",
+      accent: "#C084FC",
+      initials: "EF",
+    },
+    {
+      name: "Services Publics",
+      icon: <FaCheckCircle className="w-4 h-4 sm:w-5 sm:h-5" />,
+      color: "#6366F1",
+      accent: "#818CF8",
+      initials: "SP",
+    },
   ];
 
   const stats = [
     { value: "500+", label: "Clients satisfaits", color: "#3B82F6" },
     { value: "15+", label: "Années d'expérience", color: "#10B981" },
     { value: "40+", label: "Secteurs d'activité", color: "#8B5CF6" },
-    { value: "98%", label: "Taux de satisfaction", color: "#F59E0B" }
+    { value: "98%", label: "Taux de satisfaction", color: "#F59E0B" },
   ];
 
   const nextTestimonial = useCallback(() => {
-    setActiveTestimonial((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+    setActiveTestimonial((prev) =>
+      prev === testimonials.length - 1 ? 0 : prev + 1
+    );
   }, [testimonials.length]);
 
   const prevTestimonial = useCallback(() => {
-    setActiveTestimonial((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+    setActiveTestimonial((prev) =>
+      prev === 0 ? testimonials.length - 1 : prev - 1
+    );
   }, [testimonials.length]);
 
   useEffect(() => {
@@ -97,7 +159,7 @@ export default function Clients() {
   const currentTestimonial = testimonials[activeTestimonial];
 
   return (
-    <section className="relative py-12 sm:py-16 md:py-20 lg:py-32 bg-white overflow-hidden">
+    <section className="relative  bg-white overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
 
@@ -112,17 +174,20 @@ export default function Clients() {
           <div className="inline-block mb-4 sm:mb-6">
             <div className="flex items-center justify-center gap-2 sm:gap-3">
               <div className="w-6 sm:w-8 h-px bg-gray-300"></div>
-              <span className="text-xs sm:text-sm font-medium text-gray-500 uppercase tracking-wider">Ils nous font confiance</span>
+              <span className="text-xs sm:text-sm font-medium text-gray-500 uppercase tracking-wider">
+                Ils nous font confiance
+              </span>
               <div className="w-6 sm:w-8 h-px bg-gray-300"></div>
             </div>
           </div>
-          
+
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-900 mb-4 sm:mb-6 px-4">
             Notre <span className="font-semibold">référence client</span>
           </h2>
-          
+
           <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed px-4">
-            Rejoignez les centaines d'entreprises qui nous font confiance pour leur confection sur mesure.
+            Rejoignez les centaines d'entreprises qui nous font confiance pour
+            leur confection sur mesure.
           </p>
         </motion.div>
 
@@ -130,32 +195,18 @@ export default function Clients() {
           {/* Colonne gauche - Carrousel de témoignages */}
           <div>
             <div className="mb-8 sm:mb-10">
-              <div className="inline-block mb-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-4 sm:w-6 h-px bg-blue-300"></div>
-                  <span className="text-xs sm:text-sm font-medium text-blue-600 uppercase tracking-wider">Témoignages</span>
-                  <div className="w-4 sm:w-6 h-px bg-blue-300"></div>
+              <div className="mb-8 sm:mb-10">
+                <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-6 mb-6 md:mb-8">
+                  <div className="h-px flex-1 bg-blue-300 min-w-[30px] sm:min-w-[50px] max-w-[120px]" />
+                  <span className="text-xs sm:text-sm md:text-base font-medium text-blue-600 uppercase tracking-wider whitespace-nowrap">
+                    témoignages
+                  </span>
+                  <div className="h-px flex-1 bg-blue-300 min-w-[30px] sm:min-w-[50px] max-w-[120px]" />
                 </div>
               </div>
-              <div className="flex justify-between items-center">
-                
-                
-                <div className="flex items-center gap-3">
-                  <button
-                    onClick={() => setAutoPlay(!autoPlay)}
-                    className="flex items-center gap-2 text-xs text-gray-600 hover:text-gray-900 transition-colors"
-                  >
-                    <div className={`w-2 h-2 rounded-full ${autoPlay ? 'bg-green-500' : 'bg-gray-400'}`} />
-                    <span className="font-medium hidden sm:inline">{autoPlay ? 'Auto' : 'Pause'}</span>
-                  </button>
-                  
-                  <div className="text-xs sm:text-sm text-gray-500 font-medium px-2 py-1 bg-gray-50 rounded-lg">
-                    {activeTestimonial + 1}/{testimonials.length}
-                  </div>
-                </div>
-              </div>
+              
             </div>
-            
+
             {/* Conteneur carrousel */}
             <div className="relative">
               {/* Flèche Précédent */}
@@ -210,26 +261,39 @@ export default function Clients() {
                           <div className="relative w-14 h-14 sm:w-16 sm:h-16">
                             {/* Cercle de fond animé */}
                             <motion.div
-                              animate={hoveredTestimonial === activeTestimonial ? { rotate: 360 } : { rotate: 0 }}
-                              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                              animate={
+                                hoveredTestimonial === activeTestimonial
+                                  ? { rotate: 360 }
+                                  : { rotate: 0 }
+                              }
+                              transition={{
+                                duration: 8,
+                                repeat: Infinity,
+                                ease: "linear",
+                              }}
                               className="absolute inset-0 rounded-full border border-dashed opacity-50"
                               style={{ borderColor: currentTestimonial.color }}
                             />
-                            
+
                             {/* Avatar principal */}
-                            <div 
+                            <div
                               className="absolute inset-1.5 sm:inset-2 rounded-full flex items-center justify-center text-white text-base sm:text-lg font-medium"
-                              style={{ backgroundColor: currentTestimonial.color }}
+                              style={{
+                                backgroundColor: currentTestimonial.color,
+                              }}
                             >
                               {currentTestimonial.initials}
                             </div>
                           </div>
                         </div>
-                        
+
                         {/* Étoiles */}
                         <div className="flex gap-0.5 sm:gap-1">
                           {[...Array(currentTestimonial.rating)].map((_, i) => (
-                            <FaStar key={i} className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current" />
+                            <FaStar
+                              key={i}
+                              className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current"
+                            />
                           ))}
                         </div>
                       </div>
@@ -266,12 +330,15 @@ export default function Clients() {
                       setAutoPlay(false);
                     }}
                     className={`rounded-full transition-all duration-400 focus:outline-none ${
-                      activeTestimonial === index 
-                        ? 'w-8 sm:w-10 h-2 sm:h-3' 
-                        : 'w-2 sm:w-3 h-2 sm:h-3'
+                      activeTestimonial === index
+                        ? "w-8 sm:w-10 h-2 sm:h-3"
+                        : "w-2 sm:w-3 h-2 sm:h-3"
                     }`}
                     style={{
-                      backgroundColor: activeTestimonial === index ? testimonial.color : '#D1D5DB'
+                      backgroundColor:
+                        activeTestimonial === index
+                          ? testimonial.color
+                          : "#D1D5DB",
                     }}
                     aria-label={`Aller au témoignage ${index + 1}`}
                   />
@@ -283,14 +350,13 @@ export default function Clients() {
           {/* Colonne droite - Secteurs d'activité */}
           <div>
             <div className="mb-8 sm:mb-10">
-              <div className="inline-block mb-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-4 sm:w-6 h-px bg-blue-300"></div>
-                  <span className="text-xs sm:text-sm font-medium text-blue-600 uppercase tracking-wider">Secteurs d'activité</span>
-                  <div className="w-4 sm:w-6 h-px bg-blue-300"></div>
-                </div>
+              <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-6 mb-6 md:mb-8">
+                <div className="h-px flex-1 bg-blue-300 min-w-[30px] sm:min-w-[50px] max-w-[120px]" />
+                <span className="text-xs sm:text-sm md:text-base font-medium text-blue-600 uppercase tracking-wider whitespace-nowrap">
+                  Secteurs d'activité
+                </span>
+                <div className="h-px flex-1 bg-blue-300 min-w-[30px] sm:min-w-[50px] max-w-[120px]" />
               </div>
-             
             </div>
 
             {/* Carte des secteurs */}
@@ -310,13 +376,13 @@ export default function Clients() {
                     <div className="flex items-center p-3 sm:p-4 rounded-lg border border-gray-200 hover:shadow-sm transition-all duration-300 bg-white">
                       <div className="relative flex-shrink-0">
                         <div className="relative w-8 h-8 sm:w-10 sm:h-10">
-                          <div 
+                          <div
                             className="absolute inset-0.5 sm:inset-1 rounded-full flex items-center justify-center text-white text-xs sm:text-sm font-medium"
                             style={{ backgroundColor: sector.color }}
                           >
                             {sector.initials}
                           </div>
-                          
+
                           {/* Badge d'icône */}
                           <div className="absolute -top-0.5 -right-0.5 sm:-top-1 sm:-right-1 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-white border border-gray-200 flex items-center justify-center shadow-xs">
                             <div style={{ color: sector.color }}>
@@ -325,7 +391,7 @@ export default function Clients() {
                           </div>
                         </div>
                       </div>
-                      
+
                       <span className="ml-3 text-xs sm:text-sm font-medium text-gray-700 flex-1">
                         {sector.name}
                       </span>
@@ -344,8 +410,6 @@ export default function Clients() {
                 ))}
               </div>
             </div>
-
-            
           </div>
         </div>
       </div>
