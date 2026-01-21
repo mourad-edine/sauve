@@ -109,76 +109,32 @@ export default function AboutTeam() {
           className="text-center mb-12 sm:mb-16 md:mb-20"
         >
           <div className="text-center mb-8 sm:mb-12 md:mb-16">
-            <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-blue-900 mb-4 uppercase">
-              L'Équipe
-              <span className="block text-base sm:text-lg md:text-xl text-yellow-600 font-normal mt-2">
-                {/* 4 étapes pour l'excellence */}
-              </span>
-            </h2>
-            <div className="w-20 sm:w-24 h-1 bg-yellow-500 mx-auto mb-4 sm:mb-6"></div>
-            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
-              Une équipe d'experts unis par la passion du métier et l'exigence du détail
-            </p>
-          </div>
+  <div className="inline-block mb-4 sm:mb-6">
+    <div className="flex items-center justify-center gap-2">
+      <div className="w-6 sm:w-8 h-px bg-gray-300"></div>
+      <span className="text-xs sm:text-sm font-medium text-gray-500 uppercase">Notre Équipe</span>
+      <div className="w-6 sm:w-8 h-px bg-gray-300"></div>
+    </div>
+  </div>
+  <h2 className="text-xl md:text-2xl lg:text-3xl font-light text-blue-900 mb-4 uppercase">
+    Des experts unis par
+    <span className="block text-base sm:text-lg md:text-xl text-yellow-600 font-normal mt-2">
+      la passion du métier
+    </span>
+  </h2>
+  <div className="w-20 sm:w-24 h-1 bg-yellow-500 mx-auto mb-4 sm:mb-6"></div>
+</div>
         </motion.div>
 
         {/* Équipe dirigeante */}
         <div className="mb-16 sm:mb-20 md:mb-24">
           {/* Contrôles carrousel - Visible sur mobile/tablette */}
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8 md:hidden px-2">
-            <div className="flex items-center gap-3">
-              <button
-                onClick={() => setAutoPlay(!autoPlay)}
-                className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 hover:text-gray-900 transition-colors px-2 py-1 rounded-lg hover:bg-gray-50"
-              >
-                <div className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${autoPlay ? 'bg-green-500' : 'bg-gray-400'}`} />
-                <span className="font-medium">{autoPlay ? 'Auto' : 'Pause'}</span>
-              </button>
-              
-              <div className="text-xs sm:text-sm text-gray-500 font-medium px-3 py-1 bg-gray-50 rounded-lg">
-                {activeMember + 1} <span className="text-gray-400">/</span> {teamMembers.length}
-              </div>
-            </div>
-          </div>
+        
 
           {/* Version mobile/tablette - Carrousel */}
           <div className="md:hidden">
             {/* Onglets de navigation mobile */}
-            <div className="flex justify-center gap-2 sm:gap-3 mb-6 overflow-x-auto pb-3 px-2 scrollbar-hide">
-              {teamMembers.map((member, index) => (
-                <button
-                  key={index}
-                  onClick={() => {
-                    setActiveMember(index);
-                    setAutoPlay(false);
-                  }}
-                  className={`px-4 py-2.5 rounded-lg border transition-all duration-300 flex items-center gap-2 sm:gap-3 flex-shrink-0 whitespace-nowrap ${
-                    activeMember === index
-                      ? 'border-gray-300 bg-white shadow-sm'
-                      : 'border-transparent hover:border-gray-200 hover:bg-gray-50'
-                  }`}
-                  style={{
-                    borderColor: activeMember === index ? member.accent : 'transparent',
-                    backgroundColor: activeMember === index ? `${member.color}08` : 'transparent'
-                  }}
-                >
-                  <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-medium flex-shrink-0 ${
-                      activeMember === index ? 'scale-110' : 'scale-100'
-                    }`}
-                    style={{
-                      backgroundColor: activeMember === index ? member.color : '#F3F4F6',
-                      color: activeMember === index ? 'white' : member.color
-                    }}
-                  >
-                    {member.initials}
-                  </div>
-                  <span className={`font-medium text-sm ${activeMember === index ? 'text-gray-900' : 'text-gray-600'}`}>
-                    {member.name.split(' ')[0]}
-                  </span>
-                </button>
-              ))}
-            </div>
+            
 
             {/* Conteneur carrousel mobile */}
             <div className="relative">

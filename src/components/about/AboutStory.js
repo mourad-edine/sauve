@@ -15,15 +15,7 @@ export default function AboutStory() {
   const containerRef = useRef(null);
 
   const milestones = [
-    {
-      year: "2009",
-      title: "Fondation",
-      description:
-        "Lancement de notre aventure entrepreneuriale avec une vision claire",
-      icon: FaCalendar,
-      color: "#3B82F6",
-      accent: "#93C5FD",
-    },
+ 
     {
       year: "2012",
       title: "Premiers succès",
@@ -32,30 +24,7 @@ export default function AboutStory() {
       color: "#10B981",
       accent: "#6EE7B7",
     },
-    {
-      year: "2015",
-      title: "Expansion",
-      description: "Développement international et nouvelles équipes",
-      icon: FaBuilding,
-      color: "#8B5CF6",
-      accent: "#C4B5FD",
-    },
-    {
-      year: "2019",
-      title: "Reconnaissance",
-      description: "Prix d'excellence et certifications internationales",
-      icon: FaAward,
-      color: "#F59E0B",
-      accent: "#FCD34D",
-    },
-    {
-      year: "2023",
-      title: "Innovation",
-      description: "Lancement de solutions durables et technologiques",
-      icon: FaLeaf,
-      color: "#14B8A6",
-      accent: "#5EEAD4",
-    },
+ 
   ];
 
   // Animation de l'année courante
@@ -69,22 +38,21 @@ export default function AboutStory() {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* En-tête minimaliste */}
-        <div className="text-center mb-20">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-blue-900 mb-4 uppercase">
-              Notre histoire
-              <span className="block text-lg md:text-xl text-yellow-600 font-normal mt-2">
-                {/* 4 étapes pour l'excellence */}
-              </span>
-            </h2>
-            <div className="w-24 h-1 bg-yellow-500 mx-auto mb-6"></div>
-            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4">
-              Un parcours marqué par des moments décisifs et des réalisations
-              significatives
-            </p>
-          </div>
-        </div>
-
+        <div className="text-center mb-8 sm:mb-12 md:mb-16">
+  <div className="inline-block mb-4 sm:mb-6">
+    <div className="flex items-center justify-center gap-2">
+      <div className="w-6 sm:w-8 h-px bg-gray-300"></div>
+      <div className="w-6 sm:w-8 h-px bg-gray-300"></div>
+    </div>
+  </div>
+  <h2 className="text-xl md:text-2xl lg:text-3xl font-light text-blue-900 mb-4 uppercase">
+    Notre
+    <span className="block text-base sm:text-lg md:text-xl text-yellow-600 font-normal mt-2">
+      histoire
+    </span>
+  </h2>
+  <div className="w-20 sm:w-24 h-1 bg-yellow-500 mx-auto mb-4 sm:mb-6"></div>
+</div>
         {/* Timeline Desktop - Style minimaliste */}
         <div className="hidden lg:block relative">
           {/* Ligne de temps verticale */}

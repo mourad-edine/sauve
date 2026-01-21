@@ -150,19 +150,24 @@ export default function PortfolioGallery() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <div className="inline-block mb-6">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-px bg-gray-300"></div>
-                <span className="text-sm font-medium text-blue-600 uppercase tracking-widest">Nos réalisations</span>
-                <div className="w-8 h-px bg-gray-300"></div>
-              </div>
-            </div>
-
-
-
-            <p className="text-gray-600 max-w-3xl md:text-lg mx-auto text-md leading-relaxed">
-              Découvrez les moments forts de nos camps de formation professionnelle à Toamasina.
-            </p>
+            <div className="text-center mb-8 sm:mb-12 md:mb-16">
+  <div className="inline-block mb-4 sm:mb-6">
+    <div className="flex items-center justify-center gap-2">
+      <div className="w-6 sm:w-8 h-px bg-gray-300"></div>
+      <span className="text-xs sm:text-sm font-medium text-blue-600 uppercase">
+        Nos Réalisations
+      </span>
+      <div className="w-6 sm:w-8 h-px bg-gray-300"></div>
+    </div>
+  </div>
+  <h2 className="text-xl md:text-2xl lg:text-3xl font-light text-blue-900 mb-4 uppercase">
+    Découvrez les moments forts
+    <span className="block text-base sm:text-lg md:text-xl text-yellow-600 font-normal mt-2">
+      de notre parcours
+    </span>
+  </h2>
+  <div className="w-20 sm:w-24 h-1 bg-yellow-500 mx-auto mb-4 sm:mb-6"></div>
+</div>
           </motion.div>
 
           <div className="relative mb-16">
@@ -334,7 +339,7 @@ export default function PortfolioGallery() {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center gap-3 bg-gray-900 text-white font-medium py-3 px-8 rounded-lg hover:bg-gray-800 transition-colors duration-300 group"
+                    className="inline-flex items-center gap-3 bg-blue-700 text-white font-medium py-3 px-8 rounded-lg hover:bg-blue-800 transition-colors duration-300 group"
                   >
                     <span>Voir toute la galerie</span>
                     <FaArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" />

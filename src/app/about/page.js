@@ -11,7 +11,7 @@ export default function AboutPage() {
   return (
     <div className="pt-4">
       <AboutHero />
-      <AboutStory />
+      {/* <AboutStory /> */}
       <AboutTeam />
       <AboutValues />
 

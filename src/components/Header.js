@@ -129,7 +129,7 @@ export default function Header() {
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 bg-gray-900 text-white font-medium px-5 py-2.5 rounded-lg hover:bg-gray-800 transition-colors duration-300"
+                  className="flex items-center gap-2 bg-blue-600 text-white font-medium px-5 py-2.5 rounded-lg hover:bg-gray-800 transition-colors duration-300"
                 >
                   <span>Devis gratuit</span>
                   <FaArrowRight className="w-3 h-3 transform group-hover:translate-x-1 transition-transform duration-300" />

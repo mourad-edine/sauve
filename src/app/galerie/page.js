@@ -309,7 +309,7 @@ export default function GaleriePage() {
           <div className="space-y-4">
             <a
               href="/contact"
-              className="group relative inline-flex items-center justify-center gap-3 w-full sm:w-auto bg-gradient-to-r from-gray-900 to-gray-800 hover:from-gray-800 hover:to-gray-700 text-white font-medium py-4 px-10 rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-[1.02] active:scale-95 shadow-md"
+              className="group relative inline-flex items-center justify-center gap-3 w-full sm:w-auto bg-gradient-to-r from-blue-900 to-blue-800 hover:blue-gray-800 hover:to-blue-700 text-white font-medium py-4 px-10 rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-[1.02] active:scale-95 shadow-md"
             >
               <span className="font-semibold">Échanger sur mon projet</span>
               <svg

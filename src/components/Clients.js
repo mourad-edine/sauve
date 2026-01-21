@@ -160,36 +160,19 @@ export default function Clients() {
 
   return (
     <section className="relative  bg-white overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
-
+      
       <div className="max-w-10xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* En-tête */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-12 sm:mb-16 md:mb-20"
-        >
-          <div className="inline-block mb-4 sm:mb-6">
-            <div className="flex items-center justify-center gap-2 sm:gap-3">
-              <div className="w-6 sm:w-8 h-px bg-gray-300"></div>
-              <span className="text-xs sm:text-sm font-medium text-gray-500 uppercase tracking-wider">
-                Ils nous font confiance
-              </span>
-              <div className="w-6 sm:w-8 h-px bg-gray-300"></div>
-            </div>
-          </div>
-
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-900 mb-4 sm:mb-6 px-4">
-            Notre <span className="font-semibold">référence client</span>
+        <div className="text-center py-5 mb-8 sm:mb-12 md:mb-16">
+          
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-light text-blue-900 mb-4 uppercase">
+            Notre
+            <span className="block text-base sm:text-lg md:text-xl text-yellow-600 font-normal mt-2">
+              référence client
+            </span>
           </h2>
-
-          <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed px-4">
-            Rejoignez les centaines d'entreprises qui nous font confiance pour
-            leur confection sur mesure.
-          </p>
-        </motion.div>
+          <div className="w-20 sm:w-24 h-1 bg-yellow-500 mx-auto mb-4 sm:mb-6"></div>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 mb-16 sm:mb-20 md:mb-24">
           {/* Colonne gauche - Carrousel de témoignages */}
@@ -204,7 +187,6 @@ export default function Clients() {
                   <div className="h-px flex-1 bg-blue-300 min-w-[30px] sm:min-w-[50px] max-w-[120px]" />
                 </div>
               </div>
-              
             </div>
 
             {/* Conteneur carrousel */}
@@ -321,7 +303,7 @@ export default function Clients() {
               </AnimatePresence>
 
               {/* Points de navigation */}
-              <div className="flex justify-center gap-2 sm:gap-3 mt-6 sm:mt-8">
+              {/* <div className="flex justify-center gap-2 sm:gap-3 mt-6 sm:mt-8">
                 {testimonials.map((testimonial, index) => (
                   <button
                     key={index}
@@ -343,7 +325,7 @@ export default function Clients() {
                     aria-label={`Aller au témoignage ${index + 1}`}
                   />
                 ))}
-              </div>
+              </div> */}
             </div>
           </div>
 
