@@ -1,8 +1,14 @@
 // components/Footer.js
 import Link from 'next/link';
 import { 
-  FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaClock,
-  FaArrowRight, FaFacebookF, FaInstagram, FaLinkedinIn
+  FaPhoneAlt, 
+  FaEnvelope, 
+  FaMapMarkerAlt, 
+  FaClock,
+  FaFacebookF, 
+  FaInstagram, 
+  FaLinkedinIn, 
+  FaArrowRight 
 } from 'react-icons/fa';
 
 export default function Footer() {
@@ -24,41 +30,50 @@ export default function Footer() {
     "Broderie personnalisée"
   ];
 
+  const contactItems = [
+    { icon: FaMapMarkerAlt, text: "Toamasina, Madagascar" },
+    { icon: FaPhoneAlt, text: "034 92 192 23", href: "tel:+261349219223" },
+    { icon: FaEnvelope, text: "reflet@confection-vonjy.fr", href: "mailto:reflet@confection-vonjy.fr" },
+    { icon: FaClock, text: "Lun–Ven : 8h30–17h30" },
+  ];
+
+  const primary = '#1e40af'; // bleu foncé pour les icônes
+
   return (
-    <footer className="bg-blue-50 border-t border-blue-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10">
+    <footer className="bg-gray-50 border-t border-gray-200">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pt-12 pb-10">
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
           
           {/* Colonne 1 – Marque */}
-          <div className="space-y-5">
-            <Link href="/" className="group inline-block">
-              <h3 className="text-md uppercase  font-extrabold text-slate-900 tracking-tight">
-                Confection<span className="text-blue-600 group-hover:text-blue-700 transition-colors">Vonjy</span>
+          <div className="space-y-6">
+            <Link href="/" className="inline-block">
+              <h3 className="text-lg uppercase font-semibold text-gray-900 tracking-tight">
+                Confection<span className="text-blue-800">Vonjy</span>
               </h3>
-              <div className="h-1 w-16 bg-blue-500 rounded-full mt-2 group-hover:w-24 transition-all duration-400" />
+              <div className="h-px w-12 bg-blue-800 mt-2" />
             </Link>
             
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-md">
-              L'excellence du textile à Toamasina – Uniformes et créations sur mesure depuis 15 ans.
+            <p className="text-gray-600 text-sm leading-relaxed">
+              Spécialiste des uniformes et vêtements professionnels sur mesure à Toamasina depuis 15 ans.
             </p>
 
-            <div className="flex gap-4">
-              {[FaFacebookF, FaInstagram, FaLinkedinIn].map((Icon, i) => (
-                <a 
-                  key={i} 
-                  href="#" 
-                  className="p-2.5 bg-white rounded-full border border-blue-100 text-slate-500 hover:text-blue-600 hover:border-blue-300 hover:shadow-sm transition-all duration-300"
-                >
-                  <Icon size={16} />
-                </a>
-              ))}
+            <div className="flex gap-5">
+              <a href="#" className="text-gray-600 hover:text-blue-800 transition-colors" aria-label="Facebook">
+                <FaFacebookF className="w-5 h-5" />
+              </a>
+              <a href="#" className="text-gray-600 hover:text-blue-800 transition-colors" aria-label="Instagram">
+                <FaInstagram className="w-5 h-5" />
+              </a>
+              <a href="#" className="text-gray-600 hover:text-blue-800 transition-colors" aria-label="LinkedIn">
+                <FaLinkedinIn className="w-5 h-5" />
+              </a>
             </div>
           </div>
 
-          {/* Navigation rapide */}
+          {/* Colonne 2 – Navigation */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-800 mb-5">
+            <h3 className="text-sm uppercase font-medium text-gray-800 mb-5 tracking-wider">
               Navigation
             </h3>
             <ul className="space-y-2.5 text-sm">
@@ -66,11 +81,9 @@ export default function Footer() {
                 <li key={idx}>
                   <Link 
                     href={item.href}
-                    className="text-slate-600 hover:text-blue-700 transition-colors flex items-center group text-[15px]"
+                    className="text-gray-600 hover:text-blue-800 transition-colors inline-flex items-center gap-2 group"
                   >
-                    <span className="w-0 overflow-hidden group-hover:w-5 transition-all duration-300 text-blue-600">
-                      <FaArrowRight className="text-xs mr-1.5" />
-                    </span>
+                    <FaArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all" />
                     {item.label}
                   </Link>
                 </li>
@@ -78,60 +91,58 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Expertises */}
+          {/* Colonne 3 – Expertises */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-800 mb-5">
+            <h3 className="text-sm uppercase font-medium text-gray-800 mb-5 tracking-wider">
               Nos expertises
             </h3>
-            <ul className="space-y-2.5 text-sm text-slate-600">
+            <ul className="space-y-2.5 text-sm text-gray-600">
               {services.map((service, idx) => (
-                <li key={idx} className="flex items-center group">
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-300 mr-3 group-hover:bg-blue-600 group-hover:scale-125 transition-all duration-300" />
+                <li key={idx} className="flex items-center gap-3">
+                  <div className="w-1.5 h-1.5 bg-blue-800 shrink-0" />
                   {service}
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact – Carte bleue claire */}
-          <div className="bg-blue-100/60 rounded-2xl p-6 sm:p-7 border border-blue-200 shadow-sm">
-            <h3 className="text-base sm:text-lg font-semibold text-blue-800 mb-5">
+          {/* Colonne 4 – Contact (icônes en bleu sans fond) */}
+          <div>
+            <h3 className="text-sm uppercase font-medium text-gray-800 mb-5 tracking-wider">
               Contactez-nous
             </h3>
-            <ul className="space-y-4 text-sm text-slate-700">
-              <li className="flex items-start gap-3">
-                <FaMapMarkerAlt className="mt-1 text-blue-600 flex-shrink-0" />
-                <span>Toamasina, Madagascar</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <FaPhoneAlt className="text-blue-600 flex-shrink-0" />
-                <a href="tel:+261349219223" className="hover:text-blue-800 transition-colors font-medium">
-                  034 92 192 23
-                </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <FaEnvelope className="text-blue-600 flex-shrink-0" />
-                <a href="mailto:reflet@confection-vonjy.fr" className="hover:text-blue-800 transition-colors">
-                  reflet@confection-vonjy.fr
-                </a>
-              </li>
-              <li className="flex items-center gap-3 pt-2 border-t border-blue-200/50">
-                <FaClock className="text-blue-600 flex-shrink-0" />
-                <span className="text-xs uppercase font-medium opacity-90">Lun–Ven : 8h30–17h30</span>
-              </li>
+            
+            <ul className="space-y-4 text-sm text-gray-700">
+              {contactItems.map((item, idx) => (
+                <li key={idx} className="flex items-center gap-3">
+                  <item.icon 
+                    className="w-5 h-5 text-blue-800 shrink-0" 
+                  />
+                  {item.href ? (
+                    <a 
+                      href={item.href} 
+                      className="hover:text-blue-800 transition-colors font-medium"
+                    >
+                      {item.text}
+                    </a>
+                  ) : (
+                    <span>{item.text}</span>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
         {/* Copyright */}
-        <div className="mt-14 pt-8 border-t border-blue-100 text-center sm:text-left">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-slate-500">
-            <p>© {currentYear} Confection Vonjy – Artisanat de précision à Madagascar</p>
+        <div className="mt-12 pt-8 border-t border-gray-200">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-600">
+            <p>© {currentYear} Confection Vonjy – Tous droits réservés</p>
             <div className="flex gap-6">
-              <Link href="/mentions-legales" className="hover:text-blue-700 transition-colors">
+              <Link href="/mentions-legales" className="hover:text-blue-800 transition-colors">
                 Mentions légales
               </Link>
-              <Link href="/confidentialite" className="hover:text-blue-700 transition-colors">
+              <Link href="/confidentialite" className="hover:text-blue-800 transition-colors">
                 Confidentialité
               </Link>
             </div>

@@ -38,16 +38,16 @@ export default function ServicesHero() {
 
             {/* Titre */}
             <h1 className="text-center lg:text-left mb-8">
-              <span className="block text-3xl md:text-5xl lg:text-7xl font-light uppercase tracking-tighter text-white/90">
+              <span className="block text-2xl md:text-3xl lg:text-4xl font-light uppercase tracking-tighter text-white/90">
                 NOS
               </span>
-              <span className="block text-4xl md:text-6xl lg:text-8xl font-bold uppercase tracking-wider mt-2 bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-emerald-400 to-teal-500">
+              <span className="block text-2xl md:text-3xl lg:text-4xl font-bold uppercase tracking-wider mt-2 bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-emerald-400 to-teal-500">
                 Services
               </span>
             </h1>
 
             {/* Sous-titre */}
-            <p className="text-lg md:text-xl text-center lg:text-left text-emerald-100 font-light leading-relaxed max-w-xl mb-10">
+            <p className="text-md md:text-xl text-center lg:text-left text-emerald-100 font-light leading-relaxed max-w-xl mb-10">
               Des solutions <span className="font-bold text-teal-300">sur mesure</span> alliant 
               <span className="font-bold text-teal-300"> savoir-faire artisanal</span> et 
               <span className="font-bold text-teal-300"> technologies innovantes</span>.
@@ -76,24 +76,14 @@ export default function ServicesHero() {
             />
 
             {/* Badge flottant sur l'image */}
-            <div className="absolute -bottom-5 -left-5 bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-2xl z-20 hidden md:block">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center">
-                  <FaCheckCircle className="text-white" />
-                </div>
-                <div>
-                  <p className="text-white font-bold text-sm">Qualité Garantie</p>
-                  <p className="text-teal-300 text-xs">Contrôle certifié</p>
-                </div>
-              </div>
-            </div>
+            
           </div>
         </div>
 
         {/* --- GRILLE DE SERVICES (Re-centrée) --- */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-24">
           {services.map((service, index) => (
-            <div key={index} className="group relative bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-teal-500/50 transition-all duration-500 hover:-translate-y-2">
+            <div key={index} className="group relative bg-white/5 backdrop-blur-sm rounded-sm p-6 border border-white/10 hover:border-teal-500/50 transition-all duration-500 hover:-translate-y-2">
                <div className={`text-3xl mb-4 ${service.color}`}>{service.icon}</div>
                <h3 className="text-lg font-bold text-white mb-2">{service.title}</h3>
                <p className="text-emerald-100/70 text-xs leading-relaxed">{service.description}</p>

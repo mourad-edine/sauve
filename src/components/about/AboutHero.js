@@ -8,7 +8,7 @@ import { HiOutlineSparkles } from 'react-icons/hi';
 
 export default function AboutHero() {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-violet-950 via-violet-900 to-violet-800 py-20">
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 py-20">
       
       {/* Pattern de fond (inchangé) */}
       <div className="absolute inset-0 opacity-10">
@@ -35,10 +35,10 @@ export default function AboutHero() {
 
             {/* Titre principal */}
             <h1 className="relative mb-6">
-              <span className="block text-2xl md:text-4xl lg:text-5xl font-light uppercase tracking-tighter text-white/90">
+              <span className="block text-2xl md:text-3xl lg:text-4xl font-light uppercase tracking-tighter text-white/90">
                 NOTRE HISTOIRE
               </span>
-              <span className="block text-3xl md:text-5xl lg:text-7xl font-bold uppercase tracking-wider mt-2 bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500">
+              <span className="block text-2xl md:text-3xl lg:text-4xl font-bold uppercase tracking-wider mt-2 bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500">
                 Notre Passion
               </span>
             </h1>

@@ -69,12 +69,7 @@ export default function Process() {
               />
               
               {/* Ligne pointillée qui relie l'image au titre */}
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: "80px" }}
-                transition={{ delay: 0.3, duration: 0.8 }}
-                className="absolute left-[-90px] top-1/2 h-[2px] bg-gradient-to-l from-blue-500/30 to-transparent border-dashed border-l-2 border-blue-400"
-              />
+              
             </motion.div>
           </div>
 
@@ -119,11 +114,11 @@ export default function Process() {
             {steps.map((step, index) => (
               <div
                 key={`desktop-${index}`}
-                className="flex-shrink-0 w-80 bg-white border border-gray-200 p-8 hover:border-blue-300 transition-all duration-300 h-[240px] flex flex-col rounded-lg"
+                className="flex-shrink-0 w-80 bg-white border border-gray-200 p-8 hover:border-blue-300 transition-all duration-300 h-[240px] flex flex-col "
               >
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="w-12 h-12 bg-blue-900 flex items-center justify-center rounded-lg">
-                    <div className="text-white text-xl">
+                  <div className="w-12 h-12 bg-blue-50 flex items-center justify-center rounded-lg">
+                    <div className="text-blue-400 text-xl">
                       {step.icon}
                     </div>
                   </div>
@@ -154,11 +149,11 @@ export default function Process() {
             {steps.slice(0, 4).map((step, index) => (
               <div
                 key={`mobile-${index}`}
-                className="bg-white border border-gray-200 p-5 h-[200px] flex flex-col rounded-lg"
+                className="bg-white border border-gray-200 p-5 h-[200px] flex flex-col"
               >
                 <div className="flex items-start gap-3 mb-3">
-                  <div className="w-10 h-10 bg-blue-900 flex items-center justify-center rounded-lg">
-                    <div className="text-white text-sm">
+                  <div className="w-10 h-10 bg-blue-50 flex items-center justify-center rounded-lg">
+                    <div className="text-blue-400 text-sm">
                       {step.icon}
                     </div>
                   </div>
@@ -190,24 +185,13 @@ export default function Process() {
         </div>
 
         {/* Indicateur */}
-        <div className="text-center mt-8 md:mt-12">
-          <div className="inline-flex items-center gap-3">
-            <div className="flex gap-1">
-              <div className="w-1.5 h-1.5 bg-blue-300 rounded-full"></div>
-              <div className="w-1.5 h-1.5 bg-blue-300 rounded-full"></div>
-              <div className="w-1.5 h-1.5 bg-blue-300 rounded-full"></div>
-            </div>
-            <span className="text-sm text-gray-600">
-              Notre processus en 4 étapes
-            </span>
-          </div>
-        </div>
+        
 
         {/* CTA */}
         <div className="text-center mt-12 md:mt-16">
           <Link 
             href="/contact" 
-            className="inline-block px-8 py-3 bg-blue-900 text-white font-medium rounded-lg hover:bg-blue-800 transition-colors duration-300"
+            className="inline-block px-8 py-3 bg-blue-900 text-white font-medium  hover:bg-blue-800 transition-colors duration-300"
           >
             Démarrer mon projet
           </Link>

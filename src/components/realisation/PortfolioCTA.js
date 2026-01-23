@@ -1,6 +1,12 @@
-'use client';
-import Link from 'next/link';
-import { FaRulerCombined, FaCalendarAlt, FaLightbulb, FaArrowRight } from "react-icons/fa";
+"use client";
+
+import Link from "next/link";
+import {
+  FaRulerCombined,
+  FaCalendarAlt,
+  FaLightbulb,
+  FaArrowRight,
+} from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
@@ -9,193 +15,148 @@ export default function PortfolioCTA() {
 
   const steps = [
     {
-      icon: <FaLightbulb className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8" />,
+      icon: <FaLightbulb className="w-6 h-6 md:w-8 md:h-8" />,
       title: "Inspiration",
-      description: "Partagez vos idées et laissez-vous inspirer par nos réalisations",
-      color: "#1E40AF",
+      description:
+        "Partagez vos idées et laissez-vous inspirer par nos réalisations et notre savoir-faire.",
       action: "Explorer nos projets",
-      image: "https://static.vecteezy.com/system/resources/thumbnails/022/609/737/small/engineer-man-worker-in-hard-hat-png.png"
+      image:
+        "https://static.vecteezy.com/system/resources/thumbnails/022/609/737/small/engineer-man-worker-in-hard-hat-png.png",
     },
     {
-      icon: <FaRulerCombined className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8" />,
+      icon: <FaRulerCombined className="w-6 h-6 md:w-8 md:h-8" />,
       title: "Consultation",
-      description: "Rencontrez nos experts pour discuter de votre projet",
-      color: "#1E40AF",
+      description:
+        "Échangez avec nos experts pour cadrer précisément vos besoins et vos objectifs.",
       action: "Prendre rendez-vous",
-      image: "https://www.pngarts.com/files/3/Engineer-PNG-Download-Image.png"
+      image:
+        "https://www.pngarts.com/files/3/Engineer-PNG-Download-Image.png",
     },
     {
-      icon: <FaCalendarAlt className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8" />,
+      icon: <FaCalendarAlt className="w-6 h-6 md:w-8 md:h-8" />,
       title: "Réalisation",
-      description: "Transformons vos idées en réalité dans notre atelier",
-      color: "#1E40AF",
-      action: "Visiter l'atelier"
-      // Pas d'image pour cette carte
-    }
+      description:
+        "Nous concevons et réalisons votre projet avec méthode, précision et exigence.",
+      action: "Visiter l’atelier",
+      // Image ajoutée – équipe sur chantier / planification réalisation
+      image:
+        "https://www.pngarts.com/files/3/Engineer-PNG-Download-Image.png",
+      // Alternative si tu veux une autre ambiance :
+      // "https://www.rawpixel.com/image/18064783/team-discussing-construction-plans"
+    },
   ];
 
+  const current = steps[activeStep];
+
   return (
-    <section className="relative py-12 sm:py-16 md:py-20 lg:py-32 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* En-tête */}
+    <section className="relative py-16 md:py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+        {/* Header */}
         <div className="text-center mb-12 md:mb-16">
-          <div className="text-center mb-8 md:mb-12">
-            <div className="inline-block mb-4">
-              <div className="flex items-center justify-center gap-2">
-                <div className="w-6 h-px bg-blue-300"></div>
-                <span className="text-sm font-medium text-blue-600 uppercase">
-                  Prochaines Étapes
-                </span>
-                <div className="w-6 h-px bg-blue-300"></div>
-              </div>
-            </div>
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-light text-blue-900 mb-4 uppercase">
-              Prêt à concrétiser
-              <span className="block text-base md:text-lg lg:text-xl text-yellow-600 font-normal mt-2">
-                votre projet ?
-              </span>
-            </h2>
-            <div className="w-20 h-1 bg-yellow-500 mx-auto mb-4"></div>
-          </div>
+          <p className="text-xs md:text-sm tracking-widest uppercase text-blue-600 font-medium mb-3">
+             Prêt à concrétiser votre projet ?
+          </p>
+         
         </div>
 
-        {/* Processus interactif */}
-        <div className="max-w-6xl mx-auto">
-          {/* Barre de progression */}
-          <div className="relative mb-8 sm:mb-12">
-            <div className="absolute left-0 right-0 top-1/2 h-0.5 bg-gray-200 transform -translate-y-1/2"></div>
-            <div className="relative flex justify-between px-4 sm:px-0">
-              {steps.map((step, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveStep(index)}
-                  className="relative group"
-                >
-                  {/* Point d'étape */}
-                  <div 
-                    className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all duration-300 ${
-                      activeStep >= index ? 'scale-110 shadow-lg' : 'scale-100 shadow-sm'
-                    }`}
-                    style={{ 
-                      backgroundColor: activeStep >= index ? step.color : '#F3F4F6',
-                      border: `2px solid ${activeStep >= index ? '#60A5FA' : '#E5E7EB'}`
-                    }}
-                  >
-                    <div className={`transition-colors duration-300 ${activeStep >= index ? 'text-white' : 'text-gray-400'}`}>
-                      {step.icon}
-                    </div>
-                  </div>
-                  
-                  {/* Titre de l'étape */}
-                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-3">
-                    <span className={`text-xs sm:text-sm font-medium whitespace-nowrap ${activeStep === index ? 'text-blue-900' : 'text-gray-500'}`}>
-                      {step.title}
-                    </span>
-                  </div>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Contenu de l'étape active */}
-          <motion.div
-            key={activeStep}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-            className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm"
-          >
-            <div className={`grid ${steps[activeStep].image ? 'lg:grid-cols-2' : 'grid-cols-1'}`}>
-              {/* Photo à gauche (si disponible) */}
-              {steps[activeStep].image && (
-                <div className="hidden lg:block relative min-h-[300px] bg-gray-50">
-                  <div className="absolute inset-0 flex items-center justify-center p-6">
-                    <div className="relative w-full h-full max-w-md mx-auto">
-                      {/* Conteneur d'image */}
-                      <div className="absolute inset-0 rounded-lg overflow-hidden border-4 border-white shadow-lg">
-                        <motion.img
-                          key={steps[activeStep].image}
-                          src={steps[activeStep].image}
-                          alt={steps[activeStep].title}
-                          initial={{ opacity: 0, scale: 0.9 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.5 }}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      
-                      {/* Décoration circulaire */}
-                      <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                        className="absolute -inset-6 border-4 border-dashed rounded-full opacity-20"
-                        style={{ borderColor: steps[activeStep].color }}
-                      />
-                      
-                      {/* Numéro de l'étape */}
-                      <div className="absolute -top-4 -left-4 w-12 h-12 bg-blue-900 rounded-full flex items-center justify-center shadow-lg">
-                        <span className="text-white font-bold text-lg">
-                          {activeStep + 1}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+        {/* Navigation étapes – plus pro */}
+        <div className="flex justify-center gap-8 md:gap-12 lg:gap-16 mb-10 md:mb-14">
+          {steps.map((step, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveStep(index)}
+              className={`relative pb-3 text-sm md:text-base font-medium transition-colors duration-200 ${
+                activeStep === index
+                  ? "text-blue-950"
+                  : "text-gray-500 hover:text-blue-800"
+              }`}
+            >
+              <span className="block mb-1.5 text-[11px] md:text-xs uppercase tracking-widest font-normal text-gray-500">
+                Étape {index + 1}
+              </span>
+              {step.title}
+              {activeStep === index && (
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-blue-900"></span>
               )}
-
-              {/* Contenu à droite (ou centré si pas d'image) */}
-              <div className={`p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col ${!steps[activeStep].image ? 'text-center items-center' : ''}`}>
-                {/* Icône et titre */}
-                <div className={`flex ${!steps[activeStep].image ? 'flex-col items-center' : 'items-center'} gap-4 mb-6`}>
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-blue-900 flex items-center justify-center rounded-xl text-white shadow-md">
-                    {steps[activeStep].icon}
-                  </div>
-                  <div className={`${!steps[activeStep].image ? 'text-center' : ''}`}>
-                    <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-blue-900 mb-2">
-                      {steps[activeStep].title}
-                    </h3>
-                    <span className="text-xs font-medium text-blue-700 uppercase">
-                      Étape {activeStep + 1}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Description */}
-                <p className="text-gray-700 text-sm sm:text-base lg:text-lg leading-relaxed mb-6 sm:mb-8 flex-1">
-                  {steps[activeStep].description}
-                </p>
-
-                {/* Bouton */}
-                <div className={`${!steps[activeStep].image ? 'text-center' : ''}`}>
-                  <Link href="/contact">
-                    <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium text-white bg-blue-900 hover:bg-blue-800 transition-colors duration-300 cursor-pointer"
-                    >
-                      <span>{steps[activeStep].action}</span>
-                      <FaArrowRight className="w-4 h-4" />
-                    </motion.div>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Indicateur */}
-          <div className="text-center mt-8 sm:mt-12">
-            <div className="inline-flex items-center gap-3">
-              <div className="flex gap-1">
-                <div className="w-1.5 h-1.5 bg-blue-300 rounded-full"></div>
-                <div className="w-1.5 h-1.5 bg-blue-300 rounded-full"></div>
-                <div className="w-1.5 h-1.5 bg-blue-300 rounded-full"></div>
-              </div>
-              <span className="text-sm text-gray-600">
-                Suivez les étapes vers votre projet
-              </span>
-            </div>
-          </div>
+            </button>
+          ))}
         </div>
+
+        {/* Contenu principal */}
+        <motion.div
+          key={activeStep}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center"
+        >
+          {/* VISUEL – caché en < lg (mobile) */}
+          {current.image && (
+            <div className="hidden lg:flex relative justify-center lg:justify-start items-center min-h-[380px] xl:min-h-[440px]">
+              <motion.img
+                src={current.image}
+                alt={current.title}
+                initial={{ opacity: 0, scale: 0.92 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="
+                  w-auto max-h-[420px] xl:max-h-[500px]
+                  object-contain
+                  scale-110 xl:scale-125
+                  -translate-y-8 xl:-translate-y-12
+                  pointer-events-none
+                  drop-shadow-xl
+                "
+              />
+            </div>
+          )}
+
+          {/* TEXTE – prend toute la largeur en mobile */}
+         <div
+  className="
+    max-w-2xl mx-auto lg:mx-0
+    text-center lg:text-left
+
+    /* Card uniquement en responsive */
+    bg-white lg:bg-transparent
+    rounded-2xl lg:rounded-none
+    shadow-md lg:shadow-none
+    p-6 sm:p-8 lg:p-0
+    border border-gray-100 lg:border-none
+  "
+>
+  {/* Étape */}
+  <span className="block text-xs md:text-sm uppercase tracking-widest text-blue-700 font-medium mb-4">
+    Étape {activeStep + 1}
+  </span>
+
+  {/* Titre */}
+  <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-blue-950 mb-5 md:mb-6">
+    {current.title}
+  </h3>
+
+  {/* Description */}
+  <p className="text-gray-700 text-base md:text-lg leading-relaxed mb-8 md:mb-10">
+    {current.description}
+  </p>
+
+  {/* CTA */}
+  <Link href="/contact">
+    <motion.span
+      whileHover={{ x: 8 }}
+      className="
+        inline-flex items-center gap-3
+        text-blue-900 font-semibold text-lg
+        hover:text-blue-700 transition-colors
+      "
+    >
+      {current.action}
+      <FaArrowRight className="text-xl" />
+    </motion.span>
+  </Link>
+</div>
+
+        </motion.div>
       </div>
     </section>
   );

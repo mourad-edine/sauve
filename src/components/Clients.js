@@ -40,8 +40,8 @@ export default function Clients() {
       text: "Les uniformes pour notre personnel ont considérablement amélioré notre image professionnelle. Qualité exceptionnelle et service impeccable.",
       initials: "MD",
       rating: 5,
-      color: "#3B82F6",
-      accent: "#93C5FD",
+      color: "#1e40af", // Bleu uniforme
+      accent: "#1e40af",
     },
     {
       name: "Thomas Leroy",
@@ -49,8 +49,8 @@ export default function Clients() {
       text: "Nous commandons régulièrement des tabliers et t-shirts personnalisés. Toujours parfaitement réalisés et livrés dans les délais.",
       initials: "TL",
       rating: 5,
-      color: "#10B981",
-      accent: "#6EE7B7",
+      color: "#1e40af", // Bleu uniforme
+      accent: "#1e40af",
     },
     {
       name: "Sophie Martin",
@@ -58,8 +58,8 @@ export default function Clients() {
       text: "Excellente collaboration pour nos blouses médicales. Matériaux de qualité et ajustements parfaits pour tout le personnel.",
       initials: "SM",
       rating: 5,
-      color: "#8B5CF6",
-      accent: "#C4B5FD",
+      color: "#1e40af", // Bleu uniforme
+      accent: "#1e40af",
     },
     {
       name: "Pierre Bernard",
@@ -67,8 +67,8 @@ export default function Clients() {
       text: "Les tenues de sécurité sont robustes et confortables. Notre équipe est très satisfaite de la qualité et de la durabilité.",
       initials: "PB",
       rating: 5,
-      color: "#F59E0B",
-      accent: "#FCD34D",
+      color: "#1e40af", // Bleu uniforme
+      accent: "#1e40af",
     },
   ];
 
@@ -76,66 +76,59 @@ export default function Clients() {
     {
       name: "Hôtellerie & Restauration",
       icon: <FaHotel className="w-4 h-4 sm:w-5 sm:h-5" />,
-      color: "#3B82F6",
-      accent: "#93C5FD",
+      color: "#1e40af", // Bleu uniforme
+      accent: "#1e40af",
       initials: "HR",
     },
     {
       name: "Médical & Paramédical",
       icon: <FaUserMd className="w-4 h-4 sm:w-5 sm:h-5" />,
-      color: "#10B981",
-      accent: "#6EE7B7",
+      color: "#1e40af", // Bleu uniforme
+      accent: "#1e40af",
       initials: "MP",
     },
     {
       name: "Sécurité & Services",
       icon: <FaShieldAlt className="w-4 h-4 sm:w-5 sm:h-5" />,
-      color: "#F59E0B",
-      accent: "#FCD34D",
+      color: "#1e40af", // Bleu uniforme
+      accent: "#1e40af",
       initials: "SS",
     },
     {
       name: "Commerce & Retail",
       icon: <FaShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" />,
-      color: "#8B5CF6",
-      accent: "#C4B5FD",
+      color: "#1e40af", // Bleu uniforme
+      accent: "#1e40af",
       initials: "CR",
     },
     {
       name: "Transport & Logistique",
       icon: <FaPlane className="w-4 h-4 sm:w-5 sm:h-5" />,
-      color: "#14B8A6",
-      accent: "#5EEAD4",
+      color: "#1e40af", // Bleu uniforme
+      accent: "#1e40af",
       initials: "TL",
     },
     {
       name: "Industrie & Production",
       icon: <FaIndustry className="w-4 h-4 sm:w-5 sm:h-5" />,
-      color: "#EC4899",
-      accent: "#F9A8D4",
+      color: "#1e40af", // Bleu uniforme
+      accent: "#1e40af",
       initials: "IP",
     },
     {
       name: "Éducation & Formation",
       icon: <FaUtensils className="w-4 h-4 sm:w-5 sm:h-5" />,
-      color: "#A855F7",
-      accent: "#C084FC",
+      color: "#1e40af", // Bleu uniforme
+      accent: "#1e40af",
       initials: "EF",
     },
     {
       name: "Services Publics",
       icon: <FaCheckCircle className="w-4 h-4 sm:w-5 sm:h-5" />,
-      color: "#6366F1",
-      accent: "#818CF8",
+      color: "#1e40af", // Bleu uniforme
+      accent: "#1e40af",
       initials: "SP",
     },
-  ];
-
-  const stats = [
-    { value: "500+", label: "Clients satisfaits", color: "#3B82F6" },
-    { value: "15+", label: "Années d'expérience", color: "#10B981" },
-    { value: "40+", label: "Secteurs d'activité", color: "#8B5CF6" },
-    { value: "98%", label: "Taux de satisfaction", color: "#F59E0B" },
   ];
 
   const nextTestimonial = useCallback(() => {
@@ -159,240 +152,188 @@ export default function Clients() {
   const currentTestimonial = testimonials[activeTestimonial];
 
   return (
-    <section className="relative  bg-white overflow-hidden">
-      
-      <div className="max-w-10xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* En-tête */}
-        <div className="text-center py-5 mb-8 sm:mb-12 md:mb-16">
-          
-          <h2 className="text-xl md:text-2xl lg:text-3xl font-light text-blue-900 mb-4 uppercase">
-            Notre
-            <span className="block text-base sm:text-lg md:text-xl text-yellow-600 font-normal mt-2">
-              référence client
+    <section className="relative bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        {/* En-tête réduite */}
+        <div className="text-center mb-6 md:mb-8">
+          <div className="inline-block mb-3">
+            <span className="text-xs font-medium tracking-wider text-gray-500 uppercase">
+              Nos références
             </span>
+          </div>
+          <h2 className="text-xl md:text-2xl font-normal text-gray-900 mb-2">
+            Clients & Secteurs
           </h2>
-          <div className="w-20 sm:w-24 h-1 bg-yellow-500 mx-auto mb-4 sm:mb-6"></div>
+          <div className="w-12 h-px bg-gray-300 mx-auto"></div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 mb-16 sm:mb-20 md:mb-24">
-          {/* Colonne gauche - Carrousel de témoignages */}
-          <div>
-            <div className="mb-8 sm:mb-10">
-              <div className="mb-8 sm:mb-10">
-                <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-6 mb-6 md:mb-8">
-                  <div className="h-px flex-1 bg-blue-300 min-w-[30px] sm:min-w-[50px] max-w-[120px]" />
-                  <span className="text-xs sm:text-sm md:text-base font-medium text-blue-600 uppercase tracking-wider whitespace-nowrap">
-                    témoignages
-                  </span>
-                  <div className="h-px flex-1 bg-blue-300 min-w-[30px] sm:min-w-[50px] max-w-[120px]" />
-                </div>
+        {/* Grille compacte */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-12 md:mb-16">
+          {/* Colonne gauche - Témoignages */}
+          <div className="flex flex-col h-full">
+            {/* Titre section */}
+            <div className="mb-4 md:mb-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-px flex-1 bg-gray-200"></div>
+                <span className="text-xs font-medium text-gray-600 uppercase tracking-wider whitespace-nowrap">
+                  témoignages
+                </span>
+                <div className="h-px flex-1 bg-gray-200"></div>
               </div>
             </div>
 
-            {/* Conteneur carrousel */}
-            <div className="relative">
-              {/* Flèche Précédent */}
+            {/* Conteneur carrousel compact */}
+            <div className="relative flex-1 min-h-[240px]">
+              {/* Flèches plus petites */}
               <button
                 onClick={() => {
                   prevTestimonial();
                   setAutoPlay(false);
                 }}
-                className="absolute left-2 top-1/2 -translate-y-1/2 z-20
-                           p-3 sm:p-4 rounded-full bg-white/90 backdrop-blur-md border border-gray-200 
-                           shadow-lg hover:bg-white hover:shadow-xl hover:scale-110
-                           transition-all duration-300 text-gray-700 hover:text-gray-900
-                           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"
+                className="absolute left-0 top-1/2 -translate-y-1/2 z-20
+                           p-2 bg-white border border-gray-200 
+                           shadow-sm hover:shadow hover:bg-gray-50
+                           transition-all duration-200 text-gray-600 hover:text-gray-900"
                 aria-label="Témoignage précédent"
               >
-                <FaChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+                <FaChevronLeft className="w-3 h-3" />
               </button>
 
-              {/* Flèche Suivant */}
               <button
                 onClick={() => {
                   nextTestimonial();
                   setAutoPlay(false);
                 }}
-                className="absolute right-2 top-1/2 -translate-y-1/2 z-20
-                           p-3 sm:p-4 rounded-full bg-white/90 backdrop-blur-md border border-gray-200 
-                           shadow-lg hover:bg-white hover:shadow-xl hover:scale-110
-                           transition-all duration-300 text-gray-700 hover:text-gray-900
-                           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"
+                className="absolute right-0 top-1/2 -translate-y-1/2 z-20
+                           p-2 bg-white border border-gray-200 
+                           shadow-sm hover:shadow hover:bg-gray-50
+                           transition-all duration-200 text-gray-600 hover:text-gray-900"
                 aria-label="Témoignage suivant"
               >
-                <FaChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                <FaChevronRight className="w-3 h-3" />
               </button>
 
-              {/* Slide animée */}
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeTestimonial}
-                  initial={{ opacity: 0, x: isMobile ? 40 : 60 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: isMobile ? -40 : -60 }}
-                  transition={{ duration: 0.35, ease: "easeOut" }}
-                  className="bg-white rounded-xl sm:rounded-2xl border border-gray-200 overflow-hidden shadow-sm"
-                  onMouseEnter={() => setHoveredTestimonial(activeTestimonial)}
-                  onMouseLeave={() => setHoveredTestimonial(null)}
-                >
-                  <div className="p-6 sm:p-8">
-                    <div className="relative">
-                      {/* Avatar et note */}
-                      <div className="flex items-start justify-between mb-6">
-                        <div className="relative">
-                          <div className="relative w-14 h-14 sm:w-16 sm:h-16">
-                            {/* Cercle de fond animé */}
-                            <motion.div
-                              animate={
-                                hoveredTestimonial === activeTestimonial
-                                  ? { rotate: 360 }
-                                  : { rotate: 0 }
-                              }
-                              transition={{
-                                duration: 8,
-                                repeat: Infinity,
-                                ease: "linear",
-                              }}
-                              className="absolute inset-0 rounded-full border border-dashed opacity-50"
-                              style={{ borderColor: currentTestimonial.color }}
-                            />
-
-                            {/* Avatar principal */}
-                            <div
-                              className="absolute inset-1.5 sm:inset-2 rounded-full flex items-center justify-center text-white text-base sm:text-lg font-medium"
-                              style={{
-                                backgroundColor: currentTestimonial.color,
-                              }}
-                            >
-                              {currentTestimonial.initials}
+              {/* Slide animée - sans border radius */}
+              <div className="h-full px-8">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeTestimonial}
+                    initial={{ opacity: 0, x: isMobile ? 20 : 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: isMobile ? -20 : -30 }}
+                    transition={{ duration: 0.3 }}
+                    className="bg-white border border-gray-200 overflow-hidden h-full flex flex-col"
+                    onMouseEnter={() => setHoveredTestimonial(activeTestimonial)}
+                    onMouseLeave={() => setHoveredTestimonial(null)}
+                  >
+                    <div className="p-4 md:p-6 flex-1 flex flex-col">
+                      <div className="flex-1">
+                        {/* Avatar et note */}
+                        <div className="flex items-start justify-between mb-4">
+                          <div className="relative">
+                            <div className="relative w-12 h-12">
+                              {/* Avatar simple */}
+                              <div
+                                className="absolute inset-0 flex items-center justify-center text-white text-sm font-medium"
+                                style={{ backgroundColor: "#1e40af" }}
+                              >
+                                {currentTestimonial.initials}
+                              </div>
                             </div>
+                          </div>
+
+                          {/* Étoiles plus petites */}
+                          <div className="flex gap-0.5">
+                            {[...Array(currentTestimonial.rating)].map((_, i) => (
+                              <FaStar
+                                key={i}
+                                className="w-3 h-3 text-yellow-400 fill-current"
+                              />
+                            ))}
                           </div>
                         </div>
 
-                        {/* Étoiles */}
-                        <div className="flex gap-0.5 sm:gap-1">
-                          {[...Array(currentTestimonial.rating)].map((_, i) => (
-                            <FaStar
-                              key={i}
-                              className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current"
-                            />
-                          ))}
+                        {/* Citation réduite */}
+                        <div className="mb-4 flex-1">
+                          <FaQuoteLeft className="text-gray-300 text-base mb-2" />
+                          <p className="text-gray-600 text-sm leading-relaxed">
+                            "{currentTestimonial.text}"
+                          </p>
                         </div>
                       </div>
 
-                      {/* Citation */}
-                      <div className="mb-6">
-                        <FaQuoteLeft className="text-gray-300 text-lg sm:text-xl mb-3" />
-                        <p className="text-gray-600 text-sm sm:text-base leading-relaxed italic">
-                          "{currentTestimonial.text}"
-                        </p>
-                      </div>
-
                       {/* Auteur */}
-                      <div className="pt-4 border-t border-gray-100">
-                        <h4 className="font-medium text-gray-900 mb-1 text-sm sm:text-base">
+                      <div className="pt-3 border-t border-gray-100 mt-auto">
+                        <h4 className="font-medium text-gray-900 text-sm mb-0.5">
                           {currentTestimonial.name}
                         </h4>
-                        <p className="text-xs sm:text-sm text-gray-500">
+                        <p className="text-xs text-gray-500">
                           {currentTestimonial.company}
                         </p>
                       </div>
                     </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-
-              {/* Points de navigation */}
-              {/* <div className="flex justify-center gap-2 sm:gap-3 mt-6 sm:mt-8">
-                {testimonials.map((testimonial, index) => (
-                  <button
-                    key={index}
-                    onClick={() => {
-                      setActiveTestimonial(index);
-                      setAutoPlay(false);
-                    }}
-                    className={`rounded-full transition-all duration-400 focus:outline-none ${
-                      activeTestimonial === index
-                        ? "w-8 sm:w-10 h-2 sm:h-3"
-                        : "w-2 sm:w-3 h-2 sm:h-3"
-                    }`}
-                    style={{
-                      backgroundColor:
-                        activeTestimonial === index
-                          ? testimonial.color
-                          : "#D1D5DB",
-                    }}
-                    aria-label={`Aller au témoignage ${index + 1}`}
-                  />
-                ))}
-              </div> */}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
             </div>
           </div>
 
           {/* Colonne droite - Secteurs d'activité */}
-          <div>
-            <div className="mb-8 sm:mb-10">
-              <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-6 mb-6 md:mb-8">
-                <div className="h-px flex-1 bg-blue-300 min-w-[30px] sm:min-w-[50px] max-w-[120px]" />
-                <span className="text-xs sm:text-sm md:text-base font-medium text-blue-600 uppercase tracking-wider whitespace-nowrap">
+          <div className="flex flex-col h-full">
+            {/* Titre section */}
+            <div className="mb-4 md:mb-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-px flex-1 bg-gray-200"></div>
+                <span className="text-xs font-medium text-gray-600 uppercase tracking-wider whitespace-nowrap">
                   Secteurs d'activité
                 </span>
-                <div className="h-px flex-1 bg-blue-300 min-w-[30px] sm:min-w-[50px] max-w-[120px]" />
+                <div className="h-px flex-1 bg-gray-200"></div>
               </div>
             </div>
 
-            {/* Carte des secteurs */}
-            <div className="bg-white rounded-xl border border-gray-200 p-5 sm:p-6 sm:mb-8">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
+            {/* Grille des secteurs - plus compacte */}
+            <div className="bg-white border border-gray-200 p-4 flex-1 min-h-[240px]">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3">
                 {sectors.map((sector, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    transition={{ delay: index * 0.05 }}
-                    className="relative group"
+                    transition={{ delay: index * 0.03 }}
+                    className="relative"
                     onMouseEnter={() => setHoveredSector(index)}
                     onMouseLeave={() => setHoveredSector(null)}
                   >
-                    <div className="flex items-center p-3 sm:p-4 rounded-lg border border-gray-200 hover:shadow-sm transition-all duration-300 bg-white">
-                      <div className="relative flex-shrink-0">
-                        <div className="relative w-8 h-8 sm:w-10 sm:h-10">
-                          <div
-                            className="absolute inset-0.5 sm:inset-1 rounded-full flex items-center justify-center text-white text-xs sm:text-sm font-medium"
-                            style={{ backgroundColor: sector.color }}
-                          >
-                            {sector.initials}
-                          </div>
-
-                          {/* Badge d'icône */}
-                          <div className="absolute -top-0.5 -right-0.5 sm:-top-1 sm:-right-1 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-white border border-gray-200 flex items-center justify-center shadow-xs">
-                            <div style={{ color: sector.color }}>
-                              {sector.icon}
-                            </div>
-                          </div>
+                    <div className="flex items-center p-2 border border-gray-200 hover:border-gray-300 transition-colors duration-200 bg-white">
+                      {/* Icône */}
+                      <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-gray-50">
+                        <div style={{ color: "#1e40af" }}>
+                          {sector.icon}
                         </div>
                       </div>
 
-                      <span className="ml-3 text-xs sm:text-sm font-medium text-gray-700 flex-1">
+                      {/* Nom du secteur */}
+                      <span className="ml-3 text-xs text-gray-700 flex-1 truncate">
                         {sector.name}
                       </span>
                     </div>
-
-                    {/* Indicateur de survol subtil */}
-                    {hoveredSector === index && (
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="absolute -inset-0.5 rounded-lg border pointer-events-none"
-                        style={{ borderColor: sector.color }}
-                      />
-                    )}
                   </motion.div>
                 ))}
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Section CTA réduite */}
+        <div className="text-center border-t border-gray-200 pt-6 md:pt-8">
+          <p className="text-sm text-gray-600 mb-4">
+            Confiez-nous vos besoins en uniformes professionnels
+          </p>
+          <button className="inline-flex items-center gap-2 text-sm font-medium text-blue-700 hover:text-blue-900 transition-colors">
+            <span>Discuter de votre projet</span>
+            <FaArrowRight className="w-3 h-3" />
+          </button>
         </div>
       </div>
     </section>

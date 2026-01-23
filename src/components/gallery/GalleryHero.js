@@ -57,7 +57,7 @@ export default function GalleryHero() {
 
             {/* Titre principal */}
             <h1 className="relative mb-8">
-              <span className="block text-2xl md:text-5xl lg:text-6xl font-light uppercase tracking-tighter text-white/90">
+              <span className="block text-2xl md:text-3xl lg:text-4xl font-light uppercase tracking-tighter text-white/90">
                 CRÉATIONS
               </span>
              

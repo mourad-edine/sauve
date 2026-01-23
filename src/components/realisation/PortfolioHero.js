@@ -67,16 +67,16 @@ export default function PortfolioHero() {
 
             {/* Titre principal */}
             <h1 className="relative mb-8">
-              <span className="block text-2xl md:text-4xl lg:text-6xl font-light uppercase tracking-tighter text-white/90">
+              <span className="block text-2xl md:text-3xl lg:text-4xl font-light uppercase tracking-tighter text-white/90">
                 NOS
               </span>
-              <span className="block text-3xl md:text-5xl lg:text-7xl font-bold uppercase tracking-wider mt-2 bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500">
+              <span className="block text-2xl md:text-3xl lg:text-4xl font-bold uppercase tracking-wider mt-2 bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500">
                 Réalisations
               </span>
             </h1>
 
             {/* Sous-titre */}
-            <p className="text-lg md:text-xl text-blue-100 font-light leading-relaxed max-w-2xl mb-10 mx-auto lg:mx-0">
+            <p className="text-md md:text-xl text-blue-100 font-light leading-relaxed max-w-2xl mb-10 mx-auto lg:mx-0">
               Découvrez notre expertise à travers ces projets concrets. Chaque création raconte une histoire d'
               <span className="font-bold text-yellow-300"> attention aux détails</span> et de 
               <span className="font-bold text-yellow-300"> savoir-faire artisanal</span>.

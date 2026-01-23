@@ -67,19 +67,13 @@ export default function Header() {
                     priority
                   />
                 </div>
-                
-                {/* Badge d'icône */}
-                
               </div>
             </motion.div>
             
             <div>
-              <h1 className="text-lg lg:text-xl font-light text-gray-900 leading-tight">
-                Confection<span className="font-semibold"> Vonjy</span>
+              <h1 className="text-md lg:text-md font-light text-gray-900 leading-tight uppercase">
+                Confection<span className="font-semibold text-blue-800"> Vonjy</span>
               </h1>
-              <p className="text-xs text-gray-500 hidden sm:block">
-                Excellence en confection sur mesure
-              </p>
             </div>
           </Link>
 
@@ -92,8 +86,8 @@ export default function Header() {
                   className={`
                     relative px-4 py-3 text-sm font-medium transition-all duration-300
                     ${isActive(link.path) 
-                      ? 'text-gray-900' 
-                      : 'text-gray-600 hover:text-gray-900'
+                      ? 'text-blue-800' 
+                      : 'text-gray-600 hover:text-blue-800'
                     }
                   `}
                   onMouseEnter={() => setHoveredLink(index)}
@@ -105,7 +99,7 @@ export default function Header() {
                   {isActive(link.path) && (
                     <motion.div
                       layoutId="activeIndicator"
-                      className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1/2 h-0.5 bg-gray-900 rounded-full"
+                      className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1/2 h-0.5 bg-blue-800"
                     />
                   )}
                 </Link>
@@ -114,7 +108,7 @@ export default function Header() {
                 {hoveredLink === index && !isActive(link.path) && (
                   <motion.div
                     layoutId="hoverIndicator"
-                    className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1/3 h-0.5 bg-gray-300 rounded-full"
+                    className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1/3 h-0.5 bg-blue-200"
                   />
                 )}
               </div>
@@ -129,18 +123,11 @@ export default function Header() {
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 bg-blue-600 text-white font-medium px-5 py-2.5 rounded-lg hover:bg-gray-800 transition-colors duration-300"
+                  className="flex items-center gap-2 bg-blue-800 text-white font-medium px-5 py-2.5 hover:bg-blue-900 transition-colors duration-300"
                 >
                   <span>Devis gratuit</span>
                   <FaArrowRight className="w-3 h-3 transform group-hover:translate-x-1 transition-transform duration-300" />
                 </motion.div>
-                
-                {/* Effet de bordure animée */}
-                <motion.div
-                  className="absolute inset-0 rounded-lg border-2 border-gray-900 opacity-0 group-hover:opacity-30"
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
               </Link>
             </div>
 
@@ -148,10 +135,10 @@ export default function Header() {
             <div className="ml-4 pl-4 border-l border-gray-200">
               <a 
                 href="tel:+261349219223"
-                className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-colors duration-300 group"
+                className="flex items-center gap-2 text-sm text-gray-600 hover:text-blue-800 transition-colors duration-300 group"
               >
-                <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center group-hover:bg-gray-200 transition-colors duration-300">
-                  <FaPhone className="w-3 h-3" />
+                <div className="w-8 h-8 bg-gray-100 flex items-center justify-center group-hover:bg-blue-100 transition-colors duration-300">
+                  <FaPhone className="w-3 h-3 text-blue-800" />
                 </div>
                 <div className="hidden xl:block">
                   <div className="font-medium">034 92 192 23</div>
@@ -162,7 +149,7 @@ export default function Header() {
 
           {/* Menu mobile button */}
           <button
-            className="lg:hidden p-2 rounded-lg border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-colors duration-300"
+            className="lg:hidden p-2 rounded-lg border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-colors duration-300"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
           >
@@ -196,22 +183,22 @@ export default function Header() {
                       <Link
                         href={link.path}
                         className={`
-                          flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-300
+                          flex items-center justify-between px-4 py-3 transition-all duration-300
                           ${isActive(link.path) 
-                            ? 'bg-gray-50 text-gray-900 border-l-4 border-gray-900' 
-                            : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                            ? 'bg-blue-50 text-blue-800 border-l-4 border-blue-800' 
+                            : 'text-gray-600 hover:bg-blue-50 hover:text-blue-800'
                           }
                         `}
                         onClick={() => setIsMenuOpen(false)}
                       >
                         <div className="flex items-center gap-3">
                           {isActive(link.path) && (
-                            <div className="w-2 h-2 rounded-full bg-gray-900"></div>
+                            <div className="w-2 h-2 bg-blue-800"></div>
                           )}
                           <span className="font-medium">{link.name}</span>
                         </div>
                         {isActive(link.path) && (
-                          <span className="text-xs text-gray-500 font-medium">•</span>
+                          <span className="text-xs text-blue-600 font-medium">•</span>
                         )}
                       </Link>
                     </motion.div>
@@ -227,7 +214,7 @@ export default function Header() {
                     <div className="space-y-3">
                       <Link
                         href="/contact"
-                        className="block w-full bg-gray-900 hover:bg-gray-800 text-white font-medium py-3 px-6 rounded-lg text-center transition-colors duration-300 flex items-center justify-center gap-2 group"
+                        className="block w-full bg-blue-800 hover:bg-blue-900 text-white font-medium py-3 px-6 text-center transition-colors duration-300 flex items-center justify-center gap-2 group"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         <span>Devis gratuit</span>
@@ -236,11 +223,11 @@ export default function Header() {
                       
                       <a 
                         href="tel:+261349219223"
-                        className="flex items-center justify-center gap-3 text-gray-700 hover:text-gray-900 transition-colors duration-300"
+                        className="flex items-center justify-center gap-3 text-gray-700 hover:text-blue-800 transition-colors duration-300"
                         onClick={() => setIsMenuOpen(false)}
                       >
-                        <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
-                          <FaPhone className="w-4 h-4" />
+                        <div className="w-10 h-10 bg-gray-100 flex items-center justify-center">
+                          <FaPhone className="w-4 h-4 text-blue-800" />
                         </div>
                         <div>
                           <div className="font-medium">034 92 192 23</div>

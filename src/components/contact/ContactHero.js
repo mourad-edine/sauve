@@ -38,12 +38,7 @@ export default function ContactHero() {
               />
               
               {/* Badge "Réponse Rapide" */}
-              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 rounded-2xl shadow-2xl">
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-ping"></div>
-                  <span className="text-white text-xs font-bold uppercase tracking-widest">Équipe en ligne</span>
-                </div>
-              </div>
+             
             </motion.div>
           </div>
 
@@ -62,10 +57,10 @@ export default function ContactHero() {
 
             {/* Titre principal */}
             <h1 className="relative mb-8">
-              <span className="block text-3xl md:text-5xl lg:text-6xl font-light uppercase tracking-tighter text-white/90">
+              <span className="block text-2xl md:text-3xl lg:text-4xl font-light uppercase tracking-tighter text-white/90">
                 CONTACTEZ
               </span>
-              <span className="block text-4xl md:text-6xl lg:text-7xl font-bold uppercase tracking-wider mt-2 bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500">
+              <span className="block text-2xl md:text-3xl lg:text-4xl font-bold uppercase tracking-wider mt-2 bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500">
                 Nous Aujourd'hui
               </span>
             </h1>

@@ -5,6 +5,7 @@ import GalleryGrid from "@/components/gallery/GalleryGrid";
 import GalleryLightbox from "@/components/gallery/GalleryLightbox";
 import GalleryHero from "@/components/gallery/GalleryHero";
 import GalleryFilters from "@/components/gallery/GalleryFilters";
+import { FaArrowRight } from "react-icons/fa";
 
 const API_URL = "https://admin.camp-toamasina.mg/api/photos_camps";
 const STORAGE_URL = "https://admin.camp-toamasina.mg/photo_camps/";
@@ -180,7 +181,7 @@ export default function GaleriePage() {
         />
 
         {/* Statistiques */}
-        <div className="mb-8 text-center">
+        {/* <div className="mb-8 text-center">
           <p className="text-gray-600">
             Affichage de{" "}
             <span className="font-bold text-blue-700">
@@ -197,7 +198,7 @@ export default function GaleriePage() {
               </span>
             )}
           </p>
-        </div>
+        </div> */}
 
         {/* Grille d'images */}
         <GalleryGrid images={currentImages} onImageClick={openLightbox} />
@@ -289,48 +290,47 @@ export default function GaleriePage() {
       )}
 
       {/* CTA Section */}
-      <div className="bg-white border border-gray-200 py-16 md:py-20 shadow-sm">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="mb-10">
-            <div className="inline-block mb-6">
-              <div className="w-12 h-1 bg-gradient-to-r from-blue-500 to-amber-500 mx-auto"></div>
-            </div>
-
-            <h2 className="text-2xl sm:text-3xl font-medium text-gray-900 mb-6">
-              Un projet en tête ?
-            </h2>
-
-            <p className="text-lg text-gray-600 max-w-xl mx-auto leading-relaxed">
-              Nos créateurs transforment vos idées en vêtements sur mesure.
-              Parlons-en ensemble.
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            <a
-              href="/contact"
-              className="group relative inline-flex items-center justify-center gap-3 w-full sm:w-auto bg-gradient-to-r from-blue-900 to-blue-800 hover:blue-gray-800 hover:to-blue-700 text-white font-medium py-4 px-10 rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-[1.02] active:scale-95 shadow-md"
-            >
-              <span className="font-semibold">Échanger sur mon projet</span>
-              <svg
-                className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
-            </a>
-
-            
-          </div>
-        </div>
+      <div className="bg-white border-t border-gray-200 py-16 md:py-20">
+  <div className="max-w-3xl mx-auto px-5 sm:px-6 lg:px-8 text-center">
+    {/* Séparateur discret */}
+    <div className="mb-10">
+      <div className="inline-flex items-center gap-4">
+        <div className="h-px w-8 bg-gray-300"></div>
+        <span className="text-sm uppercase tracking-wider text-gray-500 font-medium">
+          Prêt à démarrer ?
+        </span>
+        <div className="h-px w-8 bg-gray-300"></div>
       </div>
+    </div>
+
+    <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-5">
+      Un projet en tête ?
+    </h2>
+
+    <p className="text-md md:text-md text-gray-600 max-w-xl mx-auto leading-relaxed mb-10">
+       
+      Discutons ensemble de votre projet.
+    </p>
+
+    <div className="flex flex-col sm:flex-row justify-center gap-4">
+      <a
+        href="/contact"
+        className="inline-flex items-center justify-center gap-3 bg-blue-800 text-white font-medium px-8 py-4 hover:bg-blue-900 transition-colors duration-300"
+      >
+        <span>Échanger sur mon projet</span>
+        <FaArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+      </a>
+
+      {/* Optionnel : bouton secondaire discret */}
+      {/* <a
+        href="/devis"
+        className="inline-flex items-center justify-center gap-3 border border-gray-300 text-gray-700 font-medium px-8 py-4 hover:bg-gray-50 transition-colors duration-300"
+      >
+        Demander un devis rapide
+      </a> */}
+    </div>
+  </div>
+</div>
     </div>
   );
 }

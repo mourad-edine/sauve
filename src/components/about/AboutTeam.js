@@ -1,12 +1,10 @@
 'use client';
-import { FaInstagram, FaLinkedin, FaEnvelope, FaHeart, FaRulerCombined, FaUsers, FaAward, FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect, useCallback } from "react";
+import { FaInstagram, FaLinkedin, FaEnvelope, FaHeart } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 export default function AboutTeam() {
   const [hoveredMember, setHoveredMember] = useState(null);
-  const [activeMember, setActiveMember] = useState(0);
-  const [autoPlay, setAutoPlay] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -25,13 +23,14 @@ export default function AboutTeam() {
       description: "Diplômée des Métiers d'Art, Marie supervise chaque création avec son œil expert et sa passion pour les détails.",
       expertise: ["Design", "Patronnage", "Relations clients"],
       initials: "ML",
-      color: "#3B82F6",
-      accent: "#93C5FD",
+      color: "#1E40AF", // Bleu foncé uniforme
+      accent: "#3B82F6", // Bleu clair uniforme
       social: {
         instagram: "#",
         linkedin: "#",
         email: "marie@confection-pro.fr",
       },
+      photo: "https://images.unsplash.com/photo-1494790108755-2616b786d4d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       name: "Thomas Dubois",
@@ -39,9 +38,10 @@ export default function AboutTeam() {
       description: "Expert en coupe et confection depuis 20 ans, Thomas garantit la perfection technique de chaque pièce.",
       expertise: ["Coupe", "Confection", "Contrôle qualité"],
       initials: "TD",
-      color: "#10B981",
-      accent: "#6EE7B7",
+      color: "#1E40AF",
+      accent: "#3B82F6",
       social: { linkedin: "#", email: "thomas@confection-pro.fr" },
+      photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       name: "Sophie Martin",
@@ -49,13 +49,14 @@ export default function AboutTeam() {
       description: "Sophie accompagne les entreprises dans la définition de leur identité vestimentaire.",
       expertise: ["Conseil", "Développement", "Suivi projets"],
       initials: "SM",
-      color: "#8B5CF6",
-      accent: "#C4B5FD",
+      color: "#1E40AF",
+      accent: "#3B82F6",
       social: {
         instagram: "#",
         linkedin: "#",
         email: "sophie@confection-pro.fr",
       },
+      photo: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       name: "Jean Petit",
@@ -63,348 +64,201 @@ export default function AboutTeam() {
       description: "Artisan d'exception, Jean maîtrise les techniques ancestrales de la couture sur mesure.",
       expertise: ["Tailleur", "Retouches", "Formation"],
       initials: "JP",
-      color: "#F59E0B",
-      accent: "#FCD34D",
+      color: "#1E40AF",
+      accent: "#3B82F6",
       social: { email: "jean@confection-pro.fr" },
+      photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
   ];
 
-  const artisans = [
-    { name: "Isabelle", role: "Couturière spécialisée", experience: "8 ans" },
-    { name: "Marc", role: "Brodeur expert", experience: "12 ans" },
-    { name: "Chloé", role: "Styliste-modéliste", experience: "6 ans" },
-    { name: "Pierre", role: "Spécialiste finitions", experience: "10 ans" },
-    { name: "Élodie", role: "Responsable logistique", experience: "5 ans" },
-    { name: "Antoine", role: "Technicien textile", experience: "7 ans" },
-  ];
-
-  const nextMember = useCallback(() => {
-    setActiveMember((prev) => (prev === teamMembers.length - 1 ? 0 : prev + 1));
-  }, [teamMembers.length]);
-
-  const prevMember = useCallback(() => {
-    setActiveMember((prev) => (prev === 0 ? teamMembers.length - 1 : prev - 1));
-  }, [teamMembers.length]);
-
-  useEffect(() => {
-    if (!autoPlay) return;
-    const interval = setInterval(nextMember, 4000);
-    return () => clearInterval(interval);
-  }, [autoPlay, nextMember]);
-
-  const currentMember = teamMembers[activeMember];
-
   return (
-    <section className="relative py-12 sm:py-16 md:py-20 lg:py-32 bg-white overflow-hidden">
-      {/* Éléments décoratifs subtils */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+    <section className="relative py-12 sm:py-16 bg-white overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-100 to-transparent"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-100 to-transparent"></div>
 
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* En-tête minimaliste */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12 sm:mb-16 md:mb-20"
+          className="text-center mb-12 sm:mb-16"
         >
-          <div className="text-center mb-8 sm:mb-12 md:mb-16">
-  <div className="inline-block mb-4 sm:mb-6">
-    <div className="flex items-center justify-center gap-2">
-      <div className="w-6 sm:w-8 h-px bg-gray-300"></div>
-      <span className="text-xs sm:text-sm font-medium text-gray-500 uppercase">Notre Équipe</span>
-      <div className="w-6 sm:w-8 h-px bg-gray-300"></div>
-    </div>
-  </div>
-  <h2 className="text-xl md:text-2xl lg:text-3xl font-light text-blue-900 mb-4 uppercase">
-    Des experts unis par
-    <span className="block text-base sm:text-lg md:text-xl text-yellow-600 font-normal mt-2">
-      la passion du métier
-    </span>
-  </h2>
-  <div className="w-20 sm:w-24 h-1 bg-yellow-500 mx-auto mb-4 sm:mb-6"></div>
-</div>
-        </motion.div>
-
-        {/* Équipe dirigeante */}
-        <div className="mb-16 sm:mb-20 md:mb-24">
-          {/* Contrôles carrousel - Visible sur mobile/tablette */}
-        
-
-          {/* Version mobile/tablette - Carrousel */}
-          <div className="md:hidden">
-            {/* Onglets de navigation mobile */}
-            
-
-            {/* Conteneur carrousel mobile */}
-            <div className="relative">
-              {/* Flèches mobiles */}
-              <button
-                onClick={() => {
-                  prevMember();
-                  setAutoPlay(false);
-                }}
-                className="absolute left-2 top-1/2 -translate-y-1/2 z-20
-                           p-3 sm:p-4 rounded-full bg-white/90 backdrop-blur-md border border-gray-200 
-                           shadow-lg hover:bg-white hover:shadow-xl hover:scale-110
-                           transition-all duration-300 text-gray-700 hover:text-gray-900"
-                aria-label="Membre précédent"
-              >
-                <FaChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
-              </button>
-
-              <button
-                onClick={() => {
-                  nextMember();
-                  setAutoPlay(false);
-                }}
-                className="absolute right-2 top-1/2 -translate-y-1/2 z-20
-                           p-3 sm:p-4 rounded-full bg-white/90 backdrop-blur-md border border-gray-200 
-                           shadow-lg hover:bg-white hover:shadow-xl hover:scale-110
-                           transition-all duration-300 text-gray-700 hover:text-gray-900"
-                aria-label="Membre suivant"
-              >
-                <FaChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
-              </button>
-
-              {/* Slide mobile animée */}
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeMember}
-                  initial={{ opacity: 0, x: isMobile ? 40 : 60 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: isMobile ? -40 : -60 }}
-                  transition={{ duration: 0.35, ease: "easeOut" }}
-                  className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm"
-                  onMouseEnter={() => setHoveredMember(activeMember)}
-                  onMouseLeave={() => setHoveredMember(null)}
-                >
-                  <div className="p-6 sm:p-8">
-                    <div className="flex flex-col items-center">
-                      {/* Avatar mobile */}
-                      <div className="relative mb-6">
-                        <div className="relative w-20 h-20 sm:w-24 sm:h-24 mx-auto">
-                          <motion.div
-                            animate={hoveredMember === activeMember ? { rotate: 360 } : { rotate: 0 }}
-                            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                            className="absolute inset-0 rounded-full border border-dashed opacity-50"
-                            style={{ borderColor: currentMember.color }}
-                          />
-                          
-                          <div 
-                            className="absolute inset-2 rounded-full flex items-center justify-center text-white text-xl sm:text-2xl font-medium"
-                            style={{ backgroundColor: currentMember.color }}
-                          >
-                            {currentMember.initials}
-                          </div>
-                          
-                          {/* Badge d'expertise */}
-                          <div className="absolute -top-2 -right-2 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center shadow-sm">
-                            <FaHeart className="w-3 h-3" style={{ color: currentMember.color }} />
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Contenu mobile */}
-                      <div className="text-center mb-6">
-                        <h3 className="text-xl sm:text-2xl font-medium text-gray-900 mb-2">
-                          {currentMember.name}
-                        </h3>
-                        <div className="text-sm text-gray-500 mb-4">
-                          {currentMember.role}
-                        </div>
-                        <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-6">
-                          {currentMember.description}
-                        </p>
-                      </div>
-
-                      {/* Expertises mobiles */}
-                      <div className="mb-6 w-full">
-                        <div className="flex flex-wrap justify-center gap-2">
-                          {currentMember.expertise.map((exp, idx) => (
-                            <span
-                              key={idx}
-                              className="text-xs text-gray-600 px-3 py-1 rounded-full border border-gray-200 bg-gray-50"
-                              style={{
-                                borderColor: currentMember.accent,
-                                backgroundColor: `${currentMember.color}10`
-                              }}
-                            >
-                              {exp}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Social links mobiles */}
-                      <div className="flex justify-center space-x-4 pt-6 border-t border-gray-100 w-full">
-                        {currentMember.social.instagram && (
-                          <a
-                            href={currentMember.social.instagram}
-                            className="text-gray-400 hover:text-pink-500 transition-colors duration-300"
-                          >
-                            <FaInstagram className="w-5 h-5" />
-                          </a>
-                        )}
-                        {currentMember.social.linkedin && (
-                          <a
-                            href={currentMember.social.linkedin}
-                            className="text-gray-400 hover:text-blue-600 transition-colors duration-300"
-                          >
-                            <FaLinkedin className="w-5 h-5" />
-                          </a>
-                        )}
-                        <a
-                          href={`mailto:${currentMember.social.email}`}
-                          className="text-gray-400 hover:text-gray-600 transition-colors duration-300"
-                        >
-                          <FaEnvelope className="w-5 h-5" />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-
-              {/* Points de navigation mobile */}
-              <div className="flex justify-center gap-2 sm:gap-3 mt-6">
-                {teamMembers.map((member, index) => (
-                  <button
-                    key={index}
-                    onClick={() => {
-                      setActiveMember(index);
-                      setAutoPlay(false);
-                    }}
-                    className={`rounded-full transition-all duration-400 ${
-                      activeMember === index 
-                        ? 'w-8 sm:w-10 h-2 sm:h-3' 
-                        : 'w-2 sm:w-3 h-2 sm:h-3'
-                    }`}
-                    style={{
-                      backgroundColor: activeMember === index ? member.color : '#D1D5DB'
-                    }}
-                    aria-label={`Aller à ${member.name}`}
-                  />
-                ))}
+          <div className="text-center mb-8">
+            <div className="inline-block mb-4">
+              <div className="flex items-center justify-center gap-2">
+                <div className="w-6 h-px bg-blue-200"></div>
+                <span className="text-xs font-medium text-blue-600 uppercase">Notre Équipe</span>
+                <div className="w-6 h-px bg-blue-200"></div>
               </div>
             </div>
+            <h2 className="text-xl sm:text-2xl font-light text-blue-900 mb-3 uppercase">
+              Des experts unis par
+              <span className="block text-base sm:text-lg text-blue-600 font-normal mt-1">
+                la passion du métier
+              </span>
+            </h2>
+            <div className="w-16 h-1 bg-blue-400 mx-auto mb-4"></div>
+            <p className="text-sm text-gray-600 max-w-2xl mx-auto">
+              Notre équipe d'experts vous accompagne dans la réalisation de vos projets textiles
+            </p>
           </div>
+        </motion.div>
 
-          {/* Version desktop - STYLE ORIGINAL (non carrousel) */}
-          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member, index) => (
+        {/* Grille des membres d'équipe */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          {teamMembers.map((member, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="relative h-64 sm:h-72 perspective-1000"
+              onMouseEnter={() => !isMobile && setHoveredMember(index)}
+              onMouseLeave={() => !isMobile && setHoveredMember(null)}
+              onClick={() => isMobile && setHoveredMember(hoveredMember === index ? null : index)}
+            >
+              {/* Carte qui tourne */}
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: index * 0.1 }}
-                className="relative group"
-                onMouseEnter={() => setHoveredMember(index)}
-                onMouseLeave={() => setHoveredMember(null)}
+                className="relative w-full h-full preserve-3d transition-all duration-100"
+                animate={{
+                  rotateY: hoveredMember === index ? 180 : 0,
+                }}
+                style={{
+                  transformStyle: 'preserve-3d',
+                }}
               >
-                {/* Carte principale - STYLE ORIGINAL */}
-                <div className="bg-white rounded-lg border border-gray-200 p-6 transition-all duration-300 hover:shadow-lg hover:border-gray-300 h-full">
-                  {/* Avatar avec effet de profondeur */}
-                  <div className="relative mb-6">
-                    <div className="relative w-20 h-20 mx-auto">
-                      {/* Cercle de fond animé */}
-                      <motion.div
-                        animate={hoveredMember === index ? { rotate: 360 } : { rotate: 0 }}
-                        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                        className="absolute inset-0 rounded-full border border-dashed opacity-50"
-                        style={{ borderColor: member.color }}
-                      />
-                      
-                      {/* Avatar principal */}
-                      <div 
-                        className="absolute inset-2 rounded-full flex items-center justify-center text-white text-2xl font-light"
-                        style={{ backgroundColor: member.color }}
-                      >
-                        {member.initials}
+                {/* Face avant - Carte compacte */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-blue-100  border border-blue-200 backface-hidden overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+                  <div className="p-4 sm:p-5 h-full flex flex-col items-center justify-center text-center">
+                    {/* Avatar/Photo avant */}
+                    <div className="relative w-16 h-16 sm:w-20 sm:h-20 mb-4">
+                      <div className="absolute inset-0 rounded-full border-2 border-white shadow-sm overflow-hidden bg-blue-100">
+                        <div 
+                          className="w-full h-full flex items-center justify-center text-white text-xl font-medium bg-blue-600"
+                        >
+                          {member.initials}
+                        </div>
                       </div>
-                      
-                      {/* Badge d'expertise */}
-                      <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center shadow-sm">
-                        <FaHeart className="w-3 h-3" style={{ color: member.color }} />
+                      <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-blue-500 border-2 border-white flex items-center justify-center">
+                        <FaHeart className="w-2.5 h-2.5 text-white" />
                       </div>
                     </div>
-                  </div>
-
-                  {/* Informations */}
-                  <div className="text-center mb-6">
-                    <h3 className="text-xl font-medium text-gray-900 mb-2">
+                    
+                    <h3 className="text-base sm:text-lg font-medium text-blue-900 mb-1">
                       {member.name}
                     </h3>
-                    <div className="text-sm text-gray-500 mb-4">
+                    <div className="text-xs sm:text-sm text-blue-600 mb-3">
                       {member.role}
                     </div>
-                    <p className="text-gray-600 text-sm leading-relaxed mb-6">
-                      {member.description}
-                    </p>
-                  </div>
-
-                  {/* Expertises sous forme de tags minimalistes */}
-                  <div className="mb-6">
-                    <div className="flex flex-wrap justify-center gap-2">
-                      {member.expertise.map((exp, idx) => (
+                    
+                    {/* Badges d'expertise */}
+                    <div className="flex flex-wrap justify-center gap-1.5 mb-4">
+                      {member.expertise.slice(0, 2).map((exp, idx) => (
                         <span
                           key={idx}
-                          className="text-xs text-gray-600 px-3 py-1 rounded-full border border-gray-200 bg-gray-50 group-hover:border-accent group-hover:bg-accent/5 transition-colors duration-300"
-                          style={{
-                            '--accent': member.accent,
-                            '--color': member.color,
-                          }}
+                          className="text-xs px-2.5 py-1 rounded-full bg-white/80 text-blue-700 border border-blue-200"
                         >
                           {exp}
                         </span>
                       ))}
                     </div>
-                  </div>
-
-                  {/* Social links minimalistes */}
-                  <div className="flex justify-center space-x-4 pt-6 border-t border-gray-100">
-                    {member.social.instagram && (
-                      <motion.a
-                        whileHover={{ y: -2 }}
-                        href={member.social.instagram}
-                        className="text-gray-400 hover:text-pink-500 transition-colors duration-300"
-                      >
-                        <FaInstagram className="w-5 h-5" />
-                      </motion.a>
-                    )}
-                    {member.social.linkedin && (
-                      <motion.a
-                        whileHover={{ y: -2 }}
-                        href={member.social.linkedin}
-                        className="text-gray-400 hover:text-blue-600 transition-colors duration-300"
-                      >
-                        <FaLinkedin className="w-5 h-5" />
-                      </motion.a>
-                    )}
-                    <motion.a
-                      whileHover={{ y: -2 }}
-                      href={`mailto:${member.social.email}`}
-                      className="text-gray-400 hover:text-gray-600 transition-colors duration-300"
-                    >
-                      <FaEnvelope className="w-5 h-5" />
-                    </motion.a>
+                    
+                    {/* Indicateur survol */}
+                    <div className="text-xs text-blue-500 mt-2 flex items-center gap-1">
+                      <span>Survolez pour + d'infos</span>
+                      {!isMobile && <span className="text-xs">→</span>}
+                    </div>
                   </div>
                 </div>
 
-                {/* Indicateur de survol subtil */}
-                {hoveredMember === index && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="absolute -inset-1 rounded-lg border-2 pointer-events-none"
-                    style={{ borderColor: member.color }}
-                  />
-                )}
+                {/* Face arrière - Informations détaillées */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-800 to-blue-900  border border-blue-500 backface-hidden overflow-hidden shadow-lg"
+                  style={{ 
+                    transform: 'rotateY(180deg)',
+                    transformStyle: 'preserve-3d',
+                  }}
+                >
+                  <div className="p-4 sm:p-5 h-full flex flex-col">
+                    {/* Photo arrière */}
+                    <div className="relative w-full h-24 mb-4 rounded-lg overflow-hidden bg-blue-500">
+                      <div className="absolute inset-0 bg-blue-800/20"></div>
+                      {/* Vous pouvez décommenter cette ligne pour utiliser une vraie photo */}
+                      {/* <img 
+                        src={member.photo} 
+                        alt={member.name}
+                        className="w-full h-full object-cover"
+                      /> */}
+                      <div className="w-full h-full flex items-center justify-center text-white text-4xl font-light">
+                        {member.initials}
+                      </div>
+                    </div>
+                    
+                    <h3 className="text-lg font-semibold text-white mb-2">
+                      {member.name}
+                    </h3>
+                    <div className="text-sm text-blue-100 mb-3">
+                      {member.role}
+                    </div>
+                    
+                    <p className="text-xs sm:text-sm text-blue-100/90 mb-4 flex-grow">
+                      {member.description}
+                    </p>
+                    
+                    {/* Toutes les expertises */}
+                    <div className="mb-4">
+                      <div className="flex flex-wrap gap-1.5">
+                        {member.expertise.map((exp, idx) => (
+                          <span
+                            key={idx}
+                            className="text-xs px-2.5 py-1 rounded-full bg-blue-500/30 text-white border border-blue-400/50"
+                          >
+                            {exp}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    {/* Social links */}
+                    <div className="flex justify-center space-x-4 pt-3 border-t border-blue-500/30">
+                      {member.social.instagram && (
+                        <a
+                          href={member.social.instagram}
+                          className="text-blue-200 hover:text-white transition-colors duration-300"
+                        >
+                          <FaInstagram className="w-4 h-4" />
+                        </a>
+                      )}
+                      {member.social.linkedin && (
+                        <a
+                          href={member.social.linkedin}
+                          className="text-blue-200 hover:text-white transition-colors duration-300"
+                        >
+                          <FaLinkedin className="w-4 h-4" />
+                        </a>
+                      )}
+                      <a
+                        href={`mailto:${member.social.email}`}
+                        className="text-blue-200 hover:text-white transition-colors duration-300"
+                      >
+                        <FaEnvelope className="w-4 h-4" />
+                      </a>
+                    </div>
+                    
+                    {/* Indicateur retour */}
+                    <div className="text-xs text-blue-200/70 text-center mt-3">
+                      {isMobile ? 'Touchez pour revenir' : 'Survolez pour revenir'}
+                    </div>
+                  </div>
+                </div>
               </motion.div>
-            ))}
-          </div>
+            </motion.div>
+          ))}
         </div>
+
+        {/* Indication pour mobile */}
+      
       </div>
     </section>
   );
