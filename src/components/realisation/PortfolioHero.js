@@ -33,7 +33,7 @@ export default function PortfolioHero() {
               className="relative z-10 w-full max-w-[300px]"
             >
               <img
-                src="https://media.wuerth.com/stmedia/modyf/eshop/products/std.lang.all/resolutions/normal/png-231x315px/644031511.png" // REMPLACEZ PAR VOTRE PNG
+                src="https://topomaroc.com/wp-content/uploads/2023/10/lasts0-1637331855-izcb-300x300.png" // REMPLACEZ PAR VOTRE PNG
                 alt="Nos Réalisations"
                 className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.6)] animate-float-slow"
               />

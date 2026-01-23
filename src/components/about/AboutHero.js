@@ -83,7 +83,7 @@ export default function AboutHero() {
               className="relative z-10"
             >
               <img
-                src="https://www.tecalys.com/actifs/components/erp/photo/uniformes-travail-2.png" // REMPLACEZ PAR VOTRE PNG
+                src="https://static.vecteezy.com/system/resources/thumbnails/047/249/331/small/sweater-shirt-hoodie-isolated-png.png" // REMPLACEZ PAR VOTRE PNG
                 alt="Vonjy Atelier"
                 className="w-full max-w-[500px] h-auto object-contain drop-shadow-[0_20px_60px_rgba(0,0,0,0.5)] animate-float-slow"
               />

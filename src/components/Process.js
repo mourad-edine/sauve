@@ -51,7 +51,7 @@ export default function Process() {
               transition={{ duration: 0.5 }}
               className="relative"
             >
-              <motion.img 
+              {/* <motion.img 
                 src="https://png.pngtree.com/png-vector/20231001/ourmid/pngtree-civil-engineer-reviewing-blueprint-company-handsome-png-image_10133006.png"
                 alt="Indicateur de processus"
                 className="w-36 h-auto object-contain pointer-events-none lg:w-44"
@@ -66,7 +66,7 @@ export default function Process() {
                   ease: "easeInOut",
                   times: [0, 0.5, 1]
                 }}
-              />
+              /> */}
               
               {/* Ligne pointillée qui relie l'image au titre */}
               

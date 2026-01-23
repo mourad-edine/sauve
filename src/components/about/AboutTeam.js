@@ -76,7 +76,7 @@ export default function AboutTeam() {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-100 to-transparent"></div>
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-100 to-transparent"></div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* En-tête minimaliste */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -99,9 +99,7 @@ export default function AboutTeam() {
               </span>
             </h2>
             <div className="w-16 h-1 bg-blue-400 mx-auto mb-4"></div>
-            <p className="text-sm text-gray-600 max-w-2xl mx-auto">
-              Notre équipe d'experts vous accompagne dans la réalisation de vos projets textiles
-            </p>
+           
           </div>
         </motion.div>
 
@@ -136,7 +134,7 @@ export default function AboutTeam() {
                     <div className="relative w-16 h-16 sm:w-20 sm:h-20 mb-4">
                       <div className="absolute inset-0 rounded-full border-2 border-white shadow-sm overflow-hidden bg-blue-100">
                         <div 
-                          className="w-full h-full flex items-center justify-center text-white text-xl font-medium bg-blue-600"
+                          className="w-full h-full flex items-center justify-center text-white text-xl font-medium bg-blue-900"
                         >
                           {member.initials}
                         </div>

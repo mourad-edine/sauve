@@ -119,7 +119,7 @@ export default function PortfolioCTA() {
 
     /* Card uniquement en responsive */
     bg-white lg:bg-transparent
-    rounded-2xl lg:rounded-none
+     lg:rounded-none
     shadow-md lg:shadow-none
     p-6 sm:p-8 lg:p-0
     border border-gray-100 lg:border-none

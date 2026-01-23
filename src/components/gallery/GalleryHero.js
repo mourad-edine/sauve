@@ -30,7 +30,7 @@ export default function GalleryHero() {
               className="relative z-10 w-full max-w-[500px]"
             >
               <img
-                src="https://www.modyf.be/media/mf_webp/png/media/stmedia/modyf/eshop/products/std.lang.all/resolutions/normal/png-546x410px/56931644.webp" // REMPLACEZ PAR VOTRE PNG (ex: un vêtement phare sur mannequin ou cintre)
+                src="https://fipcenter.com/guide/wp-content/uploads/2021/02/combinaison-industrielle-de-travailleur.png" // REMPLACEZ PAR VOTRE PNG (ex: un vêtement phare sur mannequin ou cintre)
                 alt="Collection Vonjy"
                 className="w-full h-auto object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.4)] animate-float-slow"
               />

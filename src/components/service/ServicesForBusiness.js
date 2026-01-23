@@ -42,70 +42,99 @@ export default function ServicesForBusiness() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
- const businessServices = [
+  const businessServices = [
     {
       icon: <FaHotel />,
       title: "Hôtellerie & Restauration",
-      items: ["Uniforme de réception", "Tenue de serveur/serveuse", "Chefs de cuisine", "Vestes de barman"],
+      items: [
+        "Uniforme de réception",
+        "Tenue de serveur/serveuse",
+        "Chefs de cuisine",
+        "Vestes de barman",
+      ],
       color: "#3B82F6",
       accent: "#93C5FD",
       initials: "HR",
       png: "https://themerchlist.com/wp-content/uploads/2023/02/1.0-Main-Custom-Printed-Housekeeping-Uniform-Merchlist-Add-Your-Design-or-Logo-to-Custom-Uniform.png", // Ajout du PNG
-      overlayColor: "rgba(30, 58, 138, 0.9)"
+      overlayColor: "rgba(30, 58, 138, 0.9)",
     },
     {
       icon: <FaUserMd />,
       title: "Médical & Paramédical",
-      items: ["Blouses médicales", "Tenues de chirurgie", "Vêtements de laboratoire", "Uniforme infirmier"],
+      items: [
+        "Blouses médicales",
+        "Tenues de chirurgie",
+        "Vêtements de laboratoire",
+        "Uniforme infirmier",
+      ],
       color: "#3B82F6",
       accent: "#6EE7B7",
       initials: "MP",
       png: "https://static.label-blouse.net/39596-medium_default/tunique-de-travail-medical-manches-longues-col-turquoise.jpg",
-      overlayColor: "rgba(6, 78, 59, 0.9)"
+      overlayColor: "rgba(6, 78, 59, 0.9)",
     },
     {
       icon: <FaShieldHalved />,
       title: "Sécurité & Services",
-      items: ["Agents de sécurité", "Conciergerie", "Vêtements maintenance", "Tenues de chauffeur"],
+      items: [
+        "Agents de sécurité",
+        "Conciergerie",
+        "Vêtements maintenance",
+        "Tenues de chauffeur",
+      ],
       color: "#3B82F6",
       accent: "#6EE7B7",
       initials: "MP",
       png: "https://urgencesmods.fr/wp-content/uploads/2020/08/sc-1.png",
-      overlayColor: "rgba(6, 78, 59, 0.9)"
+      overlayColor: "rgba(6, 78, 59, 0.9)",
     },
     {
       icon: <FaShoppingBag />,
       title: "Commerce & Retail",
-      items: ["Tenues de vendeurs", "Uniforme de caissier", "Vestes managériales", "Polo personnalisé"],
+      items: [
+        "Tenues de vendeurs",
+        "Uniforme de caissier",
+        "Vestes managériales",
+        "Polo personnalisé",
+      ],
       color: "#3B82F6",
       accent: "#6EE7B7",
       initials: "MP",
       png: "https://www.label-blouse.net/modules/colorizeproplus/compositions/6c9c545830c297c7d06d9f405e17e770.png",
-      overlayColor: "rgba(6, 78, 59, 0.9)"
+      overlayColor: "rgba(6, 78, 59, 0.9)",
     },
     {
       icon: <FaGraduationCap />,
       title: "Éducation & Formation",
-      items: ["Blouses d'étudiants", "Tenues formateurs", "Vêtements techniques", "Uniforme scolaire"],
+      items: [
+        "Blouses d'étudiants",
+        "Tenues formateurs",
+        "Vêtements techniques",
+        "Uniforme scolaire",
+      ],
       color: "#3B82F6",
       accent: "#6EE7B7",
       initials: "MP",
       png: "https://static.vecteezy.com/system/resources/thumbnails/054/017/970/small/light-blue-school-uniform-dress-with-short-sleeves-and-tie-free-png.png",
-      overlayColor: "rgba(6, 78, 59, 0.9)"
+      overlayColor: "rgba(6, 78, 59, 0.9)",
     },
     {
       icon: <FaPlane />,
       title: "Transport & Logistique",
-      items: ["Uniforme d'équipage", "Tenues pilote/hôtesse", "Personnel au sol", "Tenues logistique"],
-     color: "#3B82F6",
+      items: [
+        "Uniforme d'équipage",
+        "Tenues pilote/hôtesse",
+        "Personnel au sol",
+        "Tenues logistique",
+      ],
+      color: "#3B82F6",
       accent: "#6EE7B7",
       initials: "MP",
       png: "https://fipcenter.com/guide/wp-content/uploads/2021/02/tenue-de-travail.png",
-      overlayColor: "rgba(6, 78, 59, 0.9)"
-    }
+      overlayColor: "rgba(6, 78, 59, 0.9)",
+    },
     // ... Appliquer png: servicePngs.nom pour les autres
   ];
-
 
   const advantages = [
     {
@@ -210,8 +239,9 @@ export default function ServicesForBusiness() {
         </motion.div>
 
         {/* Grille des services */}
-        
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-32">
+
+        <motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-32">
           {businessServices.map((service, index) => (
             <motion.div
               key={index}
@@ -220,35 +250,39 @@ export default function ServicesForBusiness() {
               onMouseLeave={() => setHoveredService(null)}
             >
               {/* Fond Coloré */}
-              <div 
-                className="absolute inset-0 transition-transform duration-700 group-hover:scale-110"
-                style={{ backgroundColor: service.color }}
-              />
+              <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-110 bg-blue-900" />
 
               {/* PNG flottant en arrière-plan de la carte */}
-              <div className="absolute right-[-10px] bottom-[-10px] w-52 h-52 
+              <div
+                className="absolute right-[-10px] bottom-[-10px] w-52 h-52 
      opacity-90 transition-transform duration-500 
-     group-hover:scale-120">
-  {service.png && (
-    <img
-      src={service.png}
-      alt={service.title}
-      className="w-full h-full object-contain"
-    />
-  )}
-</div>
+     group-hover:scale-120"
+              >
+                {service.png && (
+                  <img
+                    src={service.png}
+                    alt={service.title}
+                    className="w-full h-full object-contain"
+                  />
+                )}
+              </div>
 
               {/* Contenu de la carte */}
               <div className="relative h-full p-8 flex flex-col z-10">
                 <div className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white text-2xl mb-6">
                   {service.icon}
                 </div>
-                
-                <h3 className="text-xl uppercase font-bold text-white mb-4">{service.title}</h3>
-                
+
+                <h3 className="text-xl uppercase font-bold text-white mb-4">
+                  {service.title}
+                </h3>
+
                 <ul className="space-y-3 flex-1">
                   {service.items.map((item, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-white/90 text-sm">
+                    <li
+                      key={idx}
+                      className="flex items-center gap-2 text-white/90 text-sm"
+                    >
                       <div className="w-1.5 h-1.5 rounded-full bg-yellow-400" />
                       {item}
                     </li>
@@ -256,16 +290,20 @@ export default function ServicesForBusiness() {
                 </ul>
 
                 <button className="mt-6 flex items-center gap-2 text-white font-semibold group/btn">
-                  En savoir plus 
+                  En savoir plus
                   <FaArrowRight className="group-hover/btn:translate-x-2 transition-transform" />
                 </button>
               </div>
             </motion.div>
           ))}
         </div>
+        </motion.div>
+
+
+        
+        
 
         {/* Section des avantages en carrousel */}
-    
 
         {/* Section CTA */}
         <CTA />

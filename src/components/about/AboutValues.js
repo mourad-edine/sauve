@@ -19,7 +19,7 @@ export default function AboutValues() {
 
   const commitments = [
     {
-      title: "Fabriqué en Madagascar",
+      title: "Fabriqué à Madagascar",
       description: "100% de nos créations sont confectionnées dans notre atelier Toamasinaien",
       icon: <FaFlag className="w-6 h-6 sm:w-7 sm:h-7" />,
     },
@@ -40,7 +40,7 @@ export default function AboutValues() {
     },
     // Doublons pour l'effet infini (desktop seulement)
     {
-      title: "Fabriqué en Madagascar",
+      title: "Fabriqué à Madagascar",
       description: "100% de nos créations sont confectionnées dans notre atelier Toamasinaien",
       icon: <FaFlag className="w-6 h-6 sm:w-7 sm:h-7" />,
     },

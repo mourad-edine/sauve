@@ -7,7 +7,7 @@ import { FaEnvelope, FaAward, FaPhoneVolume } from 'react-icons/fa6';
 
 export default function ContactHero() {
   return (
-    <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-cyan-950 via-cyan-900 to-cyan-800 py-16">
+    <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 py-16">
       
       {/* Pattern de fond (inchangé) */}
       <div className="absolute inset-0 opacity-10">
@@ -22,8 +22,8 @@ export default function ContactHero() {
           
           {/* COLONNE GAUCHE : LE PNG (Support/Contact) */}
           <div className="relative order-2 lg:order-1 flex justify-center items-center">
-            {/* Halo lumineux cyan/jaune */}
-            <div className="absolute w-[90%] h-[90%] bg-cyan-400/10 blur-[100px] rounded-full"></div>
+            {/* Halo lumineux blue/jaune */}
+            <div className="absolute w-[90%] h-[90%] bg-blue-400/10 blur-[100px] rounded-full"></div>
             
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -32,7 +32,7 @@ export default function ContactHero() {
               className="relative z-10 w-full max-w-[480px]"
             >
               <img
-                src="https://fipcenter.com/guide/wp-content/uploads/2021/02/tenue-de-travail.png" // REMPLACEZ PAR VOTRE PNG (ex: un téléphone stylisé, ou un portrait d'accueil)
+                src="https://static.vecteezy.com/system/resources/thumbnails/047/241/994/small/blue-sweatshirt-isolated-on-transparent-background-free-png.png" // REMPLACEZ PAR VOTRE PNG (ex: un téléphone stylisé, ou un portrait d'accueil)
                 alt="Contactez-nous"
                 className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] animate-float-slow"
               />
@@ -66,7 +66,7 @@ export default function ContactHero() {
             </h1>
 
             {/* Sous-titre */}
-            <p className="text-lg md:text-xl text-cyan-50 font-light leading-relaxed max-w-2xl mb-10 mx-auto lg:mx-0">
+            <p className="text-lg md:text-xl text-blue-50 font-light leading-relaxed max-w-2xl mb-10 mx-auto lg:mx-0">
               Discutez de votre projet avec nos experts et obtenez un 
               <span className="font-bold text-yellow-300"> devis personnalisé gratuit</span>. Votre vision mérite une confection d'exception.
             </p>

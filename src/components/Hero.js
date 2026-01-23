@@ -8,7 +8,7 @@ import { FaAward, FaScissors } from 'react-icons/fa6';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[85vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-indigo-950 via-indigo-900 to-indigo-800 py-8 md:py-12">
+    <section className="relative min-h-[85vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 py-8 md:py-12">
       
       {/* Pattern de fond */}
       <div className="absolute inset-0 opacity-10">

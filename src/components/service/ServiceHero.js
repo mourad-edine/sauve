@@ -14,7 +14,7 @@ import {
 
 export default function ServicesHero() {
   return (
-    <div className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-800 py-20">
+    <div className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 py-20">
       
       {/* --- VOS ÉLÉMENTS DÉCORATIFS (Gardés à l'identique) --- */}
       <div className="absolute inset-0 opacity-10">
@@ -30,7 +30,7 @@ export default function ServicesHero() {
             {/* Badge */}
             <div className="relative mb-6 inline-block">
               <div className="absolute -inset-4 bg-teal-500/20 rounded-full blur-xl"></div>
-              <div className="relative bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-6 py-2 rounded-full font-bold text-xs uppercase tracking-wider flex items-center gap-3">
+              <div className="relative bg-gradient-to-r from-teal-500 to-blue-600 text-white px-6 py-2 rounded-full font-bold text-xs uppercase tracking-wider flex items-center gap-3">
                 <FaStar className="animate-pulse" />
                 <span>Expertise & Excellence</span>
               </div>
@@ -41,13 +41,13 @@ export default function ServicesHero() {
               <span className="block text-2xl md:text-3xl lg:text-4xl font-light uppercase tracking-tighter text-white/90">
                 NOS
               </span>
-              <span className="block text-2xl md:text-3xl lg:text-4xl font-bold uppercase tracking-wider mt-2 bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-emerald-400 to-teal-500">
+              <span className="block text-2xl md:text-3xl lg:text-4xl font-bold uppercase tracking-wider mt-2 bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-blue-400 to-teal-500">
                 Services
               </span>
             </h1>
 
             {/* Sous-titre */}
-            <p className="text-md md:text-xl text-center lg:text-left text-emerald-100 font-light leading-relaxed max-w-xl mb-10">
+            <p className="text-md md:text-xl text-center lg:text-left text-blue-100 font-light leading-relaxed max-w-xl mb-10">
               Des solutions <span className="font-bold text-teal-300">sur mesure</span> alliant 
               <span className="font-bold text-teal-300"> savoir-faire artisanal</span> et 
               <span className="font-bold text-teal-300"> technologies innovantes</span>.
@@ -86,7 +86,7 @@ export default function ServicesHero() {
             <div key={index} className="group relative bg-white/5 backdrop-blur-sm rounded-sm p-6 border border-white/10 hover:border-teal-500/50 transition-all duration-500 hover:-translate-y-2">
                <div className={`text-3xl mb-4 ${service.color}`}>{service.icon}</div>
                <h3 className="text-lg font-bold text-white mb-2">{service.title}</h3>
-               <p className="text-emerald-100/70 text-xs leading-relaxed">{service.description}</p>
+               <p className="text-blue-100/70 text-xs leading-relaxed">{service.description}</p>
             </div>
           ))}
         </div>
@@ -121,11 +121,11 @@ const services = [
     ],
   },
   {
-    icon: <FaRulerCombined className="text-emerald-400" />,
+    icon: <FaRulerCombined className="text-blue-400" />,
     title: "Confection d'Uniformes",
     description:
       "Fabrication d'uniformes professionnels pour entreprises et institutions",
-    color: "text-emerald-400",
+    color: "text-blue-400",
     features: [
       "Uniformes d'entreprise",
       "Tenues médicales",
