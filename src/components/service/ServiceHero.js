@@ -1,6 +1,7 @@
 "use client";
-import React from "react";
-import { motion } from "framer-motion"; // Ajout de framer-motion pour plus de fluidité
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
 import {
   FaTools,
   FaRulerCombined,
@@ -13,6 +14,30 @@ import {
 } from "react-icons/fa";
 
 export default function ServicesHero() {
+  const [photoCouverture, setPhotoCouverture] = useState("https://www.pngarts.com/files/3/Men-Suit-PNG-Transparent-Image.png");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPhotoCouverture = async () => {
+      try {
+        const response = await fetch('https://admin.confection-vonjy.mg/api/getCouverture/service');
+        const data = await response.json();
+        
+        if (data.photos_couverture) {
+          setPhotoCouverture(`https://admin.confection-vonjy.mg/couverture/${data.photos_couverture}`);
+        }
+      } catch (error) {
+        console.error("Erreur lors de la récupération de la photo de couverture:", error);
+        // Garder l'image par défaut en cas d'erreur
+        setPhotoCouverture("https://www.pngarts.com/files/3/Men-Suit-PNG-Transparent-Image.png");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPhotoCouverture();
+  }, []);
+
   return (
     <div className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 py-20">
       
@@ -61,33 +86,61 @@ export default function ServicesHero() {
             </div>
           </div>
 
-          {/* COLONNE DROITE : LE PNG ANIMÉ */}
+          {/* COLONNE DROITE : LA PHOTO DE COUVERTURE */}
           <div className="relative flex justify-center items-center">
             {/* Halo lumineux derrière l'image */}
             <div className="absolute w-[80%] h-[80%] bg-teal-500/20 blur-[120px] rounded-full"></div>
             
-            <motion.img
-              src="https://www.pngarts.com/files/3/Men-Suit-PNG-Transparent-Image.png" // REMPLACEZ PAR VOTRE PNG
-              alt="Services Illustration"
-              initial={{ opacity: 0, scale: 0.8, x: 50 }}
-              animate={{ opacity: 1, scale: 1, x: 0 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className="relative z-10 w-full max-w-[500px] h-auto object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.5)] animate-float-slow"
-            />
+            {isLoading ? (
+              <div className="relative z-10 w-full max-w-[500px] h-[400px] bg-blue-800/50 rounded-2xl animate-pulse flex items-center justify-center">
+                <div className="text-teal-500 text-lg">Chargement de l'image...</div>
+              </div>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8, x: 50 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+                className="relative z-10 w-full max-w-[500px] h-auto"
+              >
+                <Image
+                  src={photoCouverture}
+                  alt="Services Illustration"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.5)] animate-float-slow rounded-2xl"
+                  sizes="(max-width: 768px) 400px, 500px"
+                  priority
+                />
+              </motion.div>
+            )}
 
             {/* Badge flottant sur l'image */}
-            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+              className="absolute bottom-10 right-6 bg-gradient-to-r from-teal-600 to-blue-700 text-white px-4 py-2 rounded-full text-xs font-bold flex items-center gap-2 shadow-lg z-20"
+            >
+              <FaAward />
+              <span>100% Personnalisé</span>
+            </motion.div>
           </div>
         </div>
 
         {/* --- GRILLE DE SERVICES (Re-centrée) --- */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-24">
           {services.map((service, index) => (
-            <div key={index} className="group relative bg-white/5 backdrop-blur-sm rounded-sm p-6 border border-white/10 hover:border-teal-500/50 transition-all duration-500 hover:-translate-y-2">
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 + 0.3 }}
+              className="group relative bg-white/5 backdrop-blur-sm rounded-sm p-6 border border-white/10 hover:border-teal-500/50 transition-all duration-500 hover:-translate-y-2"
+            >
                <div className={`text-3xl mb-4 ${service.color}`}>{service.icon}</div>
                <h3 className="text-lg font-bold text-white mb-2">{service.title}</h3>
                <p className="text-blue-100/70 text-xs leading-relaxed">{service.description}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -105,6 +158,7 @@ export default function ServicesHero() {
     </div>
   );
 }
+
 // Données des services
 const services = [
   {

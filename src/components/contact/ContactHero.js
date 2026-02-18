@@ -1,11 +1,36 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { FaEnvelope, FaAward, FaPhoneVolume } from 'react-icons/fa6';
 
 export default function ContactHero() {
+  const [photoCouverture, setPhotoCouverture] = useState("https://static.vecteezy.com/system/resources/thumbnails/047/241/994/small/blue-sweatshirt-isolated-on-transparent-background-free-png.png");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPhotoCouverture = async () => {
+      try {
+        const response = await fetch('https://admin.confection-vonjy.mg/api/getCouverture/contact');
+        const data = await response.json();
+        
+        if (data.photos_couverture) {
+          setPhotoCouverture(`https://admin.confection-vonjy.mg/couverture/${data.photos_couverture}`);
+        }
+      } catch (error) {
+        console.error("Erreur lors de la récupération de la photo de couverture:", error);
+        // Garder l'image par défaut en cas d'erreur
+        setPhotoCouverture("https://static.vecteezy.com/system/resources/thumbnails/047/241/994/small/blue-sweatshirt-isolated-on-transparent-background-free-png.png");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPhotoCouverture();
+  }, []);
+
   return (
     <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 py-16">
       
@@ -20,7 +45,7 @@ export default function ContactHero() {
       <div className="container relative z-20 mx-auto px-4 md:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
-          {/* COLONNE GAUCHE : LE PNG (Support/Contact) */}
+          {/* COLONNE GAUCHE : LA PHOTO DE COUVERTURE */}
           <div className="relative order-2 lg:order-1 flex justify-center items-center">
             {/* Halo lumineux blue/jaune */}
             <div className="absolute w-[90%] h-[90%] bg-blue-400/10 blur-[100px] rounded-full"></div>
@@ -31,14 +56,35 @@ export default function ContactHero() {
               transition={{ duration: 0.8 }}
               className="relative z-10 w-full max-w-[480px]"
             >
-              <img
-                src="https://static.vecteezy.com/system/resources/thumbnails/047/241/994/small/blue-sweatshirt-isolated-on-transparent-background-free-png.png" // REMPLACEZ PAR VOTRE PNG (ex: un téléphone stylisé, ou un portrait d'accueil)
-                alt="Contactez-nous"
-                className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] animate-float-slow"
-              />
+              {isLoading ? (
+                <div className="w-full h-[400px] bg-blue-800/50 rounded-2xl animate-pulse flex items-center justify-center">
+                  <div className="text-yellow-500 text-lg">Chargement...</div>
+                </div>
+              ) : (
+                <Image
+                  src={photoCouverture}
+                  alt="Contactez-nous"
+                  width={480}
+                  height={480}
+                  className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] animate-float-slow rounded-2xl"
+                  sizes="(max-width: 768px) 400px, 480px"
+                  priority
+                />
+              )}
               
               {/* Badge "Réponse Rapide" */}
-             
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-full shadow-lg flex items-center gap-3"
+              >
+                <div className="relative">
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-ping absolute inset-0"></div>
+                  <div className="w-2 h-2 bg-green-400 rounded-full relative"></div>
+                </div>
+                <span className="text-sm font-bold">Réponse sous 24h</span>
+              </motion.div>
             </motion.div>
           </div>
 

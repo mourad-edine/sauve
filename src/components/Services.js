@@ -6,11 +6,49 @@ import {
 } from "react-icons/fa6";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Services() {
   const [activeService, setActiveService] = useState(0);
   const [autoPlay, setAutoPlay] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const [serviceImages, setServiceImages] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Récupération des images depuis l'API
+  useEffect(() => {
+    const fetchServiceImages = async () => {
+      try {
+        const response = await fetch('https://admin.confection-vonjy.mg/api/photo_service');
+        const data = await response.json();
+        
+        if (Array.isArray(data)) {
+          // Mélanger aléatoirement les images et prendre les 6 premières
+          const shuffled = [...data].sort(() => 0.5 - Math.random());
+          const selectedImages = shuffled.slice(0, 6).map(photo => 
+            `https://admin.confection-vonjy.mg/photo_camps/${photo.photos}`
+          );
+          setServiceImages(selectedImages);
+        }
+      } catch (error) {
+        console.error("Erreur lors de la récupération des photos de service:", error);
+        // Garder les images par défaut en cas d'erreur
+        setServiceImages([
+          "https://static.vecteezy.com/system/resources/thumbnails/022/609/737/small/engineer-man-worker-in-hard-hat-png.png",
+          "https://static.vecteezy.com/system/resources/thumbnails/022/609/737/small/engineer-man-worker-in-hard-hat-png.png",
+          "https://www.pngarts.com/files/3/Engineer-PNG-Download-Image.png",
+          "https://www.pngarts.com/files/3/Engineer-PNG-Download-Image.png",
+          "https://png.pngtree.com/png-vector/20250209/ourmid/pngtree-a-engineer-men-wearing-construction-helmet-png-image_15431222.png",
+          "https://png.pngtree.com/png-vector/20250209/ourmid/pngtree-a-engineer-men-wearing-construction-helmet-png-image_15431222.png"
+        ]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchServiceImages();
+  }, []);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -27,48 +65,42 @@ export default function Services() {
       title: "Vêtements d'entreprise",
       description: "Uniformes professionnels, polos personnalisés, vestes de travail sur mesure pour votre équipe.",
       features: ["Uniformisation d'équipe", "Personnalisation logo", "Grosses quantités", "Suivi de production"],
-      color: "#1e40af",
-      image: "https://static.vecteezy.com/system/resources/thumbnails/022/609/737/small/engineer-man-worker-in-hard-hat-png.png"
+      color: "#1e40af"
     },
     {
       icon: <FaUsers className="w-5 h-5 md:w-6 md:h-6" />,
       title: "Tenues pour particuliers",
       description: "Création de vêtements sur mesure selon vos goûts et mesures pour une élégance unique.",
       features: ["Créations uniques", "Ajustement parfait", "Choix des tissus", "Style personnel"],
-      color: "#1e40af",
-      image: "https://static.vecteezy.com/system/resources/thumbnails/022/609/737/small/engineer-man-worker-in-hard-hat-png.png"
+      color: "#1e40af"
     },
     {
       icon: <FaRulerCombined className="w-5 h-5 md:w-6 md:h-6" />,
       title: "Sur mesure",
       description: "Prise de mesures précises et ajustements parfaits pour un confort et une coupe optimale.",
       features: ["Prise de mesures", "Toile d'essai", "Ajustements fins", "Validation client"],
-      color: "#1e40af",
-      image: "https://www.pngarts.com/files/3/Engineer-PNG-Download-Image.png"
+      color: "#1e40af"
     },
     {
       icon: <FaTruck className="w-5 h-5 md:w-6 md:h-6" />,
       title: "Livraison nationale",
       description: "Livraison rapide et sécurisée partout à Madagascar, avec suivi de commande en temps réel.",
       features: ["Suivi en temps réel", "Emballage sécurisé", "Livraison express", "Délais garantis"],
-      color: "#1e40af",
-      image: "https://www.pngarts.com/files/3/Engineer-PNG-Download-Image.png"
+      color: "#1e40af"
     },
     {
       icon: <FaMedal className="w-5 h-5 md:w-6 md:h-6" />,
       title: "Qualité premium",
       description: "Tissus de haute qualité, finitions impeccables et durabilité garantie.",
       features: ["Tissus premium", "Finitions expertes", "Contrôle qualité", "Garantie satisfaction"],
-      color: "#1e40af",
-      image: "https://png.pngtree.com/png-vector/20250209/ourmid/pngtree-a-engineer-men-wearing-construction-helmet-png-image_15431222.png"
+      color: "#1e40af"
     },
     {
       icon: <FaHeadset className="w-5 h-5 md:w-6 md:h-6" />,
       title: "Conseil personnalisé",
       description: "Notre équipe vous accompagne dans le choix des modèles, tissus et personnalisations.",
       features: ["Consultation gratuite", "Conseils experts", "Accompagnement", "Solutions adaptées"],
-      color: "#1e40af",
-      image: "https://png.pngtree.com/png-vector/20250209/ourmid/pngtree-a-engineer-men-wearing-construction-helmet-png-image_15431222.png"
+      color: "#1e40af"
     }
   ];
 
@@ -161,91 +193,107 @@ export default function Services() {
                     ))}
                   </div>
 
-                  <button
+                  <Link href="/service"
                     className="inline-flex items-center justify-center gap-2 px-5 py-2.5 md:px-6 md:py-3 font-medium text-white hover:bg-blue-800 transition-colors text-sm md:text-base"
                     style={{ backgroundColor: services[activeService].color }}
                   >
                     <span>En savoir plus</span>
                     <FaArrowRight className="w-3 h-3 md:w-3.5 md:h-3.5" />
-                  </button>
+                  </Link>
                 </div>
 
-                {/* PARTIE DROITE - Image avec animations réduites */}
+                {/* PARTIE DROITE - Image dynamique */}
                 <div className="hidden lg:block relative min-h-[320px] md:min-h-[380px] bg-gradient-to-br from-blue-50/40 to-gray-100/40 overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center p-4 md:p-6">
-                    {/* Conteneur pour les images */}
-                    <div className="relative w-full h-full flex items-center justify-center">
-                      
-                      {/* Cercle décoratif en arrière-plan */}
-                      <motion.div
-                        key={`circle-${activeService}`}
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 0.1 }}
-                        transition={{ duration: 0.5 }}
-                        className="absolute w-[300px] h-[300px] md:w-[350px] md:h-[350px] rounded-full"
-                        style={{ backgroundColor: services[activeService].color }}
-                      />
-
-                      {/* Deuxième cercle animé */}
-                      <motion.div
-                        animate={{ 
-                          scale: [1, 1.2, 1],
-                          opacity: [0.05, 0.08, 0.05]
-                        }}
-                        transition={{ 
-                          duration: 3.5,
-                          repeat: Infinity,
-                          ease: "easeInOut"
-                        }}
-                        className="absolute w-[250px] h-[250px] md:w-[300px] md:h-[300px] rounded-full"
-                        style={{ backgroundColor: services[activeService].color }}
-                      />
-
-                      {/* Lignes décoratives rotatives */}
-                      <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                        className="absolute w-[320px] h-[320px] md:w-[380px] md:h-[380px] border-2 border-dashed rounded-full opacity-15"
-                        style={{ borderColor: services[activeService].color }}
-                      />
-
-                      {/* Image SVG */}
-                      <AnimatePresence mode="wait">
+                    {isLoading ? (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <div className="animate-pulse">
+                          <div className="w-64 h-64 bg-gray-200 rounded-lg"></div>
+                        </div>
+                      </div>
+                    ) : serviceImages.length > 0 ? (
+                      <div className="relative w-full h-full flex items-center justify-center">
+                        
+                        {/* Cercle décoratif en arrière-plan */}
                         <motion.div
-                          key={services[activeService].image}
-                          initial={{ opacity: 0, x: 40, scale: 0.95 }}
-                          animate={{ opacity: 1, x: 0, scale: 1 }}
-                          exit={{ opacity: 0, x: -40, scale: 0.95 }}
-                          transition={{ 
-                            duration: 0.4, 
-                            ease: "easeOut"
-                          }}
-                          className="relative z-20 w-full max-w-[280px] md:max-w-[330px] h-auto flex items-center justify-center"
-                        >
-                          <img
-                            src={services[activeService].image}
-                            alt={services[activeService].title}
-                            className="w-full h-auto object-contain max-h-[250px] md:max-h-[300px]"
-                            style={{ 
-                              filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.12))'
-                            }}
-                          />
-                        </motion.div>
-                      </AnimatePresence>
+                          key={`circle-${activeService}`}
+                          initial={{ scale: 0.8, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 0.1 }}
+                          transition={{ duration: 0.5 }}
+                          className="absolute w-[300px] h-[300px] md:w-[350px] md:h-[350px] rounded-full"
+                          style={{ backgroundColor: services[activeService].color }}
+                        />
 
-                      {/* Effet de lumière subtil */}
-                      <motion.div
-                        animate={{ 
-                          rotate: 360,
-                          scale: [1, 1.05, 1]
-                        }}
-                        transition={{ 
-                          rotate: { duration: 18, repeat: Infinity, ease: "linear" },
-                          scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-                        }}
-                        className="absolute w-[200px] h-[200px] md:w-[250px] md:h-[250px] bg-gradient-to-r from-transparent via-blue-100/15 to-transparent rounded-full blur-lg"
-                      />
-                    </div>
+                        {/* Deuxième cercle animé */}
+                        <motion.div
+                          animate={{ 
+                            scale: [1, 1.2, 1],
+                            opacity: [0.05, 0.08, 0.05]
+                          }}
+                          transition={{ 
+                            duration: 3.5,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }}
+                          className="absolute w-[250px] h-[250px] md:w-[300px] md:h-[300px] rounded-full"
+                          style={{ backgroundColor: services[activeService].color }}
+                        />
+
+                        {/* Lignes décoratives rotatives */}
+                        <motion.div
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                          className="absolute w-[320px] h-[320px] md:w-[380px] md:h-[380px] border-2 border-dashed rounded-full opacity-15"
+                          style={{ borderColor: services[activeService].color }}
+                        />
+
+                        {/* Image dynamique depuis l'API */}
+                        <AnimatePresence mode="wait">
+                          <motion.div
+                            key={serviceImages[activeService]}
+                            initial={{ opacity: 0, x: 40, scale: 0.95 }}
+                            animate={{ opacity: 1, x: 0, scale: 1 }}
+                            exit={{ opacity: 0, x: -40, scale: 0.95 }}
+                            transition={{ 
+                              duration: 0.4, 
+                              ease: "easeOut"
+                            }}
+                            className="relative z-20 w-full max-w-[280px] md:max-w-[330px] h-auto flex items-center justify-center"
+                          >
+                            <Image
+                              src={serviceImages[activeService]}
+                              alt={services[activeService].title}
+                              width={330}
+                              height={330}
+                              className="w-full h-auto object-contain max-h-[250px] md:max-h-[300px] rounded-lg"
+                              style={{ 
+                                filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.12))'
+                              }}
+                              sizes="(max-width: 768px) 280px, 330px"
+                              priority={activeService === 0}
+                            />
+                          </motion.div>
+                        </AnimatePresence>
+
+                        {/* Effet de lumière subtil */}
+                        <motion.div
+                          animate={{ 
+                            rotate: 360,
+                            scale: [1, 1.05, 1]
+                          }}
+                          transition={{ 
+                            rotate: { duration: 18, repeat: Infinity, ease: "linear" },
+                            scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+                          }}
+                          className="absolute w-[200px] h-[200px] md:w-[250px] md:h-[250px] bg-gradient-to-r from-transparent via-blue-100/15 to-transparent rounded-full blur-lg"
+                        />
+                      </div>
+                    ) : (
+                      <div className="text-center">
+                        <div className="text-gray-400 mb-2">Aucune image disponible</div>
+                        <div className="text-sm text-gray-500">Les images seront bientôt disponibles</div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

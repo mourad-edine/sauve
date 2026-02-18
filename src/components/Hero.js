@@ -1,12 +1,36 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from 'framer-motion';
 import { FaAward, FaScissors } from 'react-icons/fa6';
 
 export default function Hero() {
+  const [photoCouverture, setPhotoCouverture] = useState("/images/logo.png");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPhotoCouverture = async () => {
+      try {
+        const response = await fetch('https://admin.confection-vonjy.mg/api/getCouverture/accueil');
+        const data = await response.json();
+        
+        if (data.photos_couverture) {
+          setPhotoCouverture(`https://admin.confection-vonjy.mg/couverture/${data.photos_couverture}`);
+        }
+      } catch (error) {
+        console.error("Erreur lors de la récupération de la photo de couverture:", error);
+        // Garder l'image par défaut en cas d'erreur
+        setPhotoCouverture("/images/logo.png");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPhotoCouverture();
+  }, []);
+
   return (
     <section className="relative min-h-[85vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 py-8 md:py-12">
       
@@ -70,9 +94,9 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* COLONNE DROITE : LE LOGO MIS EN AVANT */}
+          {/* COLONNE DROITE : LA PHOTO DE COUVERTURE */}
           <div className="relative flex justify-center items-center order-1 lg:order-2 mb-6 md:mb-0">
-            {/* Effet de lumière radial derrière le logo */}
+            {/* Effet de lumière radial derrière la photo */}
             <div className="absolute w-[100%] h-[100%] md:w-[120%] md:h-[120%] bg-yellow-500/10 blur-[80px] md:blur-[120px] rounded-full animate-pulse"></div>
             
             <motion.div
@@ -81,19 +105,25 @@ export default function Hero() {
               transition={{ duration: 1.2, ease: "easeOut" }}
               className="relative z-10 w-full max-w-[280px] md:max-w-[400px] lg:max-w-[500px]"
             >
-              <div className="relative w-full h-auto">
-                <Image
-                  src="/images/logo.png"
-                  alt="Logo Confection Vonjy"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto object-contain drop-shadow-[0_0_30px_rgba(234,179,8,0.3)] md:drop-shadow-[0_0_50px_rgba(234,179,8,0.4)] animate-float-logo"
-                  priority
-                  sizes="(max-width: 768px) 280px, (max-width: 1024px) 400px, 500px"
-                />
-              </div>
+              {isLoading ? (
+                <div className="w-full h-[300px] md:h-[400px] lg:h-[500px] bg-blue-800/50 rounded-2xl animate-pulse flex items-center justify-center">
+                  <div className="text-yellow-500 text-lg">Chargement...</div>
+                </div>
+              ) : (
+                <div className="relative w-full h-auto">
+                  <Image
+                    src={photoCouverture}
+                    alt="Photo de couverture - Confection Vonjy"
+                    width={600}
+                    height={600}
+                    className="w-full h-auto object-contain drop-shadow-[0_0_30px_rgba(234,179,8,0.3)] md:drop-shadow-[0_0_50px_rgba(234,179,8,0.4)] animate-float-logo rounded-2xl"
+                    priority
+                    sizes="(max-width: 768px) 280px, (max-width: 1024px) 400px, 500px"
+                  />
+                </div>
+              )}
               
-              {/* Cercle décoratif tournant autour du logo */}
+              {/* Cercle décoratif tournant autour de la photo */}
               <div className="absolute inset-0 border-2 border-dashed border-yellow-500/20 rounded-full animate-spin-very-slow hidden md:block"></div>
             </motion.div>
           </div>

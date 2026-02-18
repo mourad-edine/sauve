@@ -1,12 +1,37 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { FiCamera, FiAward, FiStar, FiHeart } from 'react-icons/fi';
 import { HiOutlineSparkles } from 'react-icons/hi';
-import photohero from './../../../public/images/pngegg.png';
+
 export default function PortfolioHero() {
+  const [photoCouverture, setPhotoCouverture] = useState("https://topomaroc.com/wp-content/uploads/2023/10/lasts0-1637331855-izcb-300x300.png");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPhotoCouverture = async () => {
+      try {
+        const response = await fetch('https://admin.confection-vonjy.mg/api/getCouverture/realisation');
+        const data = await response.json();
+        
+        if (data.photos_couverture) {
+          setPhotoCouverture(`https://admin.confection-vonjy.mg/couverture/${data.photos_couverture}`);
+        }
+      } catch (error) {
+        console.error("Erreur lors de la récupération de la photo de couverture:", error);
+        // Garder l'image par défaut en cas d'erreur
+        setPhotoCouverture("https://topomaroc.com/wp-content/uploads/2023/10/lasts0-1637331855-izcb-300x300.png");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPhotoCouverture();
+  }, []);
+
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 py-12">
       
@@ -21,7 +46,7 @@ export default function PortfolioHero() {
       <div className="container relative z-20 mx-auto px-4 md:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
-          {/* COLONNE GAUCHE : LE PNG ANIMÉ */}
+          {/* COLONNE GAUCHE : LA PHOTO DE COUVERTURE */}
           <div className="relative order-2 lg:order-1 flex justify-center items-center">
             {/* Halo lumineux derrière l'image */}
             <div className="absolute w-[80%] h-[80%] bg-yellow-500/10 blur-[100px] rounded-full"></div>
@@ -30,13 +55,23 @@ export default function PortfolioHero() {
               initial={{ opacity: 0, x: -50, scale: 0.9 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="relative z-10 w-full max-w-[300px]"
+              className="relative z-10 w-full max-w-[300px] md:max-w-[400px]"
             >
-              <img
-                src="https://topomaroc.com/wp-content/uploads/2023/10/lasts0-1637331855-izcb-300x300.png" // REMPLACEZ PAR VOTRE PNG
-                alt="Nos Réalisations"
-                className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.6)] animate-float-slow"
-              />
+              {isLoading ? (
+                <div className="w-full h-[300px] md:h-[400px] bg-blue-800/50 rounded-2xl animate-pulse flex items-center justify-center">
+                  <div className="text-yellow-500 text-lg">Chargement...</div>
+                </div>
+              ) : (
+                <Image
+                  src={photoCouverture}
+                  alt="Nos Réalisations"
+                  width={400}
+                  height={400}
+                  className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.6)] animate-float-slow rounded-2xl"
+                  sizes="(max-width: 768px) 300px, 400px"
+                  priority
+                />
+              )}
               
               {/* Petit badge flottant sur l'image */}
               <motion.div 

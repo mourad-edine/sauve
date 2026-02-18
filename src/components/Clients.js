@@ -16,6 +16,7 @@ import {
 } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
 
 export default function Clients() {
   const [hoveredTestimonial, setHoveredTestimonial] = useState(null);
@@ -23,6 +24,84 @@ export default function Clients() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [autoPlay, setAutoPlay] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const [apiTestimonials, setApiTestimonials] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Récupération des témoignages depuis l'API
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const response = await fetch('https://admin.confection-vonjy.mg/api/temoignages');
+        const data = await response.json();
+        
+        if (Array.isArray(data)) {
+          // Transformer les données de l'API pour correspondre au format attendu
+          const formattedTestimonials = data.map((testimonial, index) => ({
+            id: testimonial.id,
+            name: testimonial.nom,
+            company: testimonial.entreprise || "Non spécifié",
+            text: testimonial.description,
+            initials: getInitials(testimonial.nom),
+            rating: testimonial.note || 5, // Par défaut 5 étoiles si non spécifié
+            poste: testimonial.poste,
+            color: "#1e40af",
+            accent: "#1e40af"
+          }));
+          setApiTestimonials(formattedTestimonials);
+        }
+      } catch (error) {
+        console.error("Erreur lors de la récupération des témoignages:", error);
+        // En cas d'erreur, utiliser les données statiques
+        setApiTestimonials(getDefaultTestimonials());
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchTestimonials();
+  }, []);
+
+  // Fonction pour obtenir les initiales
+  const getInitials = (name) => {
+    if (!name) return "??";
+    const parts = name.split(' ');
+    if (parts.length === 1) return parts[0].substring(0, 2).toUpperCase();
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  };
+
+  // Données par défaut si l'API échoue
+  const getDefaultTestimonials = () => [
+    {
+      id: 1,
+      name: "Marie Dubois",
+      company: "Directrice, Hôtel Le Majestique",
+      text: "Les uniformes pour notre personnel ont considérablement amélioré notre image professionnelle. Qualité exceptionnelle et service impeccable.",
+      initials: "MD",
+      rating: 5,
+      color: "#1e40af",
+      accent: "#1e40af",
+    },
+    {
+      id: 2,
+      name: "Thomas Leroy",
+      company: "Gérant, Café Central",
+      text: "Nous commandons régulièrement des tabliers et t-shirts personnalisés. Toujours parfaitement réalisés et livrés dans les délais.",
+      initials: "TL",
+      rating: 5,
+      color: "#1e40af",
+      accent: "#1e40af",
+    },
+    {
+      id: 3,
+      name: "Sophie Martin",
+      company: "Responsable RH, Clinique Saint-Louis",
+      text: "Excellente collaboration pour nos blouses médicales. Matériaux de qualité et ajustements parfaits pour tout le personnel.",
+      initials: "SM",
+      rating: 5,
+      color: "#1e40af",
+      accent: "#1e40af",
+    },
+  ];
 
   useEffect(() => {
     const checkMobile = () => {
@@ -33,99 +112,60 @@ export default function Clients() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const testimonials = [
-    {
-      name: "Marie Dubois",
-      company: "Directrice, Hôtel Le Majestique",
-      text: "Les uniformes pour notre personnel ont considérablement amélioré notre image professionnelle. Qualité exceptionnelle et service impeccable.",
-      initials: "MD",
-      rating: 5,
-      color: "#1e40af", // Bleu uniforme
-      accent: "#1e40af",
-    },
-    {
-      name: "Thomas Leroy",
-      company: "Gérant, Café Central",
-      text: "Nous commandons régulièrement des tabliers et t-shirts personnalisés. Toujours parfaitement réalisés et livrés dans les délais.",
-      initials: "TL",
-      rating: 5,
-      color: "#1e40af", // Bleu uniforme
-      accent: "#1e40af",
-    },
-    {
-      name: "Sophie Martin",
-      company: "Responsable RH, Clinique Saint-Louis",
-      text: "Excellente collaboration pour nos blouses médicales. Matériaux de qualité et ajustements parfaits pour tout le personnel.",
-      initials: "SM",
-      rating: 5,
-      color: "#1e40af", // Bleu uniforme
-      accent: "#1e40af",
-    },
-    {
-      name: "Pierre Bernard",
-      company: "Directeur, Sécurité Pro",
-      text: "Les tenues de sécurité sont robustes et confortables. Notre équipe est très satisfaite de la qualité et de la durabilité.",
-      initials: "PB",
-      rating: 5,
-      color: "#1e40af", // Bleu uniforme
-      accent: "#1e40af",
-    },
-  ];
-
   const sectors = [
     {
       name: "Hôtellerie & Restauration",
       icon: <FaHotel className="w-4 h-4 sm:w-5 sm:h-5" />,
-      color: "#1e40af", // Bleu uniforme
+      color: "#1e40af",
       accent: "#1e40af",
       initials: "HR",
     },
     {
       name: "Médical & Paramédical",
       icon: <FaUserMd className="w-4 h-4 sm:w-5 sm:h-5" />,
-      color: "#1e40af", // Bleu uniforme
+      color: "#1e40af",
       accent: "#1e40af",
       initials: "MP",
     },
     {
       name: "Sécurité & Services",
       icon: <FaShieldAlt className="w-4 h-4 sm:w-5 sm:h-5" />,
-      color: "#1e40af", // Bleu uniforme
+      color: "#1e40af",
       accent: "#1e40af",
       initials: "SS",
     },
     {
       name: "Commerce & Retail",
       icon: <FaShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" />,
-      color: "#1e40af", // Bleu uniforme
+      color: "#1e40af",
       accent: "#1e40af",
       initials: "CR",
     },
     {
       name: "Transport & Logistique",
       icon: <FaPlane className="w-4 h-4 sm:w-5 sm:h-5" />,
-      color: "#1e40af", // Bleu uniforme
+      color: "#1e40af",
       accent: "#1e40af",
       initials: "TL",
     },
     {
       name: "Industrie & Production",
       icon: <FaIndustry className="w-4 h-4 sm:w-5 sm:h-5" />,
-      color: "#1e40af", // Bleu uniforme
+      color: "#1e40af",
       accent: "#1e40af",
       initials: "IP",
     },
     {
       name: "Éducation & Formation",
       icon: <FaUtensils className="w-4 h-4 sm:w-5 sm:h-5" />,
-      color: "#1e40af", // Bleu uniforme
+      color: "#1e40af",
       accent: "#1e40af",
       initials: "EF",
     },
     {
       name: "Services Publics",
       icon: <FaCheckCircle className="w-4 h-4 sm:w-5 sm:h-5" />,
-      color: "#1e40af", // Bleu uniforme
+      color: "#1e40af",
       accent: "#1e40af",
       initials: "SP",
     },
@@ -133,23 +173,23 @@ export default function Clients() {
 
   const nextTestimonial = useCallback(() => {
     setActiveTestimonial((prev) =>
-      prev === testimonials.length - 1 ? 0 : prev + 1
+      prev === apiTestimonials.length - 1 ? 0 : prev + 1
     );
-  }, [testimonials.length]);
+  }, [apiTestimonials.length]);
 
   const prevTestimonial = useCallback(() => {
     setActiveTestimonial((prev) =>
-      prev === 0 ? testimonials.length - 1 : prev - 1
+      prev === 0 ? apiTestimonials.length - 1 : prev - 1
     );
-  }, [testimonials.length]);
+  }, [apiTestimonials.length]);
 
   useEffect(() => {
-    if (!autoPlay) return;
+    if (!autoPlay || apiTestimonials.length === 0) return;
     const interval = setInterval(nextTestimonial, 4000);
     return () => clearInterval(interval);
-  }, [autoPlay, nextTestimonial]);
+  }, [autoPlay, nextTestimonial, apiTestimonials.length]);
 
-  const currentTestimonial = testimonials[activeTestimonial];
+  const currentTestimonial = apiTestimonials[activeTestimonial] || {};
 
   return (
     <section className="relative bg-white overflow-hidden">
@@ -184,97 +224,117 @@ export default function Clients() {
 
             {/* Conteneur carrousel compact */}
             <div className="relative flex-1 min-h-[240px]">
-              {/* Flèches plus petites */}
-              <button
-                onClick={() => {
-                  prevTestimonial();
-                  setAutoPlay(false);
-                }}
-                className="absolute left-0 top-1/2 -translate-y-1/2 z-20
-                           p-2 bg-white border border-gray-200 
-                           shadow-sm hover:shadow hover:bg-gray-50
-                           transition-all duration-200 text-gray-600 hover:text-gray-900"
-                aria-label="Témoignage précédent"
-              >
-                <FaChevronLeft className="w-3 h-3" />
-              </button>
-
-              <button
-                onClick={() => {
-                  nextTestimonial();
-                  setAutoPlay(false);
-                }}
-                className="absolute right-0 top-1/2 -translate-y-1/2 z-20
-                           p-2 bg-white border border-gray-200 
-                           shadow-sm hover:shadow hover:bg-gray-50
-                           transition-all duration-200 text-gray-600 hover:text-gray-900"
-                aria-label="Témoignage suivant"
-              >
-                <FaChevronRight className="w-3 h-3" />
-              </button>
-
-              {/* Slide animée - sans border radius */}
-              <div className="h-full px-8">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeTestimonial}
-                    initial={{ opacity: 0, x: isMobile ? 20 : 30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: isMobile ? -20 : -30 }}
-                    transition={{ duration: 0.3 }}
-                    className="bg-white border border-gray-200 overflow-hidden h-full flex flex-col"
-                    onMouseEnter={() => setHoveredTestimonial(activeTestimonial)}
-                    onMouseLeave={() => setHoveredTestimonial(null)}
+              {isLoading ? (
+                <div className="h-full flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                    <p className="text-sm text-gray-500">Chargement des témoignages...</p>
+                  </div>
+                </div>
+              ) : apiTestimonials.length === 0 ? (
+                <div className="h-full flex items-center justify-center">
+                  <div className="text-center">
+                    <FaQuoteLeft className="text-gray-300 text-3xl mx-auto mb-4" />
+                    <p className="text-sm text-gray-500">Aucun témoignage disponible pour le moment</p>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  {/* Flèches de navigation */}
+                  <button
+                    onClick={() => {
+                      prevTestimonial();
+                      setAutoPlay(false);
+                    }}
+                    className="absolute left-0 top-1/2 -translate-y-1/2 z-20
+                             p-2 bg-white border border-gray-200 
+                             shadow-sm hover:shadow hover:bg-gray-50
+                             transition-all duration-200 text-gray-600 hover:text-gray-900"
+                    aria-label="Témoignage précédent"
+                    disabled={apiTestimonials.length <= 1}
                   >
-                    <div className="p-4 md:p-6 flex-1 flex flex-col">
-                      <div className="flex-1">
-                        {/* Avatar et note */}
-                        <div className="flex items-start justify-between mb-4">
-                          <div className="relative">
-                            <div className="relative w-12 h-12">
-                              {/* Avatar simple */}
-                              <div
-                                className="absolute inset-0 flex items-center justify-center text-white text-sm font-medium"
-                                style={{ backgroundColor: "#1e40af" }}
-                              >
-                                {currentTestimonial.initials}
+                    <FaChevronLeft className="w-3 h-3" />
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      nextTestimonial();
+                      setAutoPlay(false);
+                    }}
+                    className="absolute right-0 top-1/2 -translate-y-1/2 z-20
+                             p-2 bg-white border border-gray-200 
+                             shadow-sm hover:shadow hover:bg-gray-50
+                             transition-all duration-200 text-gray-600 hover:text-gray-900"
+                    aria-label="Témoignage suivant"
+                    disabled={apiTestimonials.length <= 1}
+                  >
+                    <FaChevronRight className="w-3 h-3" />
+                  </button>
+
+                  {/* Slide animée */}
+                  <div className="h-full px-8">
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={activeTestimonial}
+                        initial={{ opacity: 0, x: isMobile ? 20 : 30 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: isMobile ? -20 : -30 }}
+                        transition={{ duration: 0.3 }}
+                        className="bg-white border border-gray-200 overflow-hidden h-full flex flex-col"
+                        onMouseEnter={() => setHoveredTestimonial(activeTestimonial)}
+                        onMouseLeave={() => setHoveredTestimonial(null)}
+                      >
+                        <div className="p-4 md:p-6 flex-1 flex flex-col">
+                          <div className="flex-1">
+                            {/* Avatar et note */}
+                            <div className="flex items-start justify-between mb-4">
+                              <div className="relative">
+                                <div className="relative w-12 h-12">
+                                  <div
+                                    className="absolute inset-0 flex items-center justify-center text-white text-sm font-medium"
+                                    style={{ backgroundColor: "#1e40af" }}
+                                  >
+                                    {currentTestimonial.initials || "??"}
+                                  </div>
+                                </div>
                               </div>
+
+                              {/* Étoiles */}
+                              <div className="flex gap-0.5">
+                                {[...Array(currentTestimonial.rating || 5)].map((_, i) => (
+                                  <FaStar
+                                    key={i}
+                                    className="w-3 h-3 text-yellow-400 fill-current"
+                                  />
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Citation */}
+                            <div className="mb-4 flex-1">
+                              <FaQuoteLeft className="text-gray-300 text-base mb-2" />
+                              <p className="text-gray-600 text-sm leading-relaxed">
+                                "{currentTestimonial.text || "Aucun contenu disponible"}"
+                              </p>
                             </div>
                           </div>
 
-                          {/* Étoiles plus petites */}
-                          <div className="flex gap-0.5">
-                            {[...Array(currentTestimonial.rating)].map((_, i) => (
-                              <FaStar
-                                key={i}
-                                className="w-3 h-3 text-yellow-400 fill-current"
-                              />
-                            ))}
+                          {/* Auteur */}
+                          <div className="pt-3 border-t border-gray-100 mt-auto">
+                            <h4 className="font-medium text-gray-900 text-sm mb-0.5">
+                              {currentTestimonial.name || "Client"}
+                            </h4>
+                            <p className="text-xs text-gray-500">
+                              {currentTestimonial.company || "Entreprise non spécifiée"}
+                              {currentTestimonial.poste && ` • ${currentTestimonial.poste}`}
+                            </p>
                           </div>
                         </div>
-
-                        {/* Citation réduite */}
-                        <div className="mb-4 flex-1">
-                          <FaQuoteLeft className="text-gray-300 text-base mb-2" />
-                          <p className="text-gray-600 text-sm leading-relaxed">
-                            "{currentTestimonial.text}"
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Auteur */}
-                      <div className="pt-3 border-t border-gray-100 mt-auto">
-                        <h4 className="font-medium text-gray-900 text-sm mb-0.5">
-                          {currentTestimonial.name}
-                        </h4>
-                        <p className="text-xs text-gray-500">
-                          {currentTestimonial.company}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
+                      </motion.div>
+                    </AnimatePresence>
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
@@ -291,7 +351,7 @@ export default function Clients() {
               </div>
             </div>
 
-            {/* Grille des secteurs - plus compacte */}
+            {/* Grille des secteurs */}
             <div className="bg-white border border-gray-200 p-4 flex-1 min-h-[240px]">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3">
                 {sectors.map((sector, index) => (
@@ -330,10 +390,10 @@ export default function Clients() {
           <p className="text-sm text-gray-600 mb-4">
             Confiez-nous vos besoins en uniformes professionnels
           </p>
-          <button className="inline-flex items-center gap-2 text-sm font-medium text-blue-700 hover:text-blue-900 transition-colors">
+          <Link href="/contact" className="inline-flex items-center gap-2 text-sm font-medium text-blue-700 hover:text-blue-900 transition-colors">
             <span>Discuter de votre projet</span>
             <FaArrowRight className="w-3 h-3" />
-          </button>
+          </Link>
         </div>
       </div>
     </section>

@@ -1,29 +1,22 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import Image from "next/image";
-import {
-  FaRulerCombined,
-  FaCalendarAlt,
-  FaLightbulb,
-  FaArrowRight,
-  FaChevronLeft,
-  FaChevronRight,
-} from "react-icons/fa";
+import { useState, useEffect, useCallback } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { FaLightbulb, FaCalendarAlt, FaHandshake, FaArrowRight, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect, useCallback } from "react";
 
-export default function PortfolioCTA() {
-  const [activeStep, setActiveStep] = useState(0);
+export default function CTAabout() {
+  const [activeSlide, setActiveSlide] = useState(0);
   const [autoPlay, setAutoPlay] = useState(true);
   const [ctaImages, setCtaImages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Récupération des images CTA depuis l'API pour les réalisations
+  // Récupération des images CTA depuis l'API
   useEffect(() => {
     const fetchCtaImages = async () => {
       try {
-        const response = await fetch('https://admin.confection-vonjy.mg/api/cta_realisation');
+        const response = await fetch('https://admin.confection-vonjy.mg/api/cta_about');
         const data = await response.json();
         
         if (Array.isArray(data)) {
@@ -49,96 +42,73 @@ export default function PortfolioCTA() {
     fetchCtaImages();
   }, []);
 
-  const steps = [
+  const slides = [
     {
       icon: <FaLightbulb className="w-6 h-6" />,
-      title: "Inspiration",
-      description: "Partagez vos idées et laissez-vous inspirer par nos réalisations et notre savoir-faire.",
-      buttonText: "Explorer nos projets",
-      link: "/realisation",
-      color: '#1e40af'
-    },
-    {
-      icon: <FaRulerCombined className="w-6 h-6" />,
-      title: "Consultation",
-      description: "Échangez avec nos experts pour cadrer précisément vos besoins et vos objectifs.",
-      buttonText: "Prendre rendez-vous",
+      title: "Échangeons sur votre projet",
+      description: "Partagez vos idées avec nos experts et obtenez des conseils personnalisés pour vos uniformes professionnels.",
+      buttonText: "Nous contacter",
       link: "/contact",
       color: '#1e40af'
     },
     {
       icon: <FaCalendarAlt className="w-6 h-6" />,
-      title: "Réalisation",
-      description: "Nous concevons et réalisons votre projet avec méthode, précision et exigence.",
-      buttonText: "Visiter l'atelier",
+      title: "Visitez notre atelier",
+      description: "Rencontrez notre équipe et découvrez notre savoir-faire artisanal directement sur place.",
+      buttonText: "Prendre rendez-vous",
+      link: "/contact",
+      color: '#1e40af'
+    },
+    {
+      icon: <FaHandshake className="w-6 h-6" />,
+      title: "Devenez partenaire",
+      description: "Collaborez avec nous pour des projets durables et sur-mesure. Discutons de vos besoins.",
+      buttonText: "Nous contacter",
       link: "/contact",
       color: '#1e40af'
     }
   ];
 
-  const nextStep = useCallback(() => {
-    setActiveStep((prev) => (prev + 1) % steps.length);
-  }, [steps.length]);
+  const nextSlide = useCallback(() => {
+    setActiveSlide((prev) => (prev + 1) % slides.length);
+  }, [slides.length]);
 
-  const prevStep = useCallback(() => {
-    setActiveStep((prev) => (prev === 0 ? steps.length - 1 : prev - 1));
-  }, [steps.length]);
+  const prevSlide = useCallback(() => {
+    setActiveSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  }, [slides.length]);
 
   useEffect(() => {
     if (!autoPlay) return;
-    const interval = setInterval(nextStep, 5000);
+    const interval = setInterval(nextSlide, 5000);
     return () => clearInterval(interval);
-  }, [autoPlay, nextStep]);
+  }, [autoPlay, nextSlide]);
 
-  const current = steps[activeStep];
-  const currentImage = ctaImages[activeStep] || steps[activeStep]?.image;
+  const current = slides[activeSlide];
+  const currentImage = ctaImages[activeSlide] || slides[activeSlide]?.image;
   const primaryColor = '#1e40af';
 
   return (
     <section className="py-16 md:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
-        {/* Header - style identique au CTA précédent */}
+        {/* Header */}
         <div className="text-center mb-12 md:mb-16">
           <span className="text-sm uppercase tracking-wider text-gray-500 font-medium">
-            Prêt à concrétiser votre projet ?
+            Prochaines étapes
           </span>
           <h2 className="mt-3 text-2xl md:text-3xl font-light text-gray-900">
-            Nos étapes de collaboration
+            Prêt à avancer ensemble ?
           </h2>
           <div className="w-16 h-px bg-blue-700 mx-auto mt-5"></div>
         </div>
 
-        {/* Contenu principal - style identique au CTA précédent */}
+        {/* Contenu principal */}
         <div className="relative">
           {/* Boutons de navigation */}
-          <div className="flex justify-center gap-4 mb-6">
-            <button
-              onClick={() => {
-                prevStep();
-                setAutoPlay(false);
-              }}
-              className="p-3 bg-white border border-gray-300 hover:border-blue-700 hover:bg-blue-50 transition-all duration-200 text-gray-700 hover:text-blue-800"
-              aria-label="Étape précédente"
-              disabled={steps.length <= 1}
-            >
-              <FaChevronLeft className="w-4 h-4" />
-            </button>
-            <button
-              onClick={() => {
-                nextStep();
-                setAutoPlay(false);
-              }}
-              className="p-3 bg-white border border-gray-300 hover:border-blue-700 hover:bg-blue-50 transition-all duration-200 text-gray-700 hover:text-blue-800"
-              aria-label="Étape suivante"
-              disabled={steps.length <= 1}
-            >
-              <FaChevronRight className="w-4 h-4" />
-            </button>
-          </div>
+        
 
           <AnimatePresence mode="wait">
             <motion.div
-              key={activeStep}
+              key={activeSlide}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -161,7 +131,7 @@ export default function PortfolioCTA() {
                       height={400}
                       className="w-full h-full object-contain max-w-[400px] max-h-[300px]"
                       sizes="(max-width: 1024px) 400px, 500px"
-                      priority={activeStep === 0}
+                      priority={activeSlide === 0}
                     />
                   </motion.div>
                 </div>
@@ -206,21 +176,21 @@ export default function PortfolioCTA() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Points indicateurs - style identique */}
+          {/* Points indicateurs */}
           <div className="flex justify-center gap-2 mt-8">
-            {steps.map((_, index) => (
+            {slides.map((_, index) => (
               <button
                 key={index}
                 onClick={() => {
-                  setActiveStep(index);
+                  setActiveSlide(index);
                   setAutoPlay(false);
                 }}
                 className={`transition-all duration-300 ${
-                  activeStep === index 
+                  activeSlide === index 
                     ? 'w-8 h-1.5 bg-blue-800' 
                     : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
                 } rounded-full`}
-                aria-label={`Aller à l'étape ${index + 1}`}
+                aria-label={`Aller au slide ${index + 1}`}
               />
             ))}
           </div>

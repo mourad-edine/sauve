@@ -1,12 +1,37 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { FiClock, FiUsers, FiAward, FiHeart, FiStar, FiTarget } from 'react-icons/fi';
 import { HiOutlineSparkles } from 'react-icons/hi';
 
 export default function AboutHero() {
+  const [photoCouverture, setPhotoCouverture] = useState("https://static.vecteezy.com/system/resources/thumbnails/047/249/331/small/sweater-shirt-hoodie-isolated-png.png");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPhotoCouverture = async () => {
+      try {
+        const response = await fetch('https://admin.confection-vonjy.mg/api/getCouverture/about');
+        const data = await response.json();
+        
+        if (data.photos_couverture) {
+          setPhotoCouverture(`https://admin.confection-vonjy.mg/couverture/${data.photos_couverture}`);
+        }
+      } catch (error) {
+        console.error("Erreur lors de la récupération de la photo de couverture:", error);
+        // Garder l'image par défaut en cas d'erreur
+        setPhotoCouverture("https://static.vecteezy.com/system/resources/thumbnails/047/249/331/small/sweater-shirt-hoodie-isolated-png.png");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPhotoCouverture();
+  }, []);
+
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 py-20">
       
@@ -62,16 +87,16 @@ export default function AboutHero() {
 
             {/* Boutons CTA */}
             <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
-              <Link href="#story" className="w-full sm:w-auto bg-yellow-500 hover:bg-yellow-400 text-blue-950 font-bold py-4 px-8 rounded-full text-sm uppercase tracking-widest transition-transform hover:scale-105 shadow-xl flex items-center justify-center gap-2">
+              <Link href="#" className="w-full sm:w-auto bg-yellow-500 hover:bg-yellow-400 text-blue-950 font-bold py-4 px-8 rounded-full text-sm uppercase tracking-widest transition-transform hover:scale-105 shadow-xl flex items-center justify-center gap-2">
                 <FiHeart /> Notre histoire
               </Link>
-              <Link href="/contact" className="w-full sm:w-auto border border-white/30 hover:border-yellow-500 text-white py-4 px-8 rounded-full text-sm uppercase tracking-widest transition-colors flex items-center justify-center gap-2">
+              <Link href="#equipe" className="w-full sm:w-auto border border-white/30 hover:border-yellow-500 text-white py-4 px-8 rounded-full text-sm uppercase tracking-widest transition-colors flex items-center justify-center gap-2">
                 <HiOutlineSparkles /> Équipe
               </Link>
             </div>
           </div>
 
-          {/* COLONNE DROITE : LE PNG ANIMÉ */}
+          {/* COLONNE DROITE : LA PHOTO DE COUVERTURE */}
           <div className="relative flex justify-center items-center h-full">
             {/* Halo lumineux */}
             <div className="absolute w-[80%] h-[80%] bg-yellow-500/10 blur-[120px] rounded-full"></div>
@@ -80,13 +105,23 @@ export default function AboutHero() {
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1 }}
-              className="relative z-10"
+              className="relative z-10 w-full max-w-[500px]"
             >
-              <img
-                src="https://static.vecteezy.com/system/resources/thumbnails/047/249/331/small/sweater-shirt-hoodie-isolated-png.png" // REMPLACEZ PAR VOTRE PNG
-                alt="Vonjy Atelier"
-                className="w-full max-w-[500px] h-auto object-contain drop-shadow-[0_20px_60px_rgba(0,0,0,0.5)] animate-float-slow"
-              />
+              {isLoading ? (
+                <div className="w-full h-[400px] bg-blue-800/50 rounded-2xl animate-pulse flex items-center justify-center">
+                  <div className="text-yellow-500 text-lg">Chargement...</div>
+                </div>
+              ) : (
+                <Image
+                  src={photoCouverture}
+                  alt="Vonjy Atelier"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto object-contain drop-shadow-[0_20px_60px_rgba(0,0,0,0.5)] animate-float-slow rounded-2xl"
+                  sizes="(max-width: 768px) 400px, 500px"
+                  priority
+                />
+              )}
               
               {/* Badge flottant "Expertise" */}
               <motion.div 

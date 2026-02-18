@@ -6,6 +6,7 @@ import AboutValues from '@/components/about/AboutValues';
 import AboutWorkshop from '@/components/about/AboutWorkshop';
 import AboutQuality from '@/components/about/AboutQuality';
 import AboutCTA from '@/components/about/AboutCTA';
+import CTAabout from '@/components/contact/CTAabout';
 
 export default function AboutPage() {
   return (
@@ -15,7 +16,7 @@ export default function AboutPage() {
       <AboutTeam />
       <AboutValues />
 
-      <AboutCTA />
+      <CTAabout />
     </div>
   );
 }

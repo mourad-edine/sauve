@@ -6,8 +6,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { FaChevronLeft, FaChevronRight, FaExpand, FaTimes, FaArrowRight } from "react-icons/fa";
 
-const API_URL = "https://admin.camp-toamasina.mg/api/photos_camps";
-const STORAGE_URL = "https://admin.camp-toamasina.mg/photo_camps/";
+const API_URL = "https://admin.confection-vonjy.mg/api/photos_camps";
+const STORAGE_URL = "https://admin.confection-vonjy.mg/photo_camps/";
 
 const primary = '#1e40af';     // bleu foncé principal
 const primaryDark = '#1e3a8a';

@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react"; // Ajouter useRef
 import GalleryGrid from "@/components/gallery/GalleryGrid";
 import GalleryLightbox from "@/components/gallery/GalleryLightbox";
 import GalleryHero from "@/components/gallery/GalleryHero";
 import GalleryFilters from "@/components/gallery/GalleryFilters";
 import { FaArrowRight } from "react-icons/fa";
 
-const API_URL = "https://admin.camp-toamasina.mg/api/photos_camps";
-const STORAGE_URL = "https://admin.camp-toamasina.mg/photo_camps/";
+const API_URL = "https://admin.confection-vonjy.mg/api/photos_camps";
+const STORAGE_URL = "https://admin.confection-vonjy.mg/photo_camps/";
 
 export default function GaleriePage() {
   const [selectedCategory, setSelectedCategory] = useState("tous");
@@ -19,8 +19,35 @@ export default function GaleriePage() {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  
+  // Référence pour le conteneur à scroller
+  const contentRef = useRef(null);
 
   const imagesPerPage = 12;
+
+  // Fonction pour scroller en haut
+  const scrollToTop = () => {
+    if (contentRef.current) {
+      // Scroller le conteneur parent au début
+      contentRef.current.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+      
+      // Ou pour scroller la fenêtre
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  // Scroller en haut quand la page change
+  useEffect(() => {
+    if (currentPage > 1) {
+      scrollToTop();
+    }
+  }, [currentPage]);
 
   // Récupérer les images depuis l'API
   useEffect(() => {
@@ -69,6 +96,7 @@ export default function GaleriePage() {
       setFilteredImages(filtered);
     }
     setCurrentPage(1); // Réinitialiser à la première page quand on change de filtre
+    setSelectedImage(null); // Réinitialiser la sélection du lightbox
   }, [selectedCategory, images]);
 
   // Calculer les images à afficher pour la page actuelle
@@ -92,7 +120,7 @@ export default function GaleriePage() {
     if (count > 0 && catId !== "tous") {
       categories.push({
         id: catId,
-        name: `Camp ${catId}`,
+        name: `collections`,
         count: count,
       });
     }
@@ -100,25 +128,49 @@ export default function GaleriePage() {
 
   // Ouvrir le lightbox
   const openLightbox = (imageIndex) => {
-    const clickedImage = filteredImages[imageIndex];
-    const globalIndex = images.findIndex((img) => img.id === clickedImage?.id);
-    setSelectedImage(globalIndex);
-    setIsLightboxOpen(true);
+    const clickedImage = currentImages[imageIndex];
+    
+    if (!clickedImage) return;
+    
+    const filteredIndex = filteredImages.findIndex(img => img.id === clickedImage.id);
+    
+    if (filteredIndex !== -1) {
+      setSelectedImage(filteredIndex);
+      setIsLightboxOpen(true);
+    }
   };
 
-  // Navigation du lightbox
+  // Navigation du lightbox dans filteredImages
   const goToPrevious = () => {
     setSelectedImage((prev) => {
-      if (prev === null) return null;
-      return prev > 0 ? prev - 1 : images.length - 1;
+      if (prev === null || prev === undefined) return 0;
+      return prev > 0 ? prev - 1 : filteredImages.length - 1;
     });
   };
 
   const goToNext = () => {
     setSelectedImage((prev) => {
-      if (prev === null) return null;
-      return prev < images.length - 1 ? prev + 1 : 0;
+      if (prev === null || prev === undefined) return 0;
+      return prev < filteredImages.length - 1 ? prev + 1 : 0;
     });
+  };
+
+  // Gérer le changement de page avec scroll en haut
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // Gérer la navigation précédente/suivante avec scroll en haut
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(prev => prev - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(prev => prev + 1);
+    }
   };
 
   // Fermer le lightbox avec Escape
@@ -138,6 +190,16 @@ export default function GaleriePage() {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isLightboxOpen]);
+
+  // Gérer la fermeture du lightbox si filteredImages change
+  useEffect(() => {
+    if (isLightboxOpen && filteredImages.length > 0) {
+      if (selectedImage >= filteredImages.length) {
+        setIsLightboxOpen(false);
+        setSelectedImage(null);
+      }
+    }
+  }, [filteredImages, isLightboxOpen, selectedImage]);
 
   if (loading) {
     return (
@@ -171,34 +233,14 @@ export default function GaleriePage() {
       {/* En-tête de la page */}
       <GalleryHero />
 
-      {/* Contenu principal */}
-      <div className="container mx-auto px-4 md:px-6 py-12 md:py-16">
+      {/* Contenu principal avec ref */}
+      <div ref={contentRef} className="container mx-auto px-4 md:px-6 py-12 md:py-16">
         {/* Filtres */}
         <GalleryFilters
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
           categories={categories}
         />
-
-        {/* Statistiques */}
-        {/* <div className="mb-8 text-center">
-          <p className="text-gray-600">
-            Affichage de{" "}
-            <span className="font-bold text-blue-700">
-              {currentImages.length}
-            </span>{" "}
-            sur{" "}
-            <span className="font-bold text-blue-700">
-              {filteredImages.length}
-            </span>{" "}
-            images
-            {selectedCategory !== "tous" && (
-              <span className="ml-2 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
-                Camp : {selectedCategory}
-              </span>
-            )}
-          </p>
-        </div> */}
 
         {/* Grille d'images */}
         <GalleryGrid images={currentImages} onImageClick={openLightbox} />
@@ -208,7 +250,7 @@ export default function GaleriePage() {
           <div className="mt-12 flex justify-center">
             <div className="flex flex-wrap gap-2 items-center">
               <button
-                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                onClick={handlePreviousPage}
                 disabled={currentPage === 1}
                 className={`px-4 py-2 rounded-lg transition ${
                   currentPage === 1
@@ -221,7 +263,6 @@ export default function GaleriePage() {
 
               {[...Array(totalPages)].map((_, index) => {
                 const pageNumber = index + 1;
-                // Afficher un nombre limité de pages
                 if (
                   pageNumber === 1 ||
                   pageNumber === totalPages ||
@@ -231,7 +272,7 @@ export default function GaleriePage() {
                   return (
                     <button
                       key={pageNumber}
-                      onClick={() => setCurrentPage(pageNumber)}
+                      onClick={() => handlePageChange(pageNumber)}
                       className={`w-10 h-10 flex items-center justify-center rounded-lg transition ${
                         currentPage === pageNumber
                           ? "bg-blue-600 text-white font-bold"
@@ -255,9 +296,7 @@ export default function GaleriePage() {
               })}
 
               <button
-                onClick={() =>
-                  setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-                }
+                onClick={handleNextPage}
                 disabled={currentPage === totalPages}
                 className={`px-4 py-2 rounded-lg transition ${
                   currentPage === totalPages
@@ -279,11 +318,14 @@ export default function GaleriePage() {
       </div>
 
       {/* Lightbox */}
-      {isLightboxOpen && selectedImage !== null && (
+      {isLightboxOpen && selectedImage !== null && selectedImage < filteredImages.length && (
         <GalleryLightbox
-          images={images}
+          images={filteredImages}
           currentIndex={selectedImage}
-          onClose={() => setIsLightboxOpen(false)}
+          onClose={() => {
+            setIsLightboxOpen(false);
+            setSelectedImage(null);
+          }}
           onPrevious={goToPrevious}
           onNext={goToNext}
         />
@@ -291,46 +333,36 @@ export default function GaleriePage() {
 
       {/* CTA Section */}
       <div className="bg-white border-t border-gray-200 py-16 md:py-20">
-  <div className="max-w-3xl mx-auto px-5 sm:px-6 lg:px-8 text-center">
-    {/* Séparateur discret */}
-    <div className="mb-10">
-      <div className="inline-flex items-center gap-4">
-        <div className="h-px w-8 bg-gray-300"></div>
-        <span className="text-sm uppercase tracking-wider text-gray-500 font-medium">
-          Prêt à démarrer ?
-        </span>
-        <div className="h-px w-8 bg-gray-300"></div>
+        <div className="max-w-3xl mx-auto px-5 sm:px-6 lg:px-8 text-center">
+          <div className="mb-10">
+            <div className="inline-flex items-center gap-4">
+              <div className="h-px w-8 bg-gray-300"></div>
+              <span className="text-sm uppercase tracking-wider text-gray-500 font-medium">
+                Prêt à démarrer ?
+              </span>
+              <div className="h-px w-8 bg-gray-300"></div>
+            </div>
+          </div>
+
+          <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-5">
+            Un projet en tête ?
+          </h2>
+
+          <p className="text-md md:text-md text-gray-600 max-w-xl mx-auto leading-relaxed mb-10">
+            Discutons ensemble de votre projet.
+          </p>
+
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <a
+              href="/contact"
+              className="inline-flex items-center justify-center gap-3 bg-blue-800 text-white font-medium px-8 py-4 hover:bg-blue-900 transition-colors duration-300"
+            >
+              <span>Échanger sur mon projet</span>
+              <FaArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-5">
-      Un projet en tête ?
-    </h2>
-
-    <p className="text-md md:text-md text-gray-600 max-w-xl mx-auto leading-relaxed mb-10">
-       
-      Discutons ensemble de votre projet.
-    </p>
-
-    <div className="flex flex-col sm:flex-row justify-center gap-4">
-      <a
-        href="/contact"
-        className="inline-flex items-center justify-center gap-3 bg-blue-800 text-white font-medium px-8 py-4 hover:bg-blue-900 transition-colors duration-300"
-      >
-        <span>Échanger sur mon projet</span>
-        <FaArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
-      </a>
-
-      {/* Optionnel : bouton secondaire discret */}
-      {/* <a
-        href="/devis"
-        className="inline-flex items-center justify-center gap-3 border border-gray-300 text-gray-700 font-medium px-8 py-4 hover:bg-gray-50 transition-colors duration-300"
-      >
-        Demander un devis rapide
-      </a> */}
-    </div>
-  </div>
-</div>
     </div>
   );
 }

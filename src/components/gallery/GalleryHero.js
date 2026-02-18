@@ -1,9 +1,34 @@
 "use client";
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { FaCameraRetro, FaRibbon, FaAward, FaMagic } from 'react-icons/fa';
 
 export default function GalleryHero() {
+  const [photoCouverture, setPhotoCouverture] = useState("https://fipcenter.com/guide/wp-content/uploads/2021/02/combinaison-industrielle-de-travailleur.png");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPhotoCouverture = async () => {
+      try {
+        const response = await fetch('https://admin.confection-vonjy.mg/api/getCouverture/galerie');
+        const data = await response.json();
+        
+        if (data.photos_couverture) {
+          setPhotoCouverture(`https://admin.confection-vonjy.mg/couverture/${data.photos_couverture}`);
+        }
+      } catch (error) {
+        console.error("Erreur lors de la récupération de la photo de couverture:", error);
+        // Garder l'image par défaut en cas d'erreur
+        setPhotoCouverture("https://fipcenter.com/guide/wp-content/uploads/2021/02/combinaison-industrielle-de-travailleur.png");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPhotoCouverture();
+  }, []);
+
   return (
     <div className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 py-16">
       
@@ -18,7 +43,7 @@ export default function GalleryHero() {
       <div className="container relative z-20 mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
-          {/* COLONNE GAUCHE : LE PNG DE LA COLLECTION */}
+          {/* COLONNE GAUCHE : LA PHOTO DE COUVERTURE */}
           <div className="relative order-2 lg:order-1 flex justify-center items-center">
             {/* Rayonnement lumineux derrière la pièce de collection */}
             <div className="absolute w-[100%] h-[100%] bg-yellow-500/10 blur-[120px] rounded-full"></div>
@@ -29,14 +54,24 @@ export default function GalleryHero() {
               transition={{ duration: 1, ease: "easeOut" }}
               className="relative z-10 w-full max-w-[500px]"
             >
-              <img
-                src="https://fipcenter.com/guide/wp-content/uploads/2021/02/combinaison-industrielle-de-travailleur.png" // REMPLACEZ PAR VOTRE PNG (ex: un vêtement phare sur mannequin ou cintre)
-                alt="Collection Vonjy"
-                className="w-full h-auto object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.4)] animate-float-slow"
-              />
+              {isLoading ? (
+                <div className="w-full h-[400px] bg-blue-800/50 rounded-2xl animate-pulse flex items-center justify-center">
+                  <div className="text-yellow-500 text-lg">Chargement de la galerie...</div>
+                </div>
+              ) : (
+                <Image
+                  src={photoCouverture}
+                  alt="Collection Vonjy"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.4)] animate-float-slow rounded-2xl"
+                  sizes="(max-width: 768px) 400px, 500px"
+                  priority
+                />
+              )}
               
               {/* Badge "Édition Limitée" ou "Nouveauté" flottant */}
-              <div className="absolute top-10 -left-6 bg-gradient-to-r from-yellow-500 to-yellow-600 text-blue-900 font-black py-2 px-4 rounded-lg transform -rotate-12 shadow-xl text-xs uppercase tracking-widest">
+              <div className="absolute top-10 -left-6 bg-gradient-to-r from-yellow-500 to-yellow-600 text-blue-900 font-black py-2 px-4 rounded-lg transform -rotate-12 shadow-xl text-xs uppercase tracking-widest z-20">
                 Exclusif
               </div>
             </motion.div>
@@ -60,7 +95,9 @@ export default function GalleryHero() {
               <span className="block text-2xl md:text-3xl lg:text-4xl font-light uppercase tracking-tighter text-white/90">
                 CRÉATIONS
               </span>
-             
+              <span className="block text-2xl md:text-3xl lg:text-4xl font-bold uppercase tracking-wider mt-2 bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500">
+                Vonjy
+              </span>
             </h1>
 
             {/* Sous-titre */}
